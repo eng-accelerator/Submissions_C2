@@ -1,0 +1,36 @@
+# Text Summarization MVP - Dependencies
+# AI Engineering Bootcamp - Day 2
+# Python 3.8+ required
+
+# Core ML/AI Libraries
+gradio>=5.0.0
+transformers>=4.57.0
+torch>=2.0.0
+sentencepiece>=0.1.99
+protobuf>=3.20.0
+accelerate>=0.20.0
+
+# Export Functionality
+gtts>=2.3.0                    # Text-to-speech (10 languages)
+pydub>=0.25.0                  # Audio processing
+markdown>=3.4.0                # Markdown processing
+reportlab>=4.0.0               # PDF generation
+
+# Utilities
+python-dotenv>=1.0.0           # Environment variables
+requests>=2.31.0               # HTTP requests (for API calls)
+
+# Development & Testing (Optional)
+jupyter>=1.0.0                 # Notebook support
+ipywidgets>=8.0.0              # Jupyter widgets
+notebook>=7.0.0                # Jupyter notebook
+
+# Audio Processing (Linux/Mac)
+# ffmpeg (system package, not pip)
+# Install via: apt-get install ffmpeg (Linux) or brew install ffmpeg (Mac)
+
+# Notes:
+# - First run will download ~500MB-2GB of models
+# - GPU support: Install torch with CUDA support
+#   pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+# - For Apple Silicon: MPS backend supported in PyTorch 2.0+

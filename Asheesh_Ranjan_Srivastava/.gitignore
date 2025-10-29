@@ -1,0 +1,180 @@
+# Text Summarization MVP - Git Ignore
+# AI Engineering Bootcamp - Day 2
+
+# ============================================
+# Python
+# ============================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# ============================================
+# Jupyter Notebook
+# ============================================
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+*.ipynb_checkpoints
+
+# ============================================
+# Environment & Secrets
+# ============================================
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+*.env
+
+# HuggingFace Token
+.huggingface/
+.hf_token
+
+# ============================================
+# ML/AI Specific
+# ============================================
+
+# Downloaded Models (can be large!)
+model_cache/
+models/
+*.bin
+*.ckpt
+*.pth
+*.pt
+pytorch_model.bin
+tf_model.h5
+
+# HuggingFace Cache
+.cache/
+.transformers_cache/
+
+# Training outputs
+runs/
+logs/
+checkpoints/
+training_output/
+
+# ============================================
+# Exports (Generated Files)
+# ============================================
+exports/
+output/
+*.md
+!README.md
+!ARCHITECTURE.md
+!SETUP.md
+!CONTRIBUTING.md
+!LICENSE.md
+!docs/*.md
+
+# Export formats
+*.mp3
+*.wav
+exports/*.json
+exports/*.pdf
+
+# ============================================
+# IDEs & Editors
+# ============================================
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# ============================================
+# OS Specific
+# ============================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ============================================
+# Gradio Specific
+# ============================================
+flagged/
+gradio_queue.db
+gradio_flagged/
+
+# ============================================
+# Testing & Coverage
+# ============================================
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# ============================================
+# Documentation Build
+# ============================================
+docs/_build/
+site/
+
+# ============================================
+# Temporary Files
+# ============================================
+*.log
+*.tmp
+*.temp
+tmp/
+temp/
+
+# ============================================
+# Jupyter Lab
+# ============================================
+.jupyter/
+.local/
+
+# ============================================
+# IMPORTANT: Keep Sample Files
+# ============================================
+# Sample outputs for demo purposes (small files only)
+!examples/sample_outputs/*.md
+!examples/sample_outputs/*.json
+!examples/sample_outputs/*.mp3
+
+# Keep documentation images
+!docs/screenshots/*.png
+!docs/screenshots/*.jpg
+!docs/screenshots/*.gif
