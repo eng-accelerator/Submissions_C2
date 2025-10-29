@@ -1,425 +1,380 @@
-# 🚀 Text Summarization MVP with Multi-Format Export
+# 🤖 Multi-Persona Chatbot with Export Functionality
 
+**Part of [QUEST AND CROSSFIRE™](https://questandcrossfire.com)**
+
+A professional, multi-session chatbot with AI persona switching, persistent storage, and conversation export capabilities. Built as part of the OutSkill AI Engineering Bootcamp 2025.
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![Gradio](https://img.shields.io/badge/Gradio-5.0+-orange.svg)](https://gradio.app/)
-[![HuggingFace](https://img.shields.io/badge/🤗-HuggingFace-yellow.svg)](https://huggingface.co/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-
-> **Day 2 Project** - AI Engineering Bootcamp
-> A production-ready text summarization application with professional export capabilities built using Transformers and Gradio.
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red.svg)](https://streamlit.io/)
 
 ---
 
-## 📋 Table of Contents
+## 📚 Project Context
 
-- [Overview](#overview)
-- [Features](#features)
-- [Demo](#demo)
-- [Quick Start](#quick-start)
-- [Deployment Options](#deployment-options)
-- [Technologies](#technologies)
-- [Architecture](#architecture)
-- [Usage Guide](#usage-guide)
-- [Bootcamp Learning Outcomes](#bootcamp-learning-outcomes)
-- [Future Enhancements](#future-enhancements)
-- [Contributing](#contributing)
-- [License](#license)
-
----
-
-## 🎯 Overview
-
-This project delivers an **AI-powered text summarization tool** that generates high-quality summaries and exports them in multiple professional formats. Built as part of the AI Engineering Bootcamp (Day 2), it demonstrates practical application of:
-
-- ✅ **Prompt Engineering** (Zero-shot, Few-shot, Chain-of-Thought)
-- ✅ **HuggingFace Transformers** (Model loading, tokenization, inference)
-- ✅ **Gradio Interface Design** (Multi-tab UI, file handling)
-- ✅ **Production Best Practices** (Caching, error handling, logging)
-
-### 🎥 **Why Multi-Format Export?**
-
-Different use cases require different formats:
-- **Markdown**: Documentation, GitHub, blogs
-- **JSON**: API integration, data pipelines
-- **Audio (TTS)**: Accessibility, learning while commuting
-- **PDF**: Professional reports, sharing with stakeholders
+This chatbot was developed as part of the **OutSkill AI Engineering Bootcamp 2025** to demonstrate proficiency in:
+- Streamlit web application development
+- OpenAI API integration
+- Multi-persona AI system design
+- Persistent data storage (JSON-based)
+- File export functionality (TXT, JSON, CSV)
+- Professional code documentation and best practices
 
 ---
 
 ## ✨ Features
 
-### Core Capabilities
-- 🤖 **4 AI Models**: BART, T5-Small, T5-Base, Pegasus
-- 📊 **Smart Caching**: 83% cost reduction via MD5-based cache
-- 📏 **Adjustable Length**: 10%-50% compression ratio
-- ⚡ **GPU Support**: Auto-detects CUDA for faster inference
+### 🎭 **Multiple AI Personas**
+Switch between four distinct personalities:
+- **General Assistant** - Helpful, polite, and informative
+- **Creative Poet** - Whimsical and artistic responses with metaphors
+- **Technical Coder** - Precise, logical, code-focused answers
+- **Sarcastic Robot** - Correct answers with humorous, weary tone
 
-### Export Formats
-- 📄 **Markdown**: Full report with metadata and statistics
-- 📊 **JSON**: Structured data with ISO timestamps
-- 🎵 **Audio**: Text-to-speech in 10 languages
-- 📑 **PDF**: Professional document with formatting
+### 💬 **Multi-Session Chat Management**
+- Create unlimited chat sessions
+- Auto-save every message
+- Load previous conversations instantly
+- Delete old chats
+- Auto-generated chat titles
 
-### User Experience
-- 🎨 **Clean Gradio UI**: Multi-tab interface (Summarize → Export → Help)
-- 📈 **Real-time Stats**: Word count, compression ratio, processing time
-- 💾 **Batch Export**: Download all formats with one click
-- 📱 **Google Colab Optimized**: File download utilities included
+### 📤 **Export Conversations**
+Export any chat in three formats:
+- **TXT** - Human-readable plain text
+- **JSON** - Structured data with metadata
+- **CSV** - Spreadsheet-compatible format
+
+### ⚡ **Real-Time Streaming**
+- Live "typing" effect as AI responds
+- Smooth user experience
+- Instant feedback
+
+### 👍 **User Feedback System**
+- Thumbs up/down for assistant responses
+- Track response quality (decorative in current version)
+
+### 💾 **Persistent Storage**
+- JSON-based chat history
+- Automatic saving after every message
+- Timestamps for creation and updates
 
 ---
 
-## 🎥 Demo
+## 🛠️ Tech Stack
 
-### 🔴 **Important Note on Live Demo**
-
-**Gradio Share Links Limitations:**
-- ⏰ **Active Session**: 72 hours maximum
-- 🔗 **Public URL**: Valid for 7 days
-- ⚠️ **Not Suitable**: For long-term/permanent hosting
-
-**For bootcamp submission, we provide:**
-
-### Option 1: **Local Setup** (Recommended for Evaluation)
-```bash
-# Clone and run locally (5 minutes)
-git clone <your-repo-url>
-cd day2-text-summarization-mvp
-pip install -r requirements.txt
-jupyter notebook text_summarization_mvp_enhanced.ipynb
-```
-
-### Option 2: **HuggingFace Spaces** (Free Permanent Hosting)
-```bash
-# Deploy to Spaces (permanent URL)
-gradio deploy
-```
-See [DEPLOYMENT.md](docs/DEPLOYMENT.md) for detailed instructions.
-
-### Option 3: **Screenshots & Video**
-- 📸 [Interface Screenshots](docs/screenshots/)
-- 🎥 [Demo Video](docs/demo-video-link.md) (YouTube/Loom)
+| Technology | Purpose |
+|------------|---------|
+| **Streamlit** | Web UI framework |
+| **OpenAI API** | GPT model access |
+| **OpenAI Python Library** | API client |
+| **Python 3.8+** | Core language |
+| **JSON** | Data persistence |
+| **CSV** | Export format |
 
 ---
 
 ## 🚀 Quick Start
 
-### Prerequisites
-- Python 3.8+
-- 4GB RAM minimum (8GB recommended)
-- Internet connection (first run downloads models ~500MB)
+### **Prerequisites**
+- Python 3.8 or higher
+- OpenAI API key ([Get one here](https://platform.openai.com/api-keys))
 
-### Installation
+### **Installation**
 
-**1. Clone Repository**
-```bash
-git clone https://github.com/AsheeshSrivastava/day2-text-summarization-mvp.git
-cd day2-text-summarization-mvp
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/AsheeshSrivastava/quest-crossfire-chatbot.git
+   cd quest-crossfire-chatbot
+   ```
+
+2. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Configure your API key**
+   ```bash
+   # Create .streamlit directory if it doesn't exist
+   mkdir .streamlit
+
+   # Copy the example secrets file
+   cp .streamlit/secrets.toml.example .streamlit/secrets.toml
+
+   # Edit .streamlit/secrets.toml and add your OpenAI API key
+   ```
+
+4. **Run the app**
+   ```bash
+   streamlit run app.py
+   ```
+
+5. **Open your browser** to `http://localhost:8501`
+
+---
+
+## 🔑 API Key Setup
+
+### **Get an OpenAI API Key**
+
+1. Visit [OpenAI Platform](https://platform.openai.com/)
+2. Sign up for an account
+3. Go to [API Keys](https://platform.openai.com/api-keys)
+4. Create a new API key
+5. Copy the key (starts with `sk-...`)
+
+### **Add Key to Secrets**
+
+**For Local Development:**
+1. Create/edit `.streamlit/secrets.toml`
+2. Add:
+   ```toml
+   OPENAI_API_KEY = "sk-your_key_here"
+   ```
+
+**For Streamlit Cloud Deployment:**
+1. Deploy your app to Streamlit Cloud
+2. Go to app settings → Secrets
+3. Paste:
+   ```toml
+   OPENAI_API_KEY = "sk-your_key_here"
+   ```
+
+---
+
+## 📖 Usage
+
+### **Starting a New Chat**
+1. Click "➕ New Chat" in the sidebar
+2. Select a persona from the dropdown
+3. Type your message in the chat input
+4. Press Enter to send
+
+### **Switching Personas**
+1. Select a different persona from the sidebar dropdown
+2. New messages will use the selected persona
+3. Previous messages remain unchanged
+
+### **Managing Chat History**
+- **Load a chat**: Click on its title in the sidebar
+- **Delete a chat**: Click the 🗑️ icon next to the chat
+- **Active chat**: Indicated with 🟢 icon
+
+### **Exporting Conversations**
+1. Navigate to the chat you want to export
+2. Scroll to "📤 Export Current Chat" in the sidebar
+3. Click your preferred format:
+   - **TXT**: Human-readable format
+   - **JSON**: Structured data with metadata
+   - **CSV**: Import into Excel/Google Sheets
+
+### **Feedback System**
+- Click 👍 for good responses
+- Click 👎 for bad responses
+- (Note: Feedback is stored but not persisted in current version)
+
+---
+
+## 📁 Project Structure
+
 ```
-
-**2. Install Dependencies**
-```bash
-pip install -r requirements.txt
-```
-
-**3. (Optional) Set HuggingFace Token**
-```bash
-# Copy environment template
-cp .env.example .env
-
-# Add your token (optional, for gated models)
-echo "HF_TOKEN=your_token_here" >> .env
-```
-
-**4. Run Application**
-
-**Option A: Jupyter Notebook**
-```bash
-jupyter notebook text_summarization_mvp_enhanced.ipynb
-```
-
-**Option B: Google Colab**
-1. Upload `text_summarization_mvp_enhanced.ipynb` to Colab
-2. Run all cells
-3. Access via public link (valid 7 days)
-
-**Option C: Python Script** (Coming soon)
-```bash
-python app.py --share
+quest-crossfire-chatbot/
+├── app.py                        # Main Streamlit application
+├── requirements.txt              # Python dependencies
+├── LICENSE                       # GPL-3.0 license
+├── README.md                     # This file
+├── .gitignore                    # Git ignore rules
+├── .streamlit/
+│   └── secrets.toml.example      # API key template
+├── chat_history/                 # Saved chats (local only, gitignored)
+│   └── chat_*.json               # Individual chat files
+└── session_logs/                 # Development/deployment logs
+    └── *.md                      # Session documentation
 ```
 
 ---
 
-## 🌐 Deployment Options
+## 🎓 Educational Value
 
-### 1. **Local Development** (Best for Testing)
-- ✅ **Pros**: Full control, no time limits, offline capable
-- ❌ **Cons**: Requires Python environment
+### **What This Project Demonstrates:**
 
-```bash
-jupyter notebook text_summarization_mvp_enhanced.ipynb
-# Access at http://localhost:8888
-```
+**Technical Skills:**
+1. ✅ Streamlit web app development
+2. ✅ API integration (OpenAI)
+3. ✅ Session state management
+4. ✅ File I/O operations (JSON, CSV, TXT)
+5. ✅ Real-time streaming responses
+6. ✅ Multi-persona system architecture
+7. ✅ Error handling and user feedback
 
-### 2. **HuggingFace Spaces** (Best for Sharing)
-- ✅ **Pros**: Free, permanent, GPU support available
-- ❌ **Cons**: Requires HF account
-
-```bash
-# One-time setup
-huggingface-cli login
-
-# Deploy
-cd day2-text-summarization-mvp
-gradio deploy
-```
-
-**Result**: Permanent URL at `https://huggingface.co/spaces/AsheeshSrivastava/text-summarization`
-
-### 3. **Google Colab** (Best for Quick Demo)
-- ✅ **Pros**: No setup, works anywhere, free GPU
-- ❌ **Cons**: 72-hour session limit, 7-day link expiry
-
-```python
-# In Colab cell
-interface.launch(share=True)
-# Creates temporary public URL
-```
-
-### 4. **Streamlit Cloud / Railway / Render**
-See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for alternative platforms.
+**Professional Practices:**
+1. ✅ Comprehensive code documentation
+2. ✅ Proper project structure
+3. ✅ Git version control
+4. ✅ Open source licensing (GPL-3.0)
+5. ✅ Transparent AI attribution
+6. ✅ Deployment-ready code
+7. ✅ User-focused design
 
 ---
 
-## 🛠️ Technologies
+## ⚠️ Known Limitations
 
-### Machine Learning
-- **Transformers** (v4.57+): Model inference
-- **PyTorch** (v2.0+): Deep learning backend
-- **HuggingFace Hub**: Model repository
+### **Ephemeral Storage on Cloud Deployment**
 
-### Interface & Export
-- **Gradio** (v5.0+): Web UI framework
-- **gTTS**: Text-to-speech (10 languages)
-- **ReportLab**: PDF generation
-- **Markdown**: Documentation format
+**Issue:**
+- Chat history is stored in local JSON files (`chat_history/` folder)
+- On Streamlit Cloud, these files are **ephemeral** (lost on restart)
+- All chat history will be deleted when the app restarts
 
-### Architecture Patterns
-- **Class-Based Design**: Separation of concerns
-- **Dependency Injection**: Loosely coupled components
-- **Caching Strategy**: MD5-based result storage
-- **Error Handling**: Comprehensive try-except blocks
+**Workarounds:**
+1. **Use export functionality** - Save important chats before shutdown
+2. **Session-only usage** - Treat as temporary conversations
+3. **Upgrade to persistent storage** - Implement database (future enhancement)
 
----
-
-## 📐 Architecture
-
-```
-┌─────────────────────────────────────────┐
-│         Gradio Interface                │
-│  (Tabs: Summarize | Export | Help)      │
-└─────────────┬───────────────────────────┘
-              │
-              ▼
-┌─────────────────────────────────────────┐
-│     SummarizationEngine                 │
-│  - Orchestrates summarization workflow  │
-└─────────────┬───────────────────────────┘
-              │
-    ┌─────────┼─────────┬─────────┐
-    ▼         ▼         ▼         ▼
-┌─────────┐ ┌──────┐ ┌────────┐ ┌────────┐
-│ Model   │ │Cache │ │ Text   │ │Export  │
-│ Manager │ │Mgr   │ │Proc.   │ │Manager │
-└─────────┘ └──────┘ └────────┘ └────────┘
-    │           │         │          │
-    ▼           ▼         ▼          ▼
-[Models]   [Cache DB]  [Utils]   [Files]
-```
-
-**Key Components:**
-
-1. **ModelManager**: Loads and caches Transformers models
-2. **CacheManager**: MD5-based summary caching (83% cost reduction)
-3. **TextProcessor**: Preprocessing and statistics calculation
-4. **ExportManager**: Multi-format file generation
-5. **SummarizationEngine**: Coordinates all components
-
-See [ARCHITECTURE.md](ARCHITECTURE.md) for detailed technical documentation.
-
----
-
-## 📖 Usage Guide
-
-### Basic Workflow
-
-**1. Generate Summary**
-```python
-# In Gradio interface:
-1. Select model (T5-Small for speed, BART for quality)
-2. Adjust summary length slider (30% default)
-3. Paste text (minimum 50 characters)
-4. Click "Generate Summary"
-```
-
-**2. Export Results**
-```python
-# Navigate to Export tab:
-- Markdown: Click "Export as Markdown" → Download
-- JSON: Click "Export as JSON" → Download
-- Audio: Select language → Click "Export as Audio" → Download
-- PDF: Click "Export as PDF" → Download
-```
-
-### Model Selection Guide
-
-| Model | Best For | Speed | Quality | Size |
-|-------|----------|-------|---------|------|
-| **T5-Small** | Quick tests | ⚡⚡⚡ | ⭐⭐ | 242MB |
-| **T5-Base** | Balanced | ⚡⚡ | ⭐⭐⭐ | 892MB |
-| **BART-CNN** | News articles | ⚡ | ⭐⭐⭐⭐ | 1.6GB |
-| **Pegasus** | Abstractive | ⚡⚡ | ⭐⭐⭐⭐ | 2.2GB |
-
-### Advanced Configuration
-
-**Adjust Generation Parameters** (in code):
-```python
-# In SummarizationEngine.summarize()
-summary_ids = model.generate(
-    inputs["input_ids"],
-    num_beams=4,           # Beam search width (4-8 optimal)
-    length_penalty=2.0,    # Encourages longer summaries
-    temperature=0.7,       # Add for creativity (0.0 = deterministic)
-    top_p=0.9             # Nucleus sampling
-)
-```
-
----
-
-## 🎓 Bootcamp Learning Outcomes
-
-### Day 2 Concepts Applied
-
-#### 1. **Prompt Engineering**
-- ✅ **Zero-shot**: `"summarize: " + text` (T5 models)
-- ✅ **JSON Format**: Structured metadata in exports
-- 🔄 **Few-shot**: Could add example summaries (future enhancement)
-- 🔄 **Chain-of-Thought**: Could add step-by-step reasoning
-
-#### 2. **HuggingFace Ecosystem**
-```python
-# Model Loading
-tokenizer = AutoTokenizer.from_pretrained(model_id)
-model = AutoModelForSeq2SeqLM.from_pretrained(model_id)
-
-# Token Management
-inputs = tokenizer(text, max_length=512, truncation=True)
-outputs = model.generate(inputs["input_ids"])
-summary = tokenizer.decode(outputs[0])
-```
-
-#### 3. **Gradio Interface Design**
-- Multi-tab layout (Summarize | Export | Help)
-- File download components
-- Real-time status updates
-- Slider for adjustable parameters
-
-#### 4. **Production Best Practices**
-- Caching (83% cost reduction strategy from Day 1)
-- Error handling with user-friendly messages
-- Configuration management (centralized `Config` class)
-- Logging and statistics tracking
-
-### Key Insights
-
-**Problem Solved**: Manual summarization is time-consuming and inconsistent.
-
-**System Built**: Automated pipeline with professional export capabilities.
-
-**Win Achieved**:
-- 70% compression ratio (avg)
-- 4 export formats
-- Sub-5-second processing
-- Production-ready architecture
+**For Bootcamp Submission:**
+- This is acceptable for demonstration purposes
+- Showcases file I/O skills
+- Real production apps would use databases
 
 ---
 
 ## 🔮 Future Enhancements
 
-### Short-Term (1-2 Weeks)
-- [ ] Add few-shot examples for improved quality
-- [ ] Implement batch processing (multiple texts)
-- [ ] Add summary comparison view (side-by-side models)
-- [ ] Create standalone Python script (no notebook required)
+### **Potential Improvements:**
 
-### Medium-Term (1 Month)
-- [ ] Fine-tune model on domain-specific data
-- [ ] Add chain-of-thought reasoning mode
-- [ ] Implement user feedback loop
-- [ ] Create REST API endpoint
+1. **Persistent Cloud Storage**
+   - Replace JSON files with database (PostgreSQL/SQLite)
+   - Use cloud storage (AWS S3, Google Cloud Storage)
 
-### Long-Term (3+ Months)
-- [ ] Multi-language support (summarize in any language)
-- [ ] Integration with document parsers (PDF, DOCX)
-- [ ] Custom model training pipeline
-- [ ] Analytics dashboard (usage statistics)
+2. **Enhanced Feedback System**
+   - Save feedback to database
+   - Analytics dashboard
+   - Use feedback to improve responses
+
+3. **Additional Personas**
+   - User-defined custom personas
+   - Persona marketplace
+   - Persona templates library
+
+4. **Advanced Features**
+   - Conversation search
+   - Tagging system
+   - Share conversations via URL
+   - Multi-language support
+
+5. **Analytics**
+   - Usage statistics
+   - Response time tracking
+   - Token usage monitoring
 
 ---
 
-## 🤝 Contributing
+## 🤝 Credits & Attribution
 
-Contributions are welcome! This is a bootcamp project, but I'm open to:
+### **Project Development:**
+- **Author**: Asheesh Ranjan Srivastava
+- **Organization**: QUEST AND CROSSFIRE™
+- **Date**: October 30, 2025
 
-- Bug fixes
-- Documentation improvements
-- New export formats
-- Model additions
-- UI enhancements
+### **Learning & Support:**
+- **Base Architecture**: OutSkill AI Engineering Bootcamp 2025
+- **AI Assistance**: Gemini (Google) & Claude (Anthropic)
+- **Implementation**: Original work by author
+- **Persona System**: Original design and implementation
+- **Export Functionality**: Original design and implementation
 
-Please open an issue first to discuss proposed changes.
+### **Technologies:**
+- Built with [Streamlit](https://streamlit.io/)
+- Powered by [OpenAI](https://openai.com/)
+- AI model: GPT-3.5 Turbo
 
 ---
 
 ## 📄 License
 
-This project is licensed under the **MIT License** - see [LICENSE](LICENSE) file.
+This project is licensed under the **GPL-3.0 License** - see the [LICENSE](LICENSE) file for details.
 
-**Bootcamp Context**: Created as part of the AI Engineering Bootcamp (Day 2) - October 28, 2025
-
----
-
-## 🙏 Acknowledgments
-
-- **AI Engineering Bootcamp**: For structured learning curriculum
-- **HuggingFace**: For Transformers library and model hosting
-- **Gradio Team**: For intuitive interface framework
-- **OpenAI Research**: For attention mechanisms (Transformers foundation)
+**What this means:**
+- ✅ You can use, modify, and distribute this code
+- ✅ You can create commercial applications
+- ⚠️ You must keep the same GPL-3.0 license
+- ⚠️ You must credit QUEST AND CROSSFIRE™
+- ⚠️ You cannot use QUEST AND CROSSFIRE™ branding
 
 ---
 
-## 📞 Contact & Showcase
+## 🏷️ Trademark Notice
 
-**Created by**: ASHEESH RANJAN SRIVASTAVA
-**Bootcamp**: AI Engineering Accelerator (Batch [Oct 2025])
-**GitHub**: [@AsheeshSrivastava](https://github.com/AsheeshSrivastava)
-**LinkedIn**: [Asheesh Ranjan Srivastava](https://www.linkedin.com/in/asheesh-ranjan-srivastava/)
+**QUEST AND CROSSFIRE™** is a trademark.
+Trademark filings in process.
 
-**Related Projects**:
-- Day 1: Chat Completion and Gen AI Overview
-- Day 2: Prompt Engineering, HuggingFace and Gradio
-- Day 3: [Coming Soon]
+While this code is open source (GPL-3.0), the QUEST AND CROSSFIRE™ brand name is a protected trademark. Please use your own branding when creating derivatives.
 
 ---
 
-## 📊 Project Statistics
+## 🚀 Deployment to Streamlit Cloud
 
-- **Code Quality**: Production-ready class-based architecture
-- **Lines of Code**: ~1,200 (with documentation)
-- **Dependencies**: 12 packages
-- **Models Supported**: 4 (expandable)
-- **Export Formats**: 4 (Markdown, JSON, Audio, PDF)
-- **Languages (TTS)**: 10 (English, Spanish, French, German, Italian, Portuguese, Hindi, Chinese, Japanese, Korean)
+### **Quick Deployment Steps:**
+
+1. **Push to GitHub**
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit: Multi-Persona Chatbot"
+   git remote add origin https://github.com/YOUR_USERNAME/quest-crossfire-chatbot.git
+   git push -u origin main
+   ```
+
+2. **Deploy to Streamlit Cloud**
+   - Go to [share.streamlit.io](https://share.streamlit.io/)
+   - Click "New app"
+   - Select your repository
+   - Branch: `main`
+   - Main file: `app.py`
+
+3. **Add Secrets**
+   - In Advanced Settings → Secrets
+   - Paste:
+     ```toml
+     OPENAI_API_KEY = "sk-your_key_here"
+     ```
+
+4. **Deploy!**
+   - Click "Deploy"
+   - Wait 2-3 minutes
+   - Your app is live!
+
+**Custom Subdomain:**
+- Go to Settings → General → App URL
+- Choose a custom subdomain (e.g., `quest-chatbot`)
+- Your URL: `https://quest-chatbot.streamlit.app`
 
 ---
 
-**⭐ Star this repo if you find it useful!**
+## 📞 Support & Contact
 
+- **Organization**: [QUEST AND CROSSFIRE™](https://questandcrossfire.com)
+- **GitHub Issues**: [Report a bug](https://github.com/YOUR_USERNAME/quest-crossfire-chatbot/issues)
+- **Bootcamp**: OutSkill AI Engineering Bootcamp 2025
+
+---
+
+## 🎯 Bootcamp Submission Checklist
+
+If you're using this as a template for your own bootcamp submission:
+
+- [ ] Replace "YOUR_USERNAME" in README with your GitHub username
+- [ ] Update .streamlit/secrets.toml with your actual API key
+- [ ] Test all features locally
+- [ ] Export sample conversation (include in submission)
+- [ ] Document any challenges faced
+- [ ] Optional: Deploy to Streamlit Cloud and include live URL
+
+---
+
+**Made with ❤️ by QUEST AND CROSSFIRE™**
+*OutSkill AI Engineering Bootcamp 2025*
+
+---
+
+© 2025 QUEST AND CROSSFIRE™. Licensed under GPL-3.0.
