@@ -216,27 +216,49 @@ def read_uploaded_file(file):
 ## 5. Dynamic Model Loading
 
 ```python
+# ============================================================================
+# DYNAMIC MODEL LOADING FROM HUGGING FACE
+# ============================================================================
 def fetch_top_summarization_models(limit=10):
+    """Fetch top summarization models from Hugging Face Hub"""
     try:
-        api = HfApi()                                    # Create API client
+        api = HfApi()
         
+        # Use filter parameter instead of deprecated task parameter
         models = api.list_models(
-            task="summarization",                        # Filter by task
-            sort="downloads",                            # Sort by popularity
-            direction=-1,                                # Descending order
-            limit=limit                                  # Top 10
+            filter="summarization",
+            sort="downloads",
+            direction=-1,
+            limit=limit
         )
         
-        model_list = [model.id for model in models]      # Extract IDs
+        model_list = [model.id for model in models]
+        
+        print(f"✅ Successfully fetched {len(model_list)} models from Hugging Face")
         return model_list
         
     except Exception as e:
-        # Fallback to static list if API fails
+        print(f"⚠️ Error fetching models from Hugging Face: {e}")
+        print("📌 Using fallback model list")
+        
         return [
             "facebook/bart-large-cnn",
             "google/pegasus-xsum",
-            # ... more models
+            "sshleifer/distilbart-cnn-12-6",
+            "t5-small",
+            "philschmid/bart-large-cnn-samsum",
+            "Falconsai/text_summarization",
+            "google/pegasus-cnn_dailymail",
+            "facebook/bart-large-xsum",
+            "lidiya/bart-large-xsum-samsum",
+            "knkarthick/MEETING_SUMMARY"
         ]
+
+# Fetch popular models dynamically
+print("🔄 Fetching top summarization models from Hugging Face...")
+POPULAR_MODELS = fetch_top_summarization_models(limit=10)
+print(f"📋 Loaded models: {', '.join(POPULAR_MODELS[:3])}... (+{len(POPULAR_MODELS)-3} more)")
+
 ```
 
 **Step-by-step:**
@@ -261,39 +283,43 @@ def fetch_top_summarization_models(limit=10):
 ]
 ```
 
----
-
 ## 6. Model Loading Function
 
 ```python
+# ============================================================================
+# MODEL LOADING FUNCTION
+# ============================================================================
 def load_model(model_name, hf_token=None):
+    """Load a summarization model from Hugging Face"""
     global current_model, current_model_name
-    
-    # Check if already loaded
-    if current_model_name == model_name and current_model is not None:
-        return f"✅ Model '{model_name}' is already loaded!"
-    
-    # GPU detection
-    device = 0 if torch.cuda.is_available() else -1
-    
-    # Load model
-    if hf_token and hf_token.strip():
-        current_model = pipeline(
-            "summarization",
-            model=model_name,
-            token=hf_token,
-            device=device
-        )
-    else:
-        current_model = pipeline(
-            "summarization",
-            model=model_name,
-            device=device
-        )
-    
-    current_model_name = model_name
-    device_info = "GPU" if torch.cuda.is_available() else "CPU"
-    return f"✅ Model '{model_name}' loaded on {device_info}!"
+
+    try:
+        if current_model_name == model_name and current_model is not None:
+            return f"✅ Model '{model_name}' is already loaded and ready!"
+
+        device = 0 if torch.cuda.is_available() else -1
+
+        if hf_token and hf_token.strip():
+            current_model = pipeline(
+                "summarization",
+                model=model_name,
+                token=hf_token,
+                device=device
+            )
+        else:
+            current_model = pipeline(
+                "summarization",
+                model=model_name,
+                device=device
+            )
+
+        current_model_name = model_name
+        device_info = "GPU" if torch.cuda.is_available() else "CPU"
+        return f"✅ Model '{model_name}' loaded successfully on {device_info}!"
+
+    except Exception as e:
+        return f"❌ Error loading model: {str(e)}\n\nTip: Make sure the model name is correct and you have a valid HF token if needed."
+
 ```
 
 **Step-by-step:**
