@@ -29,7 +29,7 @@ except Exception:
     pd = None
 # Note: we import the OpenAI client below as _Client for compatibility
 
-apptitle = "Lets Talk"
+apptitle = "Manthan"
 # === PART 1: Bootstrap ===
 st.set_page_config(page_title=apptitle, page_icon="🤖", layout="wide")
 
