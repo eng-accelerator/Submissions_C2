@@ -1,0 +1,97 @@
+{
+  "id": "0cf588cf-c50c-4e59-8cfb-59d3f71d4b77",
+  "title": "Vivek Here",
+  "created": "2025-10-31T09:44:39Z",
+  "updated": "2025-10-31T11:19:49Z",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a careful, concise assistant. Be accurate and do not hallucinate. Show errors verbatim when asked. Never claim background/asynchronous work. Refuse unsafe content briefly with safer alternatives. Preserve formatting and code blocks.\n\nPersona: Professional. You are formal, concise, and business-oriented. Provide numbered steps and clear action items.\n\nYou are a helpful assistant. Be brief by default. Use triple backticks for code. Avoid purple prose.",
+      "ts": "2025-10-31T09:44:39Z",
+      "tokens": 0
+    },
+    {
+      "role": "user",
+      "content": "Vivek Here",
+      "ts": "2025-10-31T09:44:45Z",
+      "tokens": 0
+    },
+    {
+      "role": "assistant",
+      "content": "Hello Vivek,\n\nHow can I assist you today?",
+      "ts": "2025-10-31T09:44:46Z",
+      "tokens": 0
+    },
+    {
+      "role": "user",
+      "content": "First",
+      "ts": "2025-10-31T09:48:19Z",
+      "tokens": 0
+    },
+    {
+      "role": "assistant",
+      "content": "Sure, could you please specify what you’d like help with?",
+      "ts": "2025-10-31T09:48:20Z",
+      "tokens": 0
+    },
+    {
+      "role": "user",
+      "content": "I m from Mumbai",
+      "ts": "2025-10-31T10:28:59Z",
+      "tokens": 0
+    },
+    {
+      "role": "assistant",
+      "content": "🔍 **Detected Language:** English (`en`) — *Confidence:* High  \n\n🎯 **Translation (→ French):**  \nJe viens de Mumbai  \n\n🌟 **Alternative translations (if relevant):**  \n- Je suis de Mumbai.  \n- Je viens de la ville de Mumbai.  \n- J'habite à Mumbai.  \n\n💡 **Cultural / Regional note (if relevant):**  \nIn French, the city name “Mumbai” is used unchanged; the former name “Bombay” may still appear in historical contexts.  ",
+      "ts": "2025-10-31T10:29:04Z",
+      "tokens": 0,
+      "translation_meta": {
+        "pair": {
+          "from": "en",
+          "to": "fr"
+        },
+        "src": "I m from Mumbai",
+        "tgt": "🔍 **Detected Language:** English (`en`) — *Confidence:* High  \n\n🎯 **Translation (→ French):**  \nJe viens de Mumbai  \n\n🌟 **Alternative translations (if relevant):**  \n- Je suis de Mumbai.  \n- Je viens de la ville de Mumbai.  \n- J'habite à Mumbai.  \n\n💡 **Cultural / Regional note (if relevant):**  \nIn French, the city name “Mumbai” is used unchanged; the former name “Bombay” may still appear in historical contexts.  ",
+        "alts": [
+          "Je suis de Mumbai.",
+          "Je viens de la ville de Mumbai.",
+          "J'habite à Mumbai."
+        ]
+      }
+    },
+    {
+      "role": "user",
+      "content": "What is Capital of france?",
+      "ts": "2025-10-31T10:30:25Z",
+      "tokens": 0
+    },
+    {
+      "role": "assistant",
+      "content": "The capital of France is **Paris**.",
+      "ts": "2025-10-31T10:30:27Z",
+      "tokens": 0
+    },
+    {
+      "role": "assistant",
+      "content": "1. उपयोगकर्ता ने अपना परिचय दिया – वह मुंबई से हैं।  \n2. उपयोगकर्ता ने फ़्रांस की राजधानी के बारे में पूछा।  \n3. सहायक ने उत्तर दिया कि फ़्रांस की राजधानी **पेरिस** है।  \n\n(संक्षिप्त सारांश)",
+      "ts": "2025-10-31T10:31:20Z",
+      "tokens": 0,
+      "is_summary": true
+    }
+  ],
+  "meta": {
+    "model": "openai/gpt-oss-120b",
+    "mode": "standard",
+    "target_language": "French",
+    "last_detected_source": "English",
+    "last_confidence": 0.99,
+    "bidirectional": true,
+    "previous_other_lang": "English",
+    "personality_key": "professional",
+    "custom_persona": {
+      "style": "",
+      "expertise": "",
+      "tone": ""
+    }
+  }
+}

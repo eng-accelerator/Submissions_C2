@@ -1,0 +1,48 @@
+MIT License
+
+Copyright (c) 2025 Asheesh Ranjan Srivastava
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+ADDITIONAL NOTICES:
+
+This project was created as part of the OutSkill AI Engineering Bootcamp 2025 (Day 4).
+
+ATTRIBUTION:
+- Strategic design and architecture: Asheesh Ranjan Srivastava
+- Technical implementation and debugging: AI assistance (Claude Code by Anthropic)
+- This represents a human-AI collaboration in modern software development
+
+Third-party services and APIs used:
+- n8n (Fair Code License - Apache 2.0 with Commons Clause)
+- Gmail API (Google)
+- OpenAI API (GPT-5, GPT-4o-latest, GPT-4o-mini)
+- HeyGen API (AI video generation)
+- Google Sheets API (Google)
+
+Each service is subject to its respective terms of service and pricing.
+
+IMPORTANT NOTES:
+- This workflow requires API keys and credentials (not included)
+- Workflow configuration includes personal profile data (customize before use)
+- Google Sheet IDs and credential references must be updated for your use
+- Rate limits and costs apply based on API usage
+- No warranty provided for production use or data privacy

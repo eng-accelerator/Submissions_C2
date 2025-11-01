@@ -1,0 +1,51 @@
+# Streamlit secrets - NEVER commit API keys!
+.streamlit/secrets.toml
+.streamlit/config.toml
+streamlit.toml
+
+# Chat history - local only (ephemeral on cloud deployment)
+chat_history/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# IDE settings
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Environment variables
+.env
+.env.local
+
+# Streamlit cache
+.streamlit/cache/

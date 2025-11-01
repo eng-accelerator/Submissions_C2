@@ -1,0 +1,49 @@
+GNU GENERAL PUBLIC LICENSE
+Version 3, 29 June 2007
+
+Copyright (c) 2025 QUEST AND CROSSFIRE™
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+===============================================================================
+TRADEMARK NOTICE
+===============================================================================
+
+QUEST AND CROSSFIRE™ is a trademark.
+Trademark filings in process.
+
+While this code is licensed under GPL-3.0, the QUEST AND CROSSFIRE™
+name and branding are protected trademarks.
+
+You may:
+- Use, modify, and distribute this code under GPL-3.0 terms
+- Fork and create derivatives with proper attribution
+
+You must:
+- Keep copyright and license notices intact
+- License derivatives under GPL-3.0
+- Use your own branding (not QUEST AND CROSSFIRE™)
+
+===============================================================================
+PROJECT ATTRIBUTION
+===============================================================================
+
+This project was developed as part of the OutSkill AI Engineering Bootcamp 2025.
+
+Base architecture and concepts provided by OutSkill.
+Implementation, customization, and original features by Asheesh Ranjan Srivastava.
+AI assistance provided by Gemini (Google) and Claude (Anthropic).
+
+For the full GPL-3.0 license text, visit:
+https://www.gnu.org/licenses/gpl-3.0.en.html

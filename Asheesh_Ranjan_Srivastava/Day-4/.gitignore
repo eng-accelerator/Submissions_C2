@@ -1,0 +1,103 @@
+# Credentials and Secrets
+*.env
+*.key
+*.pem
+credentials.json
+secrets.json
+
+# n8n specific
+.n8n/
+n8n-local.settings.json
+*credentials*.json
+
+# API Keys
+*apikey*
+*api_key*
+*API_KEY*
+
+# OAuth tokens
+*token*.json
+*oauth*.json
+
+# Configuration files with sensitive data
+config.json
+settings.json
+
+# Personal data
+profile_data.json
+personal_info.json
+
+# Google Sheets local cache
+*.gsheet
+
+# Backup files
+*.backup
+*.bak
+*~
+
+# Log files
+*.log
+logs/
+*.logs
+
+# Temporary files
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Python virtual environments (if using Python scripts)
+venv/
+env/
+.venv/
+.env/
+
+# Node modules (if using JavaScript/Node.js)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Compiled files
+*.pyc
+__pycache__/
+*.class
+*.o
+
+# Operating system files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Archive files (may contain sensitive data)
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Documentation with API keys (if accidentally created)
+*_PRIVATE.md
+*_SECRET.md
+
+# n8n workflow exports WITH credentials
+*_with_creds.json
+*_credentials.json
+
+# Test data with real information
+test_data_real.json
+production_data.json

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viral LinkedIn Post Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="48" height="48" rx="12" fill="#2563EB"/>
+                    <path d="M18 30L24 22L30 30M24 22L30 14M18 14L24 22" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <h1>Viral LinkedIn Post Generator</h1>
+            <p class="subtitle">Create engaging LinkedIn posts that resonate with your audience. Choose your style, tone, and let AI craft the perfect post.</p>
+        </div>
+
+        <div class="main-content">
+            <div class="card config-card">
+                <h2><span class="dot blue-dot"></span>Post Configuration</h2>
+
+                <div class="form-group">
+                    <label for="theme">Theme / Idea</label>
+                    <input type="text" id="theme" placeholder="e.g. 'AI in healthcare'">
+                </div>
+
+                <div class="form-group">
+                    <label for="postType">Post Type / Category</label>
+                    <select id="postType">
+                        <option value="">Select post type</option>
+                        <option value="professional">Professional Insight</option>
+                        <option value="story">Personal Story</option>
+                        <option value="tips">Tips & Advice</option>
+                        <option value="question">Thought-Provoking Question</option>
+                        <option value="achievement">Achievement/Milestone</option>
+                        <option value="industry">Industry News</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="length">Length</label>
+                    <select id="length">
+                        <option value="">Select length</option>
+                        <option value="short">Short (100-150 words)</option>
+                        <option value="medium">Medium (150-250 words)</option>
+                        <option value="long">Long (250-350 words)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="tone">Tone</label>
+                    <select id="tone">
+                        <option value="">Select tone</option>
+                        <option value="professional">Professional</option>
+                        <option value="casual">Casual</option>
+                        <option value="inspirational">Inspirational</option>
+                        <option value="educational">Educational</option>
+                        <option value="conversational">Conversational</option>
+                    </select>
+                </div>
+
+                <button class="generate-btn" id="generateBtn">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 4L14 8M10 4L6 8M10 4V16M4 16H16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Generate Post
+                </button>
+            </div>
+
+            <div class="card result-card">
+                <h2><span class="dot green-dot"></span>Generated Post</h2>
+
+                <div class="result-content" id="resultContent">
+                    <div class="placeholder">
+                        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M32 12V52M12 32H52" stroke="#CBD5E1" stroke-width="4" stroke-linecap="round"/>
+                            <rect x="20" y="20" width="24" height="24" rx="2" stroke="#CBD5E1" stroke-width="2"/>
+                        </svg>
+                        <p>Your generated post will appear here</p>
+                        <p class="helper-text">Fill in the form and click Generate</p>
+                    </div>
+                </div>
+
+                <div class="actions" id="actions" style="display: none;">
+                    <button class="copy-btn" id="copyBtn">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 4V2C4 1.44772 4.44772 1 5 1H13C13.5523 1 14 1.44772 14 2V10C14 10.5523 13.5523 11 13 11H11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <rect x="2" y="5" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                        Copy to Clipboard
+                    </button>
+                    <button class="linkedin-btn" id="linkedinBtn">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14 1H2C1.44772 1 1 1.44772 1 2V14C1 14.5523 1.44772 15 2 15H14C14.5523 15 15 14.5523 15 14V2C15 1.44772 14.5523 1 14 1Z" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M5 6.5V12M5 4.5V4.51M8 12V9C8 8 8.5 7.5 9.5 7.5C10.5 7.5 11 8 11 9V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        Share on LinkedIn
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

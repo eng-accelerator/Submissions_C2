@@ -1,0 +1,38 @@
+{
+  "id": "12660ba6",
+  "title": "When Was The Last Olympics Held",
+  "created": "2025-10-31T12:22:18.504848+00:00",
+  "updated": "2025-10-31T12:24:57.238417+00:00",
+  "persona": "General",
+  "model": "openai/gpt-oss-20b:free",
+  "messages": [
+    {
+      "role": "user",
+      "content": "when was the last Olympics held "
+    },
+    {
+      "role": "assistant",
+      "content": "❌ Error: 404 Client Error: Not Found for url: https://openrouter.ai/api/v1/chat/completions"
+    },
+    {
+      "role": "user",
+      "content": "when was the last Olympics held"
+    },
+    {
+      "role": "assistant",
+      "content": "The most recent Olympic Games were the **2022 Winter Olympics in Beijing**, held **4 – 20 February 2022**."
+    },
+    {
+      "role": "user",
+      "content": "which countries participated in it "
+    },
+    {
+      "role": "assistant",
+      "content": "**Countries that participated in the 2022 Winter Olympics (Beijing)**  \n*(91 National Olympic Committees – NOCs)*  \n\n1. Australia  \n2. Austria  \n3. Azerbaijan  \n4. Belarus  \n5. Belgium  \n6. Bosnia & Herzegovina  \n7. Brazil  \n8. Bulgaria  \n9. Canada  \n10. Chile  \n11. China  \n12. Colombia  \n13. Croatia  \n14. Czech Republic  \n15. Denmark  \n16. Estonia  \n17. Finland  \n18. France  \n19. Germany  \n20. Greece  \n21. Greenland (Denmark)  \n22. Hungary  \n23. Iceland  \n24. India  \n25. Indonesia  \n26. Ireland  \n27. Italy  \n28. Japan  \n29. Kazakhstan  \n30. Kenya (Kenya)  \n31. South Korea  \n32. Kyrgyzstan  \n33. Latvia  \n34. Liechtenstein  \n35. Lithuania  \n36. Luxembourg  \n37. North Macedonia  \n38. Moldova  \n39. Monaco  \n40. Mongolia  \n41. Montenegro  \n42. Morocco  \n43. Netherlands  \n44. New Zealand  \n45. Norway  \n46. Oman  \n47. Pakistan  \n48. Poland  \n49. Portugal  \n50. Qatar  \n51. Romania  \n52. Russia (Russian Olympic Committee)  \n53. Saudi Arabia  \n54. Serbia  \n55. Slovakia  \n56. Slovenia  \n57. South Africa  \n58. Spain  \n59. Sweden  \n60. Switzerland  \n61. Tajikistan  \n62. Thailand  \n63. Turkey  \n64. Ukraine  \n65. United Kingdom (Great Britain)  \n66. United States  \n67. Uzbekistan  \n68. Vietnam  \n69. Belarusian (Belarus) – *see note*  \n70. Brazil – *noted previously*  \n71. Jamaica – *not established*  \n(And the remaining 20 NOCs omitted for brevity.)  \n\n*Full official list is available on the IOC website.*"
+    }
+  ],
+  "summaries": {
+    "key_points": "",
+    "action_items": ""
+  }
+}

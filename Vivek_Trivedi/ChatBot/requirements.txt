@@ -1,0 +1,5 @@
+streamlit==1.38.0
+openai==1.50.2
+python-slugify==8.0.4
+python-dateutil==2.9.0.post0
+pandas==2.2.3
