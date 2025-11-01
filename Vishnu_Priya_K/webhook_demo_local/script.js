@@ -126,8 +126,8 @@ async function generatePost() {
     const data = await response.json();
 
     // Check if webhook returned generated content
-    if (data && data.generated_output) {
-      generatedPost = data.generated_output;
+    if (data && data.post_text) {
+      generatedPost = data.post_text;
     } else {
       // Fallback to local template if webhook doesn't return content
       const templates = postTemplates[postType][length];
@@ -176,10 +176,45 @@ function copyToClipboard() {
 }
 
 // Share on LinkedIn function
-function shareOnLinkedIn() {
-  const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`;
-  window.open(linkedInUrl, "_blank", "width=600,height=600");
-  showMessage("Opening LinkedIn...", "success");
+async function shareOnLinkedIn() {
+  if (!generatedPost) {
+    showMessage("Please generate a post first", "error");
+    return;
+  }
+
+  try {
+    // Prepare LinkedIn webhook data
+    const linkedinWebhookData = {
+      post_text: generatedPost,
+      metadata: {
+        theme: themeInput.value.trim(),
+        post_type: postTypeSelect.value,
+        length: lengthSelect.value,
+        tone: toneSelect.value,
+      },
+    };
+
+    // Send data to LinkedIn webhook
+    const response = await fetch("https://vishnu-n8n.app.n8n.cloud/webhook-test/20c84917-2446-49f4-9270-28efb9d31ed5", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(linkedinWebhookData),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    // Check if webhook returns a LinkedIn URL
+    const data = await response.json();
+
+    showMessage("Post sent to LinkedIn!", "success");
+  } catch (error) {
+    console.error("Error sending to LinkedIn webhook:", error);
+    showMessage("Failed to send to LinkedIn", "error");
+  }
 }
 
 // Show message function
