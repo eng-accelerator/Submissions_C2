@@ -1,0 +1,17 @@
+Day1
+1.Build a chat completion model using code completion API and Open AI API key
+
+Day2:
+1.Build a text summarizer in python using Hugging face, Gradio
+
+Day3:
+1.Build a chat model with additional features using streamlit
+
+Day4:
+1.Build a linkedin post generator using n8n
+
+Day5:
+1.Build a linkedin post AI automation to post content in linkedin using n8n, Bolt
+
+Day6:
+1.Build a RAG system with Ollama Gemma:1B, LanceDB , LlamaIndex
