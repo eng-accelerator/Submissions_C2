@@ -1,0 +1,184 @@
+{
+  "name": "n8n_Viral_LinkedinPost_Creator",
+  "nodes": [
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.output }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        560,
+        0
+      ],
+      "id": "4d199179-4595-46e0-9f0d-8b64ec020753",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "person": "1JbrjhwlNp",
+        "text": "={{ $json.body.content }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.linkedIn",
+      "typeVersion": 1,
+      "position": [
+        512,
+        336
+      ],
+      "id": "4c7a7e47-97ba-4f0e-ac65-6c69c402bff8",
+      "name": "Create a post",
+      "credentials": {
+        "linkedInOAuth2Api": {
+          "id": "9F3E5iFDQq1P7P1p",
+          "name": "LinkedIn account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Generate the POST workflow\n- Webhook to receive parameters to create the blog post\n- AI Agent to generate the blog post based on the parameters\n- Webhook to send the response back",
+        "height": 432,
+        "width": 1136
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -288,
+        -128
+      ],
+      "typeVersion": 1,
+      "id": "50f6e6f7-87c1-4cca-a5ce-4c8d48c84178",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-oss-20b:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        208,
+        160
+      ],
+      "id": "f015311d-3c96-4735-adc2-de3325c08e31",
+      "name": "gpt-oss-20b:free",
+      "credentials": {
+        "openRouterApi": {
+          "id": "ALdK1Kkf3hyBilC3",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=\"Create a LinkedIn post with the following details:\\n\\n- Theme: -{{ $json.body.theme }} Category:{{ $json.body.category }} \\n- Tone: {{ $json.body.tone }}\\n- Length:{{ $json.body.length }} \n\n\\n\\nGuidelines:\\n1. Start with a strong hook to capture attention in the first 2 lines.\\n2. Keep the writing style engaging, professional, and authentic.\\n3. Make it easy to read with short sentences and clear flow.\\n4. Ensure the post fits LinkedIn’s style (not too casual, not too academic).\\n5. End with either a takeaway, a motivational line, or a subtle call-to-action (without sounding salesy).\\n\\nNow, generate the LinkedIn post.\"\n\nDon't use * and \\n in response. Format the post in paragraphs to look good for Linkedin",
+        "options": {
+          "systemMessage": "You are an expert LinkedIn content creator who writes highly engaging, professional, and authentic posts tailored to specific needs. Format your response with a useful title and different sections based on the length. Output the content as markdown text without the ```markdown tags"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "35d2ed20-a3ea-4a81-b93a-69ea7f828bd4",
+      "name": "Blog Post Generator Agent"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ee3e9945-97dc-470e-9ee5-053d528e15eb",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "0d14f6b8-a3de-4ad9-87c4-05c3f834272f",
+      "name": "Generate Webhook",
+      "webhookId": "ee3e9945-97dc-470e-9ee5-053d528e15eb"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "20c84917-2446-49f4-9270-28efb9d31ed5",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        160,
+        336
+      ],
+      "id": "5f274914-3bfe-4210-950c-b88aac08d961",
+      "name": "Publish Webhook",
+      "webhookId": "20c84917-2446-49f4-9270-28efb9d31ed5"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "gpt-oss-20b:free": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Blog Post Generator Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Blog Post Generator Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Webhook": {
+      "main": [
+        [
+          {
+            "node": "Blog Post Generator Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Publish Webhook": {
+      "main": [
+        [
+          {
+            "node": "Create a post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "a8ab8d1a-a894-43c5-910e-a0dad0f9d547",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "f68d1e215e99d9633890a1fe5337545163558be521d5d0d8631974f7556489fc"
+  },
+  "id": "B6vymu9PQyenvIut",
+  "tags": []
+}

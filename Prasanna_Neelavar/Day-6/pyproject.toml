@@ -1,0 +1,17 @@
+[project]
+name = "sprint-3"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pyarrow==18.1.0",
+    "datasets==2.19.1",
+    "huggingface-hub>=0.34.0,<1.0",
+    "lancedb>=0.12.0",
+    "llama-index",  # if used in your RAG pipeline
+    "transformers",
+    "sentence-transformers",
+    "pandas",
+    "numpy"
+]
