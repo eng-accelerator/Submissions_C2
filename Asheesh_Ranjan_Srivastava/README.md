@@ -67,8 +67,10 @@
 
 ---
 
-### 📚 [Day 6: Advanced RAG Application Development](./Day-6/)
+### 📚 [Days 6-7: Advanced RAG Application Development](./Day-6/)
 **Built:** Complete RAG system with vector databases, advanced retrieval techniques, and production deployment
+
+> **Note:** The RAG work covered both Day 6 and Day 7 of the bootcamp (no separate Day 7 submission). All four RAG assignments and the enhanced production application are documented in the Day-6 folder.
 
 **Tech Stack:** LlamaIndex • LanceDB • HuggingFace Embeddings • OpenAI GPT-4o-mini • Gradio • Pydantic
 **Key Achievements:**
@@ -78,7 +80,7 @@
 - **Assignment 3b:** Advanced Gradio RAG with parameter tuning
 - **Bonus:** Enhanced production application deployed to HuggingFace Spaces
 
-**Status:** ✅ Complete (4/4 Assignments) | 🚀 [Live Demo](https://huggingface.co/spaces/asheeshsrivastava9/QnC) | 📝 [View Documentation](./Day-6/README.md)
+**Status:** ✅ Complete (Days 6-7, 4/4 Assignments) | 🚀 [Live Demo](https://huggingface.co/spaces/asheeshsrivastava9/QnC) | 📝 [View Documentation](./Day-6/README.md)
 
 ---
 
@@ -146,15 +148,15 @@
 
 ## 📊 Progress Tracker
 
-| Sprint | Status | Projects |
-|--------|--------|----------|
-| Day 1 | ⏳ Prep | Bootcamp orientation |
-| Day 2 | ✅ Complete | Text Summarization MVP |
-| Day 3 | ✅ Complete | Multi-Persona Chatbot |
-| Day 4 | ✅ Complete | LinkedIn Job Automation (n8n workflow) |
-| Day 5 | ✅ Complete | Quest And Crossfire LinkedIn AI (Serverless App) |
-| Day 6 | ✅ Complete | Advanced RAG Application (4 Assignments + Production Deployment) |
-| Day 7+ | 🔄 In Progress | Coming soon... |
+| Sprint | Day | Status | Projects |
+|--------|-----|--------|----------|
+| **Sprint 1** | Day 1 | ⏳ Prep | Bootcamp orientation |
+| **Sprint 1** | Day 2 | ✅ Complete | Text Summarization MVP |
+| **Sprint 1** | Day 3 | ✅ Complete | Multi-Persona Chatbot |
+| **Sprint 1** | Day 4 | ✅ Complete | LinkedIn Job Automation (n8n workflow) |
+| **Sprint 2** | Day 5 | ✅ Complete | Quest And Crossfire LinkedIn AI (Serverless App) |
+| **Sprint 3** | Days 6-7 | ✅ Complete | Advanced RAG Application (4 Assignments + Production Deployment) |
+| **Sprint 4** | Day 8+ | 🔄 Upcoming | Coming soon... |
 
 ---
 
@@ -178,7 +180,7 @@
   - [Credentials Guide](./Day-4/CREDENTIALS.md)
   - [File Summary](./Day-4/FILE_SUMMARY.md)
 - [Day 5 README](./Day-5/README.md) - Quest And Crossfire LinkedIn AI
-- [Day 6 README](./Day-6/README.md) - Advanced RAG Application Development
+- [Days 6-7 README](./Day-6/README.md) - Advanced RAG Application Development
 
 ---
 
@@ -201,4 +203,4 @@ Building AI applications and learning in public.
 
 ---
 
-**Last Updated:** November 3, 2025 | Day 6 Complete
+**Last Updated:** November 3, 2025 | Sprint 3 Complete (Days 6-7)
