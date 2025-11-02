@@ -1,0 +1,195 @@
+{
+  "name": "Personalised_Newsletter_Tavily API Web search",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -176,
+        32
+      ],
+      "id": "364bd6c6-4afd-46e8-986a-8fce4ebe3c0f",
+      "name": "When chat message received",
+      "webhookId": "ca2786e2-7bdd-438c-b0e4-bf77da223786"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "Structure the response in bullet points once you fetch from web before ending it on gmail\n\n\n\n\n\n\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        32,
+        32
+      ],
+      "id": "52976c7c-ecd1-4810-83e3-ffabe7120794",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 50
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        48,
+        240
+      ],
+      "id": "987f1a96-a5b5-4b4f-92d6-70dbd44b542a",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        464,
+        192
+      ],
+      "id": "83961125-a0ef-4181-aab7-4ebffdd39f31",
+      "name": "Send a message in Gmail",
+      "webhookId": "34dd4346-1ab3-4139-8866-4ca14e21522d",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "X1BczLEC7z1DZTkf",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.tavily.com/search",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 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"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "query",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('parameters0_Value', ``, 'string') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        288,
+        240
+      ],
+      "id": "9bbe9906-a569-4d75-ba1c-37af630dc476",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -96,
+        240
+      ],
+      "id": "c7b54c9d-8c05-4b6b-b167-619cea259eaa",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "c0jeJgIzLB3A6YaN",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "fa9bfe5c-722b-4c9f-8ce2-6e3b33662736",
+  "meta": {
+    "instanceId": "a82628698b927683159b5a7f0404d78adbdba03d82e0812e3ec073ae963af706"
+  },
+  "id": "KsHC6TbCCgpZOzYE",
+  "tags": []
+}

@@ -36,6 +36,21 @@
 
 ---
 
+### ⚡ [Day 4: Automated LinkedIn Job Application System](./Day-4/)
+**Built:** Email-based workflow automation with AI-powered personalization and video generation
+
+**Tech Stack:** n8n • Gmail API • OpenAI (GPT-5, GPT-4o) • HeyGen API • Google Sheets
+**Key Features:**
+- Processes 50+ jobs daily on autopilot
+- Multi-model AI strategy (extraction, rating, cover letters, video scripts)
+- Profile-matched rating system (0-5 scale)
+- Conditional AI video generation for high-match jobs
+- Human-AI collaboration case study
+
+**Status:** ✅ Complete | 📝 [View Documentation](./Day-4/README.md) | 🎓 [Learning Journey](./Day-4/README.md#the-real-learning-journey)
+
+---
+
 ## 🛠️ Skills Demonstrated
 
 **AI/ML:**
@@ -43,12 +58,22 @@
 - Prompt engineering
 - Multi-model architecture
 - System design for AI applications
+- AI collaboration & orchestration
+
+**Automation & Integration:**
+- n8n workflow automation
+- Gmail API integration (OAuth2)
+- Multi-API orchestration
+- Scheduled task automation
+- Error handling & graceful degradation
 
 **Backend:**
-- OpenAI API integration
+- OpenAI API integration (GPT-5, GPT-4o)
+- HeyGen video generation API
 - Hugging Face Transformers
 - Session state management
 - Caching strategies
+- Base64 decoding & HTML parsing
 
 **Frontend:**
 - Streamlit web apps
@@ -60,8 +85,11 @@
 - Comprehensive documentation
 - Version control (Git)
 - Open source licensing
-- Security best practices
+- Security best practices (credentials, .gitignore)
 - Professional code structure
+- Human-AI collaboration transparency
+- Systems thinking & first principles
+- Cost optimization strategies
 
 ---
 
@@ -72,7 +100,8 @@
 | Day 1 | ⏳ Prep | Bootcamp orientation |
 | Day 2 | ✅ Complete | Text Summarization MVP |
 | Day 3 | ✅ Complete | Multi-Persona Chatbot |
-| Day 4+ | 🔄 In Progress | Coming soon... |
+| Day 4 | ✅ Complete | LinkedIn Job Automation (n8n workflow) |
+| Day 5+ | 🔄 In Progress | Coming soon... |
 
 ---
 
@@ -83,8 +112,12 @@
 - [Obsidian AI Assistant](http://questandcrossfire.com/obsidian) *(Portfolio project)*
 
 **Documentation:**
-- [Day 2 README](./Day-2/README.md)
-- [Day 3 README](./Day-3/README.md)
+- [Day 2 README](./Day-2/README.md) - Text Summarization
+- [Day 3 README](./Day-3/README.md) - Multi-Persona Chatbot
+- [Day 4 README](./Day-4/README.md) - LinkedIn Job Automation
+  - [Setup Guide](./Day-4/SETUP.md)
+  - [Credentials Guide](./Day-4/CREDENTIALS.md)
+  - [File Summary](./Day-4/FILE_SUMMARY.md)
 
 ---
 
@@ -107,4 +140,4 @@ Building AI applications and learning in public.
 
 ---
 
-**Last Updated:** October 30, 2025 | Sprint 1 Complete
+**Last Updated:** October 31, 2025 | Day 4 Complete
