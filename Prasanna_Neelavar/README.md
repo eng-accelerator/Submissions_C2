@@ -18,8 +18,8 @@ You can learn more about my work on my [LinkedIn profile](https://www.linkedin.c
 | Day | Date | Agenda | Assignment | Folder |
 | :---: | :---: | --- | --- | --- |
 | 1 | 27 Oct 2025 | Prompt Engineering, Chat Completion, OpenAI Std | --- | --- |
-| 2 | 28 Oct 2025 | Prompting, Hugging Face, Gradio | Summarizer using Gradio + additional challenge (Text to Speech) | 📁 Day-2 [Notebook](./Day-2/medical-report-summarizer.ipynb) |
-| 3 | 29 Oct 2025 | Deep Research, Streamlit, LLM, Open Router | Chat GPT Clone with 3 Challenges | 📁 Day-3 |
+| 2 | 28 Oct 2025 | Prompting, Hugging Face, Gradio | ✅ Medical Report Summarizer with Gradio + Text-to-Speech (Falconsai/medical_summarization + Suno/Bark) | 📁 Day-2 [Notebook](./Day-2/medical-report-summarizer.ipynb) |
+| 3 | 29 Oct 2025 | Deep Research, Streamlit, LLM, Open Router | ✅ Streamlit AI Chat App with 3 Challenges: 1) Translation Mode with Cultural Context 2) Multiple AI Personalities 3) Multi-format Export (TXT/JSON/CSV) | 📁 Day-3 [Details](./Day-3/README.md)|
 | 4 | 30 Oct 2025 | n8n, HeyGen| | |
 | 5 | 31 Oct 2025 | | | |
 | 6 | 1 Nov 2025 | | | |

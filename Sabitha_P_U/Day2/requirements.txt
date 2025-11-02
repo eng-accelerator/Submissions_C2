@@ -1,0 +1,10 @@
+huggingface-hub
+gradio>=4.0.0
+transformers>=4.30.0
+torch>=2.0.0
+gtts>=2.4.0
+PyPDF2>=3.0.0
+python-docx>=0.8.11
+sentencepiece>=0.1.99
+protobuf>=3.20.0
+accelerate>=0.20.0
