@@ -3,7 +3,7 @@
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Gradio](https://img.shields.io/badge/Gradio-5.0+-orange.svg)](https://gradio.app/)
 [![HuggingFace](https://img.shields.io/badge/🤗-HuggingFace-yellow.svg)](https://huggingface.co/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL%203.0-blue.svg)](LICENSE)
 
 > **Day 2 Project** - AI Engineering Bootcamp
 > A production-ready text summarization application with professional export capabilities built using Transformers and Gradio.
@@ -381,7 +381,12 @@ Please open an issue first to discuss proposed changes.
 
 ## 📄 License
 
-This project is licensed under the **MIT License** - see [LICENSE](LICENSE) file.
+This project is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)** - see [LICENSE](LICENSE) file.
+
+**Key Points:**
+- Open source under AGPL-3.0
+- Trademarks: "Aethelgard Academy" and "Quest And Crossfire" (Trademark Filed - awaiting certification)
+- Network use clause: Must provide source code if deployed as web service
 
 **Bootcamp Context**: Created as part of the AI Engineering Bootcamp (Day 2) - October 28, 2025
 

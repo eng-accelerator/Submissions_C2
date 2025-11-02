@@ -6,7 +6,7 @@
 **Author:** Asheesh Ranjan Srivastava
 **Collaboration:** Human-AI Partnership (Claude Code for technical implementation)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL%203.0-blue.svg)](LICENSE)
 [![n8n](https://img.shields.io/badge/n8n-Workflow-orange.svg)](https://n8n.io/)
 [![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4%20%7C%20GPT--5-blue.svg)](https://openai.com/)
 [![HeyGen](https://img.shields.io/badge/HeyGen-AI%20Video-purple.svg)](https://heygen.com/)
@@ -295,7 +295,7 @@ Modern software development IS human-AI collaboration. The skill isn't writing e
 
 **`FILE_SUMMARY.md`** - Quick overview of all files and their purpose
 
-**`LICENSE`** - MIT License with human-AI collaboration attribution
+**`LICENSE`** - AGPL-3.0 License with trademark notices and AI attribution
 
 **`.gitignore`** - Security protection (prevents credential commits)
 
@@ -383,13 +383,20 @@ I didn't just learn n8n. I learned how to architect systems, collaborate with AI
 
 ## 📄 License
 
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)** - see the [LICENSE](LICENSE) file for details.
+
+**Key Points:**
+- Open source under AGPL-3.0
+- Trademarks: "Aethelgard Academy" and "Quest And Crossfire" (Trademark Filed - awaiting certification)
+- Network use clause: Must provide source code if deployed as web service
 
 **What this means:**
 - ✅ You can use, modify, and distribute this workflow
 - ✅ You can use it for personal or commercial projects
-- ✅ No warranty is provided (use at your own risk)
-- ⚠️ You must include the license notice in copies
+- ✅ You must keep the same AGPL-3.0 license
+- ⚠️ If used in a web service, you MUST make the complete source code available to users
+- ⚠️ You must credit Quest And Crossfire™
+- ⚠️ You cannot use Quest And Crossfire™ branding
 - ⚠️ API keys and credentials are NOT included (you must provide your own)
 
 **Bootcamp Context:**

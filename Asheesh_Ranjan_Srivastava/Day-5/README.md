@@ -246,8 +246,17 @@ An AI-powered LinkedIn post generator that embodies the **Quest And Crossfire™
 
 ## ⚖️ License & Attribution
 
-**License:** Proprietary (Private application)
-**Trademarks:** QUEST AND CROSSFIRE™ © Asheesh Ranjan Srivastava
+**License:** GNU Affero General Public License v3.0 (AGPL-3.0) - see [LICENSE](LICENSE)
+
+**Trademarks:**
+- "Quest And Crossfire" is a trademark of Asheesh Ranjan Srivastava (Trademark Filed - awaiting certification)
+- "Aethelgard Academy" is a trademark of Asheesh Ranjan Srivastava (Trademark Filed - awaiting certification)
+
+**Key Points:**
+- Open source under AGPL-3.0
+- Network use clause: Must provide source code if deployed as web service
+- You cannot use Quest And Crossfire™ branding without permission
+- Private instance currently restricted to authorized user only (email whitelist)
 
 **AI Collaboration:**
 - Technical implementation: Claude Code (Anthropic)

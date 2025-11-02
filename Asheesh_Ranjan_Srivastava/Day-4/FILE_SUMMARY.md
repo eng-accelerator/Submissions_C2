@@ -126,21 +126,24 @@ Quick overview of all files in the Day-4 LinkedIn Job Automation project.
 ---
 
 ### `LICENSE`
-**Purpose:** MIT License for the project
+**Purpose:** AGPL-3.0 License for the project
 
 **Contains:**
-- Standard MIT License text
+- GNU Affero General Public License v3.0 text
 - Copyright: Asheesh Ranjan Srivastava (2025)
 - Additional notices:
+  - Trademark protection (Aethelgard Academy, Quest And Crossfire - Filed - awaiting certification)
   - Bootcamp context attribution
   - Human-AI collaboration attribution
   - Third-party service notices
+  - Network use clause (AGPL-3.0 requirement)
   - Important disclaimers
 
-**Why MIT?**
-- Permissive license suitable for learning projects
-- Allows use, modification, and distribution
-- Consistent with Day-2 licensing approach
+**Why AGPL-3.0?**
+- Open source with network use clause (source code must be provided for web services)
+- Protects trademarks while allowing code sharing
+- Ensures derivatives remain open source
+- Consistent with all Quest And Crossfire™ projects
 
 ---
 
@@ -181,7 +184,7 @@ Day-4/
 ├── SETUP.md                   # Setup instructions
 ├── CREDENTIALS.md             # Credential configuration guide
 ├── TESTING.md                 # Testing & verification guide
-├── LICENSE                    # MIT License
+├── LICENSE                    # AGPL-3.0 License
 ├── FILE_SUMMARY.md            # This file
 └── .gitignore                 # Git security (prevents credential leaks)
 ```
@@ -300,7 +303,7 @@ workflow.json ────> The actual n8n automation
 
 LICENSE ──────────> Legal terms
     │
-    └──> MIT License (permissive use)
+    └──> AGPL-3.0 License (copyleft with network use clause)
 ```
 
 ---
@@ -311,7 +314,7 @@ LICENSE ──────────> Legal terms
 - Initial release
 - Complete workflow with 16 nodes
 - Comprehensive documentation
-- MIT License
+- AGPL-3.0 License with trademark protection
 - Human-AI collaboration attribution
 
 ### Future Versions:
@@ -341,10 +344,12 @@ LICENSE ──────────> Legal terms
 
 While this is a personal bootcamp project, if you want to improve it:
 
-1. **Fork and customize** for your own use (MIT License allows this)
+1. **Fork and customize** for your own use (AGPL-3.0 allows this)
 2. **Share improvements** (optional) - open to learning from others
-3. **Credit original work** (required by MIT License)
-4. **Don't include credentials** (security best practice)
+3. **Credit original work** (required by AGPL-3.0)
+4. **Keep same license** (AGPL-3.0 copyleft requirement)
+5. **Provide source code** if deployed as web service (AGPL-3.0 network use clause)
+6. **Don't include credentials** (security best practice)
 
 ---
 
@@ -383,4 +388,5 @@ While this is a personal bootcamp project, if you want to improve it:
 **Last Updated:** October 31, 2025
 **Author:** Asheesh Ranjan Srivastava
 **Project:** OutSkill AI Engineering Bootcamp 2025 - Day 4
-**License:** MIT (see LICENSE file)
+**License:** AGPL-3.0 (see LICENSE file)
+**Trademarks:** Quest And Crossfire™, Aethelgard Academy™ (Filed - awaiting certification)
