@@ -1,49 +1,100 @@
-GNU GENERAL PUBLIC LICENSE
-Version 3, 29 June 2007
+GNU AFFERO GENERAL PUBLIC LICENSE
+Version 3, 19 November 2007
 
-Copyright (c) 2025 QUEST AND CROSSFIRE™
+Copyright (C) 2025 Asheesh Ranjan Srivastava
 
 This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
+it under the terms of the GNU Affero General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+GNU Affero General Public License for more details.
 
-You should have received a copy of the GNU General Public License
+You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-===============================================================================
-TRADEMARK NOTICE
-===============================================================================
+==============================================================================
 
-QUEST AND CROSSFIRE™ is a trademark.
-Trademark filings in process.
+Multi-Persona AI Chatbot
+Conversational AI with personality switching and conversation management
 
-While this code is licensed under GPL-3.0, the QUEST AND CROSSFIRE™
-name and branding are protected trademarks.
+Built for OutSkill AI Engineering Bootcamp 2025 - Day 3
+Quest And Crossfire™ © 2025 Asheesh Ranjan Srivastava
 
-You may:
-- Use, modify, and distribute this code under GPL-3.0 terms
-- Fork and create derivatives with proper attribution
+==============================================================================
 
-You must:
-- Keep copyright and license notices intact
-- License derivatives under GPL-3.0
-- Use your own branding (not QUEST AND CROSSFIRE™)
+COPYRIGHT HOLDER RIGHTS:
 
-===============================================================================
-PROJECT ATTRIBUTION
-===============================================================================
+As the copyright holder, Asheesh Ranjan Srivastava retains ALL RIGHTS
+to use this code in any manner, including:
+- Closed-source applications
+- Commercial products
+- Proprietary derivatives
+- Alternative licensing arrangements
 
-This project was developed as part of the OutSkill AI Engineering Bootcamp 2025.
+AGPL-3.0 restrictions apply ONLY to derivative works created by others.
 
-Base architecture and concepts provided by OutSkill.
-Implementation, customization, and original features by Asheesh Ranjan Srivastava.
-AI assistance provided by Gemini (Google) and Claude (Anthropic).
+For commercial licensing inquiries or alternative licensing arrangements:
+Contact: asheesh.srivastava@questandcrossfire.com
 
-For the full GPL-3.0 license text, visit:
-https://www.gnu.org/licenses/gpl-3.0.en.html
+==============================================================================
+
+ADDITIONAL NOTICES:
+
+1. TRADEMARKS
+   - "Aethelgard Academy" is a trademark of Asheesh Ranjan Srivastava
+     (Trademark Filed - awaiting certification)
+   - "Quest And Crossfire" is a trademark of Asheesh Ranjan Srivastava
+     (Trademark Filed - awaiting certification)
+   - Use of these trademarks requires explicit permission
+
+2. AI ATTRIBUTION
+   This software was developed with assistance from:
+   - Gemini (Google) for initial implementation
+   - Claude Code (Anthropic) for refinements and documentation
+   - Human strategic decisions and quality control by Asheesh Ranjan Srivastava
+
+3. THIRD-PARTY DEPENDENCIES
+   This software uses the following services and libraries:
+   - Streamlit (Apache 2.0 License)
+   - OpenAI API (proprietary)
+   - Python standard libraries
+
+4. BOOTCAMP ATTRIBUTION
+   This project was created as part of the OutSkill AI Engineering Bootcamp 2025.
+   Base architecture and concepts provided by OutSkill.
+   Implementation, customization, and original features by Asheesh Ranjan Srivastava.
+
+5. COPYLEFT NOTICE (AGPL-3.0)
+   Under AGPL-3.0, any derivative works or modifications must also be
+   released under AGPL-3.0 or compatible license.
+
+   If you use this code in your project, you must:
+   - Make your source code available
+   - License your project under AGPL-3.0
+   - Attribute the original work
+   - State your changes
+   - If used in a web service, provide source code to users
+
+   AGPL-3.0 NETWORK USE CLAUSE:
+   If you run a modified version of this software as a web service
+   (e.g., Streamlit Cloud, cloud deployment, web app), you MUST make
+   the complete source code available to users of that service.
+
+==============================================================================
+
+For the complete GNU Affero General Public License v3.0 text, see:
+https://www.gnu.org/licenses/agpl-3.0.txt
+
+==============================================================================
+
+CONTACT:
+Author: Asheesh Ranjan Srivastava
+Email: asheesh.srivastava@questandcrossfire.com
+Brand: Quest And Crossfire
+Project: Aethelgard Academy
+
+◇ Where chaos becomes clarity. Small fixes, big clarity.
