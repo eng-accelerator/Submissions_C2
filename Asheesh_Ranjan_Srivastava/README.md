@@ -51,35 +51,86 @@
 
 ---
 
+### 🎯 [Day 5: Quest And Crossfire LinkedIn AI - Serverless Application](./Day-5/)
+**Built:** AI-powered LinkedIn post generator with OAuth 2.0 authentication and serverless architecture
+
+**Tech Stack:** Vercel Serverless • n8n AI Agent • LinkedIn OAuth 2.0 • JWT • OpenAI GPT-4o-mini • Supabase
+**Key Features:**
+- LinkedIn OAuth 2.0 login with JWT session management
+- AI post generation with Quest And Crossfire brand voice (200+ line system prompt)
+- Direct LinkedIn publishing via Share API
+- 3-layer security architecture (frontend gate + backend JWT + email whitelist)
+- Private application with email whitelist protection
+- Comprehensive documentation (7 files, 6,148 lines)
+
+**Status:** ✅ Complete | 🔗 [Live App](https://quest-crossfire-linkedin-app.vercel.app) | 💻 [GitHub](https://github.com/AsheeshSrivastava/quest-crossfire-linkedin-app) | 📝 [View Documentation](./Day-5/README.md)
+
+---
+
+### 📚 [Day 6: Advanced RAG Application Development](./Day-6/)
+**Built:** Complete RAG system with vector databases, advanced retrieval techniques, and production deployment
+
+**Tech Stack:** LlamaIndex • LanceDB • HuggingFace Embeddings • OpenAI GPT-4o-mini • Gradio • Pydantic
+**Key Achievements:**
+- **Assignment 1:** Vector Database Basics (39 docs, 14,976 embeddings, semantic search)
+- **Assignment 2:** Advanced RAG Techniques (SimilarityPostprocessor, TreeSummarize, Pydantic outputs, 50-60% cost savings)
+- **Assignment 3a:** Basic Gradio RAG interface
+- **Assignment 3b:** Advanced Gradio RAG with parameter tuning
+- **Bonus:** Enhanced production application deployed to HuggingFace Spaces
+
+**Status:** ✅ Complete (4/4 Assignments) | 🚀 [Live Demo](https://huggingface.co/spaces/asheeshsrivastava9/QnC) | 📝 [View Documentation](./Day-6/README.md)
+
+---
+
 ## 🛠️ Skills Demonstrated
 
 **AI/ML:**
 - Transformer model integration
-- Prompt engineering
+- Prompt engineering (200+ line system prompts)
 - Multi-model architecture
+- RAG (Retrieval-Augmented Generation) systems
+- Vector databases & semantic search
+- Advanced retrieval techniques (SimilarityPostprocessor, TreeSummarize)
+- Pydantic structured outputs
 - System design for AI applications
 - AI collaboration & orchestration
 
 **Automation & Integration:**
 - n8n workflow automation
 - Gmail API integration (OAuth2)
+- LinkedIn API (OAuth 2.0 + Share API)
 - Multi-API orchestration
 - Scheduled task automation
 - Error handling & graceful degradation
 
 **Backend:**
-- OpenAI API integration (GPT-5, GPT-4o)
+- OpenAI API integration (GPT-5, GPT-4o, GPT-4o-mini)
 - HeyGen video generation API
-- Hugging Face Transformers
+- LlamaIndex RAG framework
+- LanceDB vector database
+- HuggingFace Transformers & Embeddings
+- Vercel serverless functions
+- JWT session management
 - Session state management
 - Caching strategies
 - Base64 decoding & HTML parsing
 
 **Frontend:**
 - Streamlit web apps
-- Gradio interfaces
+- Gradio interfaces (basic + advanced parameter tuning)
 - Real-time streaming
 - User interaction design
+- Multi-tab interfaces
+
+**Security:**
+- OAuth 2.0 implementation (LinkedIn)
+- JWT authentication & session management
+- 3-layer security architecture (frontend + backend + whitelist)
+- Email whitelist protection
+- Rate limiting (10/hour, 20/session)
+- API key validation & format checking
+- HTTP-only secure cookies
+- Environment variable management
 
 **Professional Practices:**
 - Comprehensive documentation
@@ -89,7 +140,7 @@
 - Professional code structure
 - Human-AI collaboration transparency
 - Systems thinking & first principles
-- Cost optimization strategies
+- Cost optimization strategies (50-60% token savings)
 
 ---
 
@@ -101,15 +152,23 @@
 | Day 2 | ✅ Complete | Text Summarization MVP |
 | Day 3 | ✅ Complete | Multi-Persona Chatbot |
 | Day 4 | ✅ Complete | LinkedIn Job Automation (n8n workflow) |
-| Day 5+ | 🔄 In Progress | Coming soon... |
+| Day 5 | ✅ Complete | Quest And Crossfire LinkedIn AI (Serverless App) |
+| Day 6 | ✅ Complete | Advanced RAG Application (4 Assignments + Production Deployment) |
+| Day 7+ | 🔄 In Progress | Coming soon... |
 
 ---
 
 ## 🔗 Quick Links
 
 **Live Deployments:**
-- [Multi-Persona Chatbot](http://questandcrossfire.com/chatbot)
+- [Quest And Crossfire LinkedIn AI](https://quest-crossfire-linkedin-app.vercel.app) - Day 5 serverless app
+- [Aethelgard Concept Generator](https://huggingface.co/spaces/asheeshsrivastava9/QnC) - Day 6 enhanced RAG app
+- [Multi-Persona Chatbot](http://questandcrossfire.com/chatbot) - Day 3 project
 - [Obsidian AI Assistant](http://questandcrossfire.com/obsidian) *(Portfolio project)*
+
+**GitHub Repositories:**
+- [Quest And Crossfire LinkedIn AI](https://github.com/AsheeshSrivastava/quest-crossfire-linkedin-app) - Full source code & documentation
+- [Aethelgard Concept Generator](https://github.com/AsheeshSrivastava/aethelgard-concept-generator) - Production RAG application
 
 **Documentation:**
 - [Day 2 README](./Day-2/README.md) - Text Summarization
@@ -118,6 +177,8 @@
   - [Setup Guide](./Day-4/SETUP.md)
   - [Credentials Guide](./Day-4/CREDENTIALS.md)
   - [File Summary](./Day-4/FILE_SUMMARY.md)
+- [Day 5 README](./Day-5/README.md) - Quest And Crossfire LinkedIn AI
+- [Day 6 README](./Day-6/README.md) - Advanced RAG Application Development
 
 ---
 
@@ -140,4 +201,4 @@ Building AI applications and learning in public.
 
 ---
 
-**Last Updated:** October 31, 2025 | Day 4 Complete
+**Last Updated:** November 3, 2025 | Day 6 Complete
