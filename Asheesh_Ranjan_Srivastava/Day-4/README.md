@@ -11,6 +11,8 @@
 [![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4%20%7C%20GPT--5-blue.svg)](https://openai.com/)
 [![HeyGen](https://img.shields.io/badge/HeyGen-AI%20Video-purple.svg)](https://heygen.com/)
 
+> **📋 Update (Oct 31, 2025):** Fixed IF node routing condition. Changed from `notEmpty` to `startsWith "https://"` for proper URL validation. See [TESTING.md](TESTING.md) Test 4 for verification steps.
+
 ---
 
 ## What This Does
@@ -273,24 +275,61 @@ Modern software development IS human-AI collaboration. The skill isn't writing e
 
 ## Files in This Submission
 
-### `workflow.json`
-Complete n8n workflow (860 lines, 16 nodes) ready to import.
+### Core Files
+
+**`workflow.json`** - Complete n8n workflow (860 lines, 16 nodes) ready to import
+- Updated Oct 31, 2025: Fixed IF node routing condition
+
+**`README.md`** - This file, complete learning journey and documentation
+
+### Documentation Files
+
+**`SETUP.md`** - Step-by-step setup guide for all components
+
+**`CREDENTIALS.md`** - Detailed credential configuration for Gmail, OpenAI, HeyGen, Google Sheets
+
+**`TESTING.md`** - Comprehensive testing guide with 15 test cases
+- Verify all components work correctly
+- Troubleshooting for each stage
+- Production readiness checklist
+
+**`FILE_SUMMARY.md`** - Quick overview of all files and their purpose
+
+**`LICENSE`** - MIT License with human-AI collaboration attribution
+
+**`.gitignore`** - Security protection (prevents credential commits)
 
 **Note:** You'll need to configure:
 - Gmail OAuth2 credentials
 - OpenAI API key
-- HeyGen API key
+- HeyGen API key (optional)
 - Google Sheets ID
 
 ---
 
 ## How to Use This Workflow
 
-1. Import `workflow.json` into n8n
-2. Configure credentials (Gmail, OpenAI, HeyGen, Google Sheets)
-3. Update Google Sheet ID in "Save to Sheet" nodes
-4. Test with 1-2 emails first
-5. Activate for daily 3 AM execution
+1. **Read Documentation**
+   - Start with this README for context
+   - Review [SETUP.md](SETUP.md) for detailed setup steps
+   - Check [CREDENTIALS.md](CREDENTIALS.md) for credential configuration
+
+2. **Import & Configure**
+   - Import `workflow.json` into n8n
+   - Configure credentials (Gmail, OpenAI, HeyGen, Google Sheets)
+   - Update Google Sheet ID in "Save to Sheet" nodes
+   - Customize profile data in AI prompts
+
+3. **Test & Verify**
+   - Follow [TESTING.md](TESTING.md) for comprehensive 15-step testing
+   - Verify IF node routes URLs correctly (Test 4)
+   - Test with 1-2 emails first
+   - Confirm all components work end-to-end
+
+4. **Activate**
+   - Enable daily 3 AM execution
+   - Monitor first few runs
+   - Check costs and adjust as needed
 
 ---
 
