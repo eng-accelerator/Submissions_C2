@@ -1,0 +1,505 @@
+{
+  "name": "Linked_Job_Automation",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "https://rss.app/feeds/5VOR1Izjpr1RvILl.xml",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.1,
+      "position": [
+        -976,
+        608
+      ],
+      "id": "3c47ba0f-546b-4fb3-9e90-bb9bbdfbcb03",
+      "name": "RSS Read"
+    },
+    {
+      "parameters": {
+        "url": "={{ $('RSS Read').item.json.link }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -544,
+        608
+      ],
+      "id": "61afe8a7-90e7-44c5-886e-3e8608302427",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "You're an intelligent bot capable of pulling out data from a job listing site.",
+              "role": "system"
+            },
+            {
+              "content": "=Here's the job site:\n {{ $json.data }}"
+            },
+            {
+              "content": "Please output the data in JSON format, using the following structure:\n\n{\n\"company_name\": \"\",\n\"benefits\": \"\", //401K plan, medical, etc, please separate by commas\n\"job_description\": \"\", //please make it 200 characters or less\n\"location\": \"\"\n}",
+              "role": "assistant"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -352,
+        592
+      ],
+      "id": "3b2b1301-fc8f-425e-b9d1-e203417fcf03",
+      "name": "OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "p19XVmjQlOerzfNw",
+          "name": "Open Router"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "maxItems": 5
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -768,
+        608
+      ],
+      "id": "081b9403-4b86-4cf3-a8df-b5bd5c547e27",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "url": "https://rss.app/feeds/y708YSuVvuVLmHgB.xml",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.1,
+      "position": [
+        688,
+        0
+      ],
+      "id": "64bafa78-f34a-4135-9232-7aca4bb53caf",
+      "name": "RSS Read1"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "d3968543-6651-4b47-ba83-dda7d49ce522",
+      "name": "Schedule Trigger1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "993ff775-0e35-4844-8b30-6d19f605cbfa",
+              "name": "RSS feeds",
+              "value": "[\"https://rss.app/feeds/eLi2CzXTaHeeHkNE.xml\", \"https://rss.app/feeds/eLi2CzXTaHeeHkNE.xml\"]",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        224,
+        0
+      ],
+      "id": "b74f964a-3b91-4cc9-91f8-962a274bc581",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "['RSS feeds']",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        448,
+        0
+      ],
+      "id": "23899da1-fb76-4b97-be9e-3161be5fe24d",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1168,
+        608
+      ],
+      "id": "97c88061-8c3b-47e3-8fc2-bf6783991eb0",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "19QYiL8ooWfut73JN8bQdfhL5t8CWBGQGZ6kdoGVSkBA",
+          "mode": "list",
+          "cachedResultName": "LinkedIn Job ListingsV2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/19QYiL8ooWfut73JN8bQdfhL5t8CWBGQGZ6kdoGVSkBA/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/19QYiL8ooWfut73JN8bQdfhL5t8CWBGQGZ6kdoGVSkBA/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Title": "={{ $('Limit').item.json.title }}",
+            "Job Description": "={{ $('RSS Read').item.json.content }}",
+            "Link": "={{ $('RSS Read').item.json.link }}",
+            "Date": "={{ $('RSS Read').item.json.pubDate }}",
+            "Rating": "={{ $('Message a model').item.json.message.content.max_score }}",
+            "Company Name": "={{ $('Message a model').item.json.message.content.job_listing.company }}",
+            "Cover Letter": "={{ $json.choices[0].message.content.cover_letter }}",
+            "Benefits": "={{ $('Message a model').item.json.message.content.candidate.profile }}"
+          },
+          "matchingColumns": [
+            "Title"
+          ],
+          "schema": [
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Job Description",
+              "displayName": "Job Description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Link",
+              "displayName": "Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Rating",
+              "displayName": "Rating",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Company Name",
+              "displayName": "Company Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Benefits",
+              "displayName": "Benefits",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Job Description",
+              "displayName": "Job Description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Cover Letter",
+              "displayName": "Cover Letter",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        704,
+        576
+      ],
+      "id": "51fc88cd-5d14-4db1-baa8-a58c371e09d6",
+      "name": "Append or update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "AdSUexdEQZTJFMQ8",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "You're an intelligent bot rating how closely a job listing is to a candidates skill set, on a score of 5.\nGive the following points:\na) 3 points for skills matching, 1 point for mostly matching\nb) 1 point for it being the right experience level\nc) 1 point for it being a remote position\nd) 1 point if past job experience matches the job role\ne) 1 point if the skills on the resume align with the job\nf) 3 points if I meet the job qualifications posted based on my resume",
+              "role": "system"
+            },
+            {
+              "content": "=Here's the job listing details:\n{{ $json.message.content.company_name }}\n{{ $json.message.content.job_description }}\n\nSample resume profile- \n\"\"\"\n### **Profile Overview**\n\nPramod Bhagat is an experienced **Data Scientist** with over **5 years** of hands-on experience in building, scaling, and deploying machine learning models that solve real-world business problems. Your expertise spans various domains, with a focus on **Generative AI**, **cloud technologies**, and **business analytics**. You have a strong ability to bridge the gap between data science and business, using data to drive impactful decisions and improvements in products and processes.\n\n### **Core Competencies**\n\n* **Generative AI**: Experience with cutting-edge generative tools and prompt engineering.\n* **Machine Learning & AI**: Expertise in building and deploying machine learning models using frameworks like **TensorFlow** and **PyTorch**.\n* **Deep Learning**: Strong knowledge in deep learning techniques like **Neural Networks**, **Convolutional Neural Networks (CNN)**, and **Recurrent Neural Networks (RNN)**.\n* **Recommendation Systems**: Experienced in **Collaborative Filtering**, **Matrix Factorization**, and **Dimensionality Reduction** for building scalable recommendation engines.\n* **Cloud Platforms**: Well-versed in **Google Cloud Platform** (GCP), **Azure**, and cloud-based solutions to scale data processing and machine learning models.\n* **Programming**: Proficient in **Python**, **SQL**, and **R**, with a deep understanding of libraries like **Scikit-learn**, **Pandas**, and **NumPy**.\n* **Data Engineering & ETL**: Comfortable with creating and managing data pipelines, ETL processes, and working with large datasets.\n* **Statistical Analysis & A/B Testing**: Strong foundation in performing statistical analysis, hypothesis testing, and A/B testing to optimize models and business decisions.\n* **Product Analytics**: Expertise in analyzing user behavior, building systems to improve user experiences, and generating recommendations.\n* **Collaboration**: Able to work effectively with cross-functional teams including engineering, product management, and marketing to derive actionable insights from data.\n\n### **Key Achievements**\n\n* **Awards**: Best Outgoing Student and Batch Topper in **MBA-Data Science & Analytics** (210 students) from **Symbiosis International University**.\n* **Research Excellence**: Awarded **First Prize** for **Best Research Paper** and Presenter at **MIT University**.\n* **Competitions**: Winner of the **First-ever Machine Learning Competition** at **VMware** and **Shark-Tank Finalist**.\n* **Publications**: Contributed notable papers like \"Conversational System, Intelligent Virtual Assistant Named DIVA Using Raspberry Pi\".\n* **Industry Impact**: Built systems that increased **Azure Market Share** and significantly improved **customer targeting** and **marketing campaigns**.\n\n### **Professional Experience**\n\n#### **Microsoft (May 2024 - Present)**\n\n* **Role**: Data & Applied Scientist II, working on **AI-powered solutions** for **EdTech** and **Cloud Operations**.\n* **Key Projects**:\n\n  * Anomaly detection and **Root Cause Mitigation Assistant**.\n  * Developed a recommendation system for **Azure Subscription Services** to target high-propensity customers and increase market share.\n  * **AI/ML techniques** used: **Deep Learning**, **Collaborative Filtering**, **Matrix Factorization**, **A/B Testing**.\n\n#### **VMware (June 2021 - Dec 2021)**\n\n* **Role**: Data Scientist II, focusing on **AI/ML** for marketing and product analytics.\n* **Key Contributions**:\n\n  * Developed recommendation systems to improve **customer engagement** and optimize marketing campaigns.\n  * Used **Markov Chains** and **Apriori Algorithm** for product recommendations and **NLG** for insights generation.\n  * Impacted business metrics by optimizing **campaign targeting** and **ROI**.\n\n#### **Hyper Filteration Pvt. Ltd. (June 2017 - June 2018)**\n\n* **Role**: Embedded Software Engineer, working on **Waste Water Management Solutions** for industrial clients.\n* **Key Projects**: Developed solutions based on **data analysis** to reduce water consumption and manage effluent treatment for large-scale industries.\n\n#### **Education**\n\n* **M.Tech in AI & Machine Learning**, **University of Hyderabad** (2020 - 2022)\n* **Masters in Data Science & Business Analytics**, **Symbiosis International University** (2018 - 2020)\n* **B.Tech in Electronics and Communication**, **JSS Academy of Technical Education** (2013 - 2017)\n\n#### **Certifications**\n\n* **Machine Learning with TensorFlow on Google Cloud**\n* **Google Cloud Platform Fundamentals: Core Infrastructure**\n* **Computer Vision - Object Detection with OpenCV and Python**\n\n---\n\n### **Skills Summary**\n\n* **Advanced Analytics**: You possess strong expertise in **predictive modeling**, **statistical analysis**, and **data-driven decision-making** to solve business challenges.\n* **Machine Learning Expertise**: Deep understanding of core **ML algorithms** and frameworks like **TensorFlow**, **PyTorch**, and **Scikit-learn**.\n* **Cloud & Data Engineering**: Proficient in scaling machine learning models in **cloud environments** and handling large datasets.\n* **Business Focus**: You have a proven ability to align data science projects with business goals, improving customer experience, driving sales, and influencing product development.\n* **Technical Communication**: Skilled at presenting complex data and insights to non-technical stakeholders, ensuring clarity and actionable outcomes.\n\n---\n\n### **Conclusion**\n\nYour profile highlights a well-rounded blend of technical expertise and business acumen. You have proven experience in solving large-scale business problems with **data science** and **machine learning** techniques, making you a strong candidate for roles involving advanced analytics, product decision-making, and AI-powered product development.\n\n\"\"\"\n"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -16,
+        592
+      ],
+      "id": "99ad4822-46e2-4270-90c1-456077abab6d",
+      "name": "Message a model",
+      "credentials": {
+        "openAiApi": {
+          "id": "p19XVmjQlOerzfNw",
+          "name": "Open Router"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "You're an intelligent bot perfect at creating cover letters for a job. Please take the candidates resume and create a customized cover letter to the job.",
+              "role": "system"
+            },
+            {
+              "content": "=Here's the job listing details:\nTitle: {{ $('RSS Read').item.json.title }}\nDescription: {{ $('OpenAI').item.json.message.content.job_description }}\nName: {{ $('OpenAI').item.json.message.content.company_name }}\nLocation: {{ $('OpenAI').item.json.message.content.location }}\n\nHere is the candidates skill set:\n\nHere's a detailed summary of your CV and the skills you've highlighted throughout your experience:\n\n---\n\n### **Profile Overview**\n\nPramod Bhagat is a **Data Scientist** with over **5 years** of hands-on experience in building, scaling, and deploying machine learning models that solve real-world business problems. Your expertise spans various domains, with a focus on **Generative AI**, **cloud technologies**, and **business analytics**. You have a strong ability to bridge the gap between data science and business, using data to drive impactful decisions and improvements in products and processes.\n\n### **Core Competencies**\n\n* **Generative AI**: Experience with cutting-edge generative tools and prompt engineering.\n* **Machine Learning & AI**: Expertise in building and deploying machine learning models using frameworks like **TensorFlow** and **PyTorch**.\n* **Deep Learning**: Strong knowledge in deep learning techniques like **Neural Networks**, **Convolutional Neural Networks (CNN)**, and **Recurrent Neural Networks (RNN)**.\n* **Recommendation Systems**: Experienced in **Collaborative Filtering**, **Matrix Factorization**, and **Dimensionality Reduction** for building scalable recommendation engines.\n* **Cloud Platforms**: Well-versed in **Google Cloud Platform** (GCP), **Azure**, and cloud-based solutions to scale data processing and machine learning models.\n* **Programming**: Proficient in **Python**, **SQL**, and **R**, with a deep understanding of libraries like **Scikit-learn**, **Pandas**, and **NumPy**.\n* **Data Engineering & ETL**: Comfortable with creating and managing data pipelines, ETL processes, and working with large datasets.\n* **Statistical Analysis & A/B Testing**: Strong foundation in performing statistical analysis, hypothesis testing, and A/B testing to optimize models and business decisions.\n* **Product Analytics**: Expertise in analyzing user behavior, building systems to improve user experiences, and generating recommendations.\n* **Collaboration**: Able to work effectively with cross-functional teams including engineering, product management, and marketing to derive actionable insights from data.\n\n### **Key Achievements**\n\n* **Awards**: Best Outgoing Student and Batch Topper in **MBA-Data Science & Analytics** (210 students) from **Symbiosis International University**.\n* **Research Excellence**: Awarded **First Prize** for **Best Research Paper** and Presenter at **MIT University**.\n* **Competitions**: Winner of the **First-ever Machine Learning Competition** at **VMware** and **Shark-Tank Finalist**.\n* **Publications**: Contributed notable papers like \"Conversational System, Intelligent Virtual Assistant Named DIVA Using Raspberry Pi\".\n* **Industry Impact**: Built systems that increased **Azure Market Share** and significantly improved **customer targeting** and **marketing campaigns**.\n\n### **Professional Experience**\n\n#### **Microsoft (May 2024 - Present)**\n\n* **Role**: Data & Applied Scientist II, working on **AI-powered solutions** for **EdTech** and **Cloud Operations**.\n* **Key Projects**:\n\n  * Anomaly detection and **Root Cause Mitigation Assistant**.\n  * Developed a recommendation system for **Azure Subscription Services** to target high-propensity customers and increase market share.\n  * **AI/ML techniques** used: **Deep Learning**, **Collaborative Filtering**, **Matrix Factorization**, **A/B Testing**.\n\n#### **VMware (June 2021 - Dec 2021)**\n\n* **Role**: Data Scientist II, focusing on **AI/ML** for marketing and product analytics.\n* **Key Contributions**:\n\n  * Developed recommendation systems to improve **customer engagement** and optimize marketing campaigns.\n  * Used **Markov Chains** and **Apriori Algorithm** for product recommendations and **NLG** for insights generation.\n  * Impacted business metrics by optimizing **campaign targeting** and **ROI**.\n\n#### **Hyper Filteration Pvt. Ltd. (June 2017 - June 2018)**\n\n* **Role**: Embedded Software Engineer, working on **Waste Water Management Solutions** for industrial clients.\n* **Key Projects**: Developed solutions based on **data analysis** to reduce water consumption and manage effluent treatment for large-scale industries.\n\n#### **Education**\n\n* **M.Tech in AI & Machine Learning**, **University of Hyderabad** (2020 - 2022)\n* **Masters in Data Science & Business Analytics**, **Symbiosis International University** (2018 - 2020)\n* **B.Tech in Electronics and Communication**, **JSS Academy of Technical Education** (2013 - 2017)\n\n#### **Certifications**\n\n* **Machine Learning with TensorFlow on Google Cloud**\n* **Google Cloud Platform Fundamentals: Core Infrastructure**\n* **Computer Vision - Object Detection with OpenCV and Python**\n\n---\n\n### **Skills Summary**\n\n* **Advanced Analytics**: You possess strong expertise in **predictive modeling**, **statistical analysis**, and **data-driven decision-making** to solve business challenges.\n* **Machine Learning Expertise**: Deep understanding of core **ML algorithms** and frameworks like **TensorFlow**, **PyTorch**, and **Scikit-learn**.\n* **Cloud & Data Engineering**: Proficient in scaling machine learning models in **cloud environments** and handling large datasets.\n* **Business Focus**: You have a proven ability to align data science projects with business goals, improving customer experience, driving sales, and influencing product development.\n* **Technical Communication**: Skilled at presenting complex data and insights to non-technical stakeholders, ensuring clarity and actionable outcomes.\n\n---\n\n### **Conclusion**\n\nYour profile highlights a well-rounded blend of technical expertise and business acumen. You have proven experience in solving large-scale business problems with **data science** and **machine learning** techniques, making you a strong candidate for roles involving advanced analytics, product decision-making, and AI-powered product development.\n"
+            },
+            {
+              "content": "Please return JSON data structured the following way:\n{\n\"cover_letter\": \"\"\n}",
+              "role": "assistant"
+            }
+          ]
+        },
+        "simplify": false,
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        320,
+        592
+      ],
+      "id": "89d22d8b-0f77-4384-8f98-d14cfb420387",
+      "name": "Message a model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "p19XVmjQlOerzfNw",
+          "name": "Open Router"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "RSS Read": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "RSS Read1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "RSS Read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Message a model1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model1": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "51baa26d-324d-4f23-9d98-0d4f38c3612c",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "c0b28b1f9db405e1ac40a9cafa061f1b4399cbc861566181fa0631926925f79b"
+  },
+  "id": "ldOpzgr7g1541bj7",
+  "tags": []
+}
