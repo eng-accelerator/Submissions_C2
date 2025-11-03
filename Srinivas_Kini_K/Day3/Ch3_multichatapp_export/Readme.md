@@ -4,6 +4,8 @@
 
 **Difficulty:** Intermediate–Advanced  
 **Focus:** File generation, data formatting, download handling  
+![Uploading image.png…]()
+
 
 ### 🧠 Overview
 This enhancement adds export options to your chatbot, allowing users to download their conversations in **TXT**, **JSON**, or **CSV** formats — complete with timestamps, message statistics, and session metadata.
