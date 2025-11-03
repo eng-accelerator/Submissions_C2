@@ -18,10 +18,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ==============================================================================
 
-Automated LinkedIn Job Application System
-Email-based workflow automation with AI-powered personalization
+Advanced RAG Application Development
+Complete RAG system with vector databases and production deployment
 
-Built for OutSkill AI Engineering Bootcamp 2025 - Day 4
+Built for OutSkill AI Engineering Bootcamp 2025 - Day 6
 Quest And Crossfire™ © 2025 Asheesh Ranjan Srivastava
 
 ==============================================================================
@@ -53,34 +53,53 @@ ADDITIONAL NOTICES:
 
 2. AI ATTRIBUTION
    This software was developed with assistance from:
-   - Claude Code (Anthropic) for technical implementation and debugging
+   - Claude Code (Anthropic) for technical implementation
    - Human strategic decisions and quality control by Asheesh Ranjan Srivastava
-   - This represents human-AI collaboration in modern software development
 
-3. THIRD-PARTY SERVICES AND APIS
-   This workflow uses the following third-party services:
-   - n8n (Fair Code License - Apache 2.0 with Commons Clause)
-   - Gmail API (Google)
-   - OpenAI API (GPT-5, GPT-4o-latest, GPT-4o-mini)
-   - HeyGen API (AI video generation)
-   - Google Sheets API (Google)
-
-   Each service is subject to its respective terms of service and pricing.
+3. THIRD-PARTY DEPENDENCIES
+   This software uses the following open-source libraries:
+   - LlamaIndex (MIT License)
+   - LanceDB (Apache 2.0 License)
+   - HuggingFace Transformers (Apache 2.0 License)
+   - HuggingFace Sentence Transformers (Apache 2.0 License)
+   - Gradio (Apache 2.0 License)
+   - OpenAI API (proprietary)
+   - Pydantic (MIT License)
 
 4. BOOTCAMP ATTRIBUTION
-   This project was created as part of the OutSkill AI Engineering Bootcamp 2025.
-   Base architecture and concepts provided by OutSkill.
-   Strategic design, architecture, and implementation by Asheesh Ranjan Srivastava.
+   This project includes 4 complete assignments:
+   - Assignment 1: Vector Database Basics
+   - Assignment 2: Advanced RAG Techniques
+   - Assignment 3a: Basic Gradio RAG
+   - Assignment 3b: Advanced Gradio RAG
 
-5. DATA REQUIREMENTS
-   This workflow requires:
-   - API keys and credentials (not included)
-   - Personal profile data customization
-   - Google Sheet IDs and credential references
-   - Rate limits and costs apply based on API usage
-   - No warranty provided for production use or data privacy
+   Created as part of the OutSkill AI Engineering Bootcamp 2025.
+   Implementation and learning journey by Asheesh Ranjan Srivastava.
 
-6. COPYLEFT NOTICE (AGPL-3.0)
+5. BONUS: ENHANCED PRODUCTION APPLICATION
+   This submission includes documentation for the Aethelgard Concept Generator,
+   a production-ready RAG application deployed to HuggingFace Spaces.
+
+   Live Demo: https://huggingface.co/spaces/asheeshsrivastava9/QnC
+   GitHub: https://github.com/AsheeshSrivastava/aethelgard-concept-generator
+
+   The production application includes:
+   - Login system with authentication
+   - Frontend API key management
+   - File upload functionality (multiple PDFs)
+   - Advanced RAG techniques (SimilarityPostprocessor, TreeSummarize, Pydantic)
+   - Export to markdown
+   - Quest And Crossfire branding
+   - Comprehensive security (rate limiting, API key validation)
+
+6. DATA REQUIREMENTS
+   These notebooks require:
+   - Python reference materials (39 documents used in assignments)
+   - OpenAI API key for LLM functionality
+   - Course materials are NOT included due to copyright restrictions
+   - Users must provide their own learning materials or use public domain content
+
+7. COPYLEFT NOTICE (AGPL-3.0)
    Under AGPL-3.0, any derivative works or modifications must also be
    released under AGPL-3.0 or compatible license.
 
@@ -93,8 +112,8 @@ ADDITIONAL NOTICES:
 
    AGPL-3.0 NETWORK USE CLAUSE:
    If you run a modified version of this software as a web service
-   (e.g., n8n cloud, self-hosted automation), you MUST make the
-   complete source code available to users of that service.
+   (e.g., Hugging Face Space, Gradio deployment, cloud deployment),
+   you MUST make the complete source code available to users of that service.
 
 ==============================================================================
 
