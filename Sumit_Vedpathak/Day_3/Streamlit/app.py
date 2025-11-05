@@ -1,8 +1,8 @@
 # Multi-chat app with persistent history using OpenRouter
 # Features: Multiple conversations, persistent storage, chat history in sidebar
-
 import streamlit as st
 from openai import OpenAI
+import time
 import os
 import json
 from datetime import datetime
@@ -16,27 +16,27 @@ st.set_page_config(page_title="My ChatBot", page_icon="🤖", layout="wide")
 # Initialize System Prompts
 personalities = {
     "Creative": {
-        "prompt": """You are a world-class creative writer. Your responses must be imaginative, evocative, and focus on storytelling and unique concepts. Use figurative language often.""",
+        "prompts": """You are a world-class creative writer. Your responses must be imaginative, evocative, and focus on storytelling and unique concepts. Use figurative language often.""",
         "icon": "💡"
     },
     "Professional": {
-        "prompt": """You are a concise and formal corporate consultant. Your responses must be structured, objective, and use business-appropriate language. Avoid slang and focus on actionable insights.""",
+        "prompts": """You are a concise and formal corporate consultant. Your responses must be structured, objective, and use business-appropriate language. Avoid slang and focus on actionable insights.""",
         "icon": "👔"
     },
     "Technical": {
-        "prompt": """You are a highly detailed and precise software engineer. When answering, provide step-by-step instructions, code examples (in Python), or technical specifications. Accuracy is paramount.""",
+        "prompts": """You are a highly detailed and precise software engineer. When answering, provide step-by-step instructions, code examples (in Python), or technical specifications. Accuracy is paramount.""",
         "icon": "💻"
     },
     "Sarcastic": {
-        "prompt": """You are a chatbot with a dry, sarcastic, and slightly condescending personality. Your primary goal is to answer the user's question, but only after making a witty or sardonic comment.""",
+        "prompts": """You are a chatbot with a dry, sarcastic, and slightly condescending personality. Your primary goal is to answer the user's question, but only after making a witty or sardonic comment.""",
         "icon": "🙄"
     },
     "Robot": {
-        "prompt": """You are a monotonous, logic-driven machine named Unit 734. Speak in short, declarative sentences. Do not express emotion or use contractions. Process request. Output data.""",
+        "prompts": """You are a monotonous, logic-driven machine named Unit 734. Speak in short, declarative sentences. Do not express emotion or use contractions. Process request. Output data.""",
         "icon": "🤖"
     },
     "Energetic": {
-        "prompt": """You are an extremely enthusiastic and motivating coach. Use exclamation marks, positive affirmations, and an encouraging tone in all responses. Let's do this!""",
+        "prompts": """You are an extremely enthusiastic and motivating coach. Use exclamation marks, positive affirmations, and an encouraging tone in all responses. Let's do this!""",
         "icon": "🥳"
     },
 }
@@ -389,7 +389,9 @@ with st.expander("📝 Summarize Conversation", expanded=False):
 # Display chat history
 for idx, message in enumerate(st.session_state.messages):
     with st.chat_message(message["role"]):
-        st.markdown(message["content"])
+        if not message["role"] == "system":
+            st.markdown(message["content"])
+            continue
         if message["role"] == "assistant":
             c1, c2 = st.columns([1, 1])
             with c1:
@@ -399,36 +401,41 @@ for idx, message in enumerate(st.session_state.messages):
                 if st.button("👎", key=f"down_{idx}"):
                     st.session_state.feedback[idx] = "down"
 
+
+pers_system_prompt = personalities[st.session_state.personality]["prompts"]
+
+systemMsg = pers_system_prompt + f""" You are a language detector agent who can detect any language of communication.
+After detecting language you need to translate the language in {st.session_state.prefLang} which is preferred language. Respond in a creative manner initially with content as much as you can as shown below
+For example, 
+If preferred language is selected as English then and if user inputs Bonjour comment allez-vous
+🔍 Detected Language: French.
+
+🎯 Translation (English): "Hello, how are you?"
+
+Personality: {st.session_state.personality}
+
+💡 Cultural Note: This is a formal greeting in French. In casual settings,
+you might hear "Salut, ça va?" instead.
+
+If preferred language is selected as Hindi then and if user inputs Hello, how are you?
+🔍 Detected Language: English. 
+🎯 Translation (Hindi): "Namaste, aap kaise hain?"
+Personality: {st.session_state.personality}
+
+💡 Cultural Note: This is a formal greeting in English. In casual settings
+
+Also you need to respond to user with respect to the chat context."""
+
+if(not any(m["role"] == "system" for m in st.session_state.messages)):
+    st.session_state.messages.append({"role": "system", "content": systemMsg})
+
 # Handle user input
 if prompt := st.chat_input("What would you like to know?"):
-    pers_system_prompt = personalities[st.session_state.personality]["prompt"]
-
-    systemMsg = pers_system_prompt + f""" You are a language detector agent who can detect any language of communication.
-                    After detecting language you need to translate the language in {st.session_state.prefLang} which is preferred language. Respond in a creative manner initially with content as much as you can as shown below
-                    For example, 
-                    If preferred language is selected as English then and if user inputs Bonjour comment allez-vous
-                    🔍 Detected Language: French.
-
-                    🎯 Translation (English): "Hello, how are you?"
-                    
-                    Personality: {st.session_state.personality}
-
-                    💡 Cultural Note: This is a formal greeting in French. In casual settings,
-                    you might hear "Salut, ça va?" instead.
-
-                    If preferred language is selected as Hindi then and if user inputs Hello, how are you?
-                    🔍 Detected Language: English. 
-                    🎯 Translation (Hindi): "Namaste, aap kaise hain?"
-                    Personality: {st.session_state.personality}
-
-                    💡 Cultural Note: This is a formal greeting in English. In casual settings
-
-                    Also you need to respond to user with respect to the chat context."""
-
 
     # Add user message to chat history
-    st.session_state.messages.append({"role": "system", "content": systemMsg})
-    st.session_state.messages.append({"role": "user", "content": prompt})
+    current_time = time.strftime("%H:%M:%S")
+    
+    st.session_state.messages.append({"role": "user", "content": prompt, "timestamp": current_time})
     
 
     # Update chat title if this is the first message
@@ -442,6 +449,7 @@ if prompt := st.chat_input("What would you like to know?"):
     # Generate AI response
     with st.chat_message("assistant"):
         try:
+            print(f"Messages -!---- {st.session_state.messages}")
             response = client.chat.completions.create(
                 #model="openai/gpt-oss-120b",
                 model="google/gemma-3-4b-it",
@@ -483,7 +491,7 @@ if prompt := st.chat_input("What would you like to know?"):
 
             # Add assistant response to chat history
             st.session_state.messages.append(
-                {"role": "assistant", "content": response_text}
+                {"role": "assistant", "content": response_text, "timestamp": time.strftime("%H:%M:%S")}
             )
 
             # Save chat to disk
