@@ -180,7 +180,7 @@ Export any chat in three formats:
 quest-crossfire-chatbot/
 ├── app.py                        # Main Streamlit application
 ├── requirements.txt              # Python dependencies
-├── LICENSE                       # GPL-3.0 license
+├── LICENSE                       # AAGPL-3.0 license
 ├── README.md                     # This file
 ├── .gitignore                    # Git ignore rules
 ├── .streamlit/
@@ -210,7 +210,7 @@ quest-crossfire-chatbot/
 1. ✅ Comprehensive code documentation
 2. ✅ Proper project structure
 3. ✅ Git version control
-4. ✅ Open source licensing (GPL-3.0)
+4. ✅ Open source licensing (AGPL-3.0)
 5. ✅ Transparent AI attribution
 6. ✅ Deployment-ready code
 7. ✅ User-focused design
@@ -292,12 +292,12 @@ quest-crossfire-chatbot/
 
 ## 📄 License
 
-This project is licensed under the **GPL-3.0 License** - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **AGPL-3.0 License** - see the [LICENSE](LICENSE) file for details.
 
 **What this means:**
 - ✅ You can use, modify, and distribute this code
 - ✅ You can create commercial applications
-- ⚠️ You must keep the same GPL-3.0 license
+- ⚠️ You must keep the same AGPL-3.0 license
 - ⚠️ You must credit QUEST AND CROSSFIRE™
 - ⚠️ You cannot use QUEST AND CROSSFIRE™ branding
 
@@ -306,9 +306,9 @@ This project is licensed under the **GPL-3.0 License** - see the [LICENSE](LICEN
 ## 🏷️ Trademark Notice
 
 **QUEST AND CROSSFIRE™** is a trademark.
-Trademark filings in process.
+Trademark Filed - awaiting certification.
 
-While this code is open source (GPL-3.0), the QUEST AND CROSSFIRE™ brand name is a protected trademark. Please use your own branding when creating derivatives.
+While this code is open source (AGPL-3.0), the QUEST AND CROSSFIRE™ brand name is a protected trademark. Please use your own branding when creating derivatives.
 
 ---
 
@@ -377,4 +377,4 @@ If you're using this as a template for your own bootcamp submission:
 
 ---
 
-© 2025 QUEST AND CROSSFIRE™. Licensed under GPL-3.0.
+© 2025 QUEST AND CROSSFIRE™. Licensed under AGPL-3.0.

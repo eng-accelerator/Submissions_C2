@@ -1,48 +1,112 @@
-MIT License
+GNU AFFERO GENERAL PUBLIC LICENSE
+Version 3, 19 November 2007
 
-Copyright (c) 2025 Asheesh Ranjan Srivastava
+Copyright (C) 2025 Asheesh Ranjan Srivastava
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
----
+==============================================================================
+
+Automated LinkedIn Job Application System
+Email-based workflow automation with AI-powered personalization
+
+Built for OutSkill AI Engineering Bootcamp 2025 - Day 4
+Quest And Crossfire™ © 2025 Asheesh Ranjan Srivastava
+
+==============================================================================
+
+COPYRIGHT HOLDER RIGHTS:
+
+As the copyright holder, Asheesh Ranjan Srivastava retains ALL RIGHTS
+to use this code in any manner, including:
+- Closed-source applications
+- Commercial products
+- Proprietary derivatives
+- Alternative licensing arrangements
+
+AGPL-3.0 restrictions apply ONLY to derivative works created by others.
+
+For commercial licensing inquiries or alternative licensing arrangements:
+Contact: asheesh.srivastava@questandcrossfire.com
+
+==============================================================================
 
 ADDITIONAL NOTICES:
 
-This project was created as part of the OutSkill AI Engineering Bootcamp 2025 (Day 4).
+1. TRADEMARKS
+   - "Aethelgard Academy" is a trademark of Asheesh Ranjan Srivastava
+     (Trademark Filed - awaiting certification)
+   - "Quest And Crossfire" is a trademark of Asheesh Ranjan Srivastava
+     (Trademark Filed - awaiting certification)
+   - Use of these trademarks requires explicit permission
 
-ATTRIBUTION:
-- Strategic design and architecture: Asheesh Ranjan Srivastava
-- Technical implementation and debugging: AI assistance (Claude Code by Anthropic)
-- This represents a human-AI collaboration in modern software development
+2. AI ATTRIBUTION
+   This software was developed with assistance from:
+   - Claude Code (Anthropic) for technical implementation and debugging
+   - Human strategic decisions and quality control by Asheesh Ranjan Srivastava
+   - This represents human-AI collaboration in modern software development
 
-Third-party services and APIs used:
-- n8n (Fair Code License - Apache 2.0 with Commons Clause)
-- Gmail API (Google)
-- OpenAI API (GPT-5, GPT-4o-latest, GPT-4o-mini)
-- HeyGen API (AI video generation)
-- Google Sheets API (Google)
+3. THIRD-PARTY SERVICES AND APIS
+   This workflow uses the following third-party services:
+   - n8n (Fair Code License - Apache 2.0 with Commons Clause)
+   - Gmail API (Google)
+   - OpenAI API (GPT-5, GPT-4o-latest, GPT-4o-mini)
+   - HeyGen API (AI video generation)
+   - Google Sheets API (Google)
 
-Each service is subject to its respective terms of service and pricing.
+   Each service is subject to its respective terms of service and pricing.
 
-IMPORTANT NOTES:
-- This workflow requires API keys and credentials (not included)
-- Workflow configuration includes personal profile data (customize before use)
-- Google Sheet IDs and credential references must be updated for your use
-- Rate limits and costs apply based on API usage
-- No warranty provided for production use or data privacy
+4. BOOTCAMP ATTRIBUTION
+   This project was created as part of the OutSkill AI Engineering Bootcamp 2025.
+   Base architecture and concepts provided by OutSkill.
+   Strategic design, architecture, and implementation by Asheesh Ranjan Srivastava.
+
+5. DATA REQUIREMENTS
+   This workflow requires:
+   - API keys and credentials (not included)
+   - Personal profile data customization
+   - Google Sheet IDs and credential references
+   - Rate limits and costs apply based on API usage
+   - No warranty provided for production use or data privacy
+
+6. COPYLEFT NOTICE (AGPL-3.0)
+   Under AGPL-3.0, any derivative works or modifications must also be
+   released under AGPL-3.0 or compatible license.
+
+   If you use this code in your project, you must:
+   - Make your source code available
+   - License your project under AGPL-3.0
+   - Attribute the original work
+   - State your changes
+   - If used in a web service, provide source code to users
+
+   AGPL-3.0 NETWORK USE CLAUSE:
+   If you run a modified version of this software as a web service
+   (e.g., n8n cloud, self-hosted automation), you MUST make the
+   complete source code available to users of that service.
+
+==============================================================================
+
+For the complete GNU Affero General Public License v3.0 text, see:
+https://www.gnu.org/licenses/agpl-3.0.txt
+
+==============================================================================
+
+CONTACT:
+Author: Asheesh Ranjan Srivastava
+Email: asheesh.srivastava@questandcrossfire.com
+Brand: Quest And Crossfire
+Project: Aethelgard Academy
+
+◇ Where chaos becomes clarity. Small fixes, big clarity.

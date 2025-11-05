@@ -101,22 +101,49 @@ Quick overview of all files in the Day-4 LinkedIn Job Automation project.
 
 ---
 
+### `TESTING.md`
+**Purpose:** Comprehensive testing and verification guide for workflow validation
+
+**Sections:**
+- 15 detailed test cases (Email → URLs → Scraping → AI → Sheets)
+- IF node routing fix documentation (October 31, 2025)
+- Success criteria for each test
+- Troubleshooting for each component
+- Cost monitoring guide
+- End-to-end workflow test
+- Production readiness checklist
+- Test results template
+
+**Target Audience:** Users testing and validating the workflow after setup
+
+**Length:** ~550 lines, step-by-step testing guide
+
+**Key Tests:**
+- Test 4: IF node routing (recently fixed)
+- Test 15: End-to-end comprehensive test
+- Cost monitoring throughout
+
+---
+
 ### `LICENSE`
-**Purpose:** MIT License for the project
+**Purpose:** AGPL-3.0 License for the project
 
 **Contains:**
-- Standard MIT License text
+- GNU Affero General Public License v3.0 text
 - Copyright: Asheesh Ranjan Srivastava (2025)
 - Additional notices:
+  - Trademark protection (Aethelgard Academy, Quest And Crossfire - Filed - awaiting certification)
   - Bootcamp context attribution
   - Human-AI collaboration attribution
   - Third-party service notices
+  - Network use clause (AGPL-3.0 requirement)
   - Important disclaimers
 
-**Why MIT?**
-- Permissive license suitable for learning projects
-- Allows use, modification, and distribution
-- Consistent with Day-2 licensing approach
+**Why AGPL-3.0?**
+- Open source with network use clause (source code must be provided for web services)
+- Protects trademarks while allowing code sharing
+- Ensures derivatives remain open source
+- Consistent with all Quest And Crossfire™ projects
 
 ---
 
@@ -156,7 +183,8 @@ Day-4/
 ├── README.md                  # Complete documentation (START HERE)
 ├── SETUP.md                   # Setup instructions
 ├── CREDENTIALS.md             # Credential configuration guide
-├── LICENSE                    # MIT License
+├── TESTING.md                 # Testing & verification guide
+├── LICENSE                    # AGPL-3.0 License
 ├── FILE_SUMMARY.md            # This file
 └── .gitignore                 # Git security (prevents credential leaks)
 ```
@@ -172,7 +200,7 @@ Day-4/
 3. **Credentials:** Use `CREDENTIALS.md` for detailed credential setup
 4. **Import:** Load `workflow.json` into n8n
 5. **Customize:** Update profile data in workflow prompts
-6. **Test:** Run with 1-2 emails to verify
+6. **Test:** Follow `TESTING.md` to verify all 15 components work
 7. **Activate:** Enable daily automation
 
 **If you're evaluating this project:**
@@ -185,7 +213,8 @@ Day-4/
 
 1. **Setup issues:** Check `SETUP.md` troubleshooting section
 2. **Credential issues:** Check `CREDENTIALS.md` troubleshooting section
-3. **Workflow errors:** Check node-specific configurations in n8n UI
+3. **Testing issues:** Check `TESTING.md` for test-specific troubleshooting
+4. **Workflow errors:** Check node-specific configurations in n8n UI
 
 ---
 
@@ -197,11 +226,12 @@ Day-4/
 | README.md | ~15 KB | Markdown (documentation) |
 | SETUP.md | ~18 KB | Markdown (setup guide) |
 | CREDENTIALS.md | ~20 KB | Markdown (credential guide) |
+| TESTING.md | ~25 KB | Markdown (testing guide) |
 | LICENSE | ~2 KB | Text (legal) |
-| FILE_SUMMARY.md | ~4 KB | Markdown (this file) |
+| FILE_SUMMARY.md | ~5 KB | Markdown (this file) |
 | .gitignore | ~1 KB | Text (git config) |
 
-**Total:** ~90 KB (documentation-heavy, as it should be!)
+**Total:** ~116 KB (documentation-heavy, as it should be!)
 
 ---
 
@@ -236,6 +266,7 @@ README.md ────────> Explains WHAT and WHY
     │
     ├──> Links to: SETUP.md (HOW to set up)
     ├──> Links to: CREDENTIALS.md (detailed credential help)
+    ├──> Links to: TESTING.md (verification guide)
     ├──> Links to: LICENSE (usage rights)
     └──> References: workflow.json (the actual automation)
 
@@ -243,6 +274,7 @@ SETUP.md ─────────> Step-by-step HOW TO
     │
     ├──> References: workflow.json (file to import)
     ├──> Links to: CREDENTIALS.md (credential details)
+    ├──> Links to: TESTING.md (next step after setup)
     └──> Prerequisites listed
 
 CREDENTIALS.md ───> Detailed credential setup
@@ -251,11 +283,19 @@ CREDENTIALS.md ───> Detailed credential setup
     ├──> Security best practices
     └──> Troubleshooting for each credential
 
+TESTING.md ───────> Testing & verification guide
+    │
+    ├──> Referenced by: SETUP.md (test after setup)
+    ├──> 15 test cases for all components
+    ├──> Documents IF node fix (Oct 31, 2025)
+    └──> Production readiness checklist
+
 workflow.json ────> The actual n8n automation
     │
     ├──> Imported into n8n
     ├──> Contains all node logic
-    └──> Requires credential configuration
+    ├──> Requires credential configuration
+    └──> Updated with IF node fix
 
 .gitignore ───────> Protects all files
     │
@@ -263,7 +303,7 @@ workflow.json ────> The actual n8n automation
 
 LICENSE ──────────> Legal terms
     │
-    └──> MIT License (permissive use)
+    └──> AGPL-3.0 License (copyleft with network use clause)
 ```
 
 ---
@@ -274,7 +314,7 @@ LICENSE ──────────> Legal terms
 - Initial release
 - Complete workflow with 16 nodes
 - Comprehensive documentation
-- MIT License
+- AGPL-3.0 License with trademark protection
 - Human-AI collaboration attribution
 
 ### Future Versions:
@@ -304,10 +344,12 @@ LICENSE ──────────> Legal terms
 
 While this is a personal bootcamp project, if you want to improve it:
 
-1. **Fork and customize** for your own use (MIT License allows this)
+1. **Fork and customize** for your own use (AGPL-3.0 allows this)
 2. **Share improvements** (optional) - open to learning from others
-3. **Credit original work** (required by MIT License)
-4. **Don't include credentials** (security best practice)
+3. **Credit original work** (required by AGPL-3.0)
+4. **Keep same license** (AGPL-3.0 copyleft requirement)
+5. **Provide source code** if deployed as web service (AGPL-3.0 network use clause)
+6. **Don't include credentials** (security best practice)
 
 ---
 
@@ -346,4 +388,5 @@ While this is a personal bootcamp project, if you want to improve it:
 **Last Updated:** October 31, 2025
 **Author:** Asheesh Ranjan Srivastava
 **Project:** OutSkill AI Engineering Bootcamp 2025 - Day 4
-**License:** MIT (see LICENSE file)
+**License:** AGPL-3.0 (see LICENSE file)
+**Trademarks:** Quest And Crossfire™, Aethelgard Academy™ (Filed - awaiting certification)

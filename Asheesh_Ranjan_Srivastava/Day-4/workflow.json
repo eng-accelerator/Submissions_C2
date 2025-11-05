@@ -92,11 +92,10 @@
           "conditions": [
             {
               "leftValue": "={{ $json.jobUrl }}",
-              "rightValue": "true",
+              "rightValue": "https://",
               "operator": {
                 "type": "string",
-                "operation": "notEmpty",
-                "singleValue": true
+                "operation": "startsWith"
               },
               "id": "7bb54c39-7877-4e50-8f82-82c37f1f293c"
             }
