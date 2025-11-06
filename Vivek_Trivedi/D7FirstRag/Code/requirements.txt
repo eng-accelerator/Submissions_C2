@@ -1,0 +1,40 @@
+
+# Core RAG dependencies
+lancedb
+llama-index 
+llama-index-vector-stores-lancedb 
+llama-index-embeddings-huggingface 
+llama-index-llms-huggingface-api
+
+# Advanced RAG dependencies for Assignment 2
+llama-index-llms-openrouter
+pydantic>=2.0.0
+python-dotenv
+
+# UI dependencies for Assignment 3a and 3b (Gradio interfaces)
+gradio
+
+# Audio processing dependencies (for multimodal document loading)
+openai-whisper
+git+https://github.com/openai/whisper.git
+
+# HuggingFace dependencies for embeddings and transformers
+transformers
+tokenizers
+torch
+torchvision
+torchaudio
+
+# Additional LlamaIndex components used across assignments
+# Note: Most postprocessors and synthesizers are part of llama-index core package
+
+# Additional dependencies for structured outputs and advanced techniques
+typing-extensions
+pathlib
+
+# Image processing dependencies (for multimodal support)
+Pillow
+
+# Utility libraries used across assignments
+numpy
+requests
