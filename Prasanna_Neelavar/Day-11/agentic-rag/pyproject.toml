@@ -1,0 +1,35 @@
+[project]
+name = "agentic-rag-app"
+version = "0.1.0"
+description = "An Agentic RAG AI Application with Streamlit frontend."
+authors = [
+    { name = "Prasanna Neelavar", email = "prasanna.neelavar@gmail.com" }
+]
+dependencies = [
+    "streamlit",
+    "langchain",
+    "langchain-community",
+    "langchain-openai",
+    "faiss-cpu",
+    "pypdf",
+    "tavily-python",
+    "arxiv",
+    "sentence-transformers", # For HuggingFaceEmbeddings
+    "python-dotenv", # For loading .env files
+    "pandas", # For tabular data display
+    "altair", # For charting
+    "langchain-classic",
+    "pydantic>=2.12.4",
+    "wikipedia",
+    "langchain-huggingface",
+    "langchain-tavily",
+]
+requires-python = ">=3.10"
+readme = "README.md"
+license = { text = "MIT" }
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.uv]
