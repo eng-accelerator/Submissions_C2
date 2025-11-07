@@ -1,4 +1,0 @@
-streamlit>=1.36
-openai>=1.46
-langdetect>=1.0.9
-pandas>=2.0

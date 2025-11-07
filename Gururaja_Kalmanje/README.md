@@ -1,1 +1,0 @@
-# Gururaja_Kalmanje

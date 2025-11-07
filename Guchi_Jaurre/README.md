@@ -1,1 +1,0 @@
-# Guchi_Jaurre
