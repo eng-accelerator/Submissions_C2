@@ -23,9 +23,31 @@ multi_agent_researcher/
 
 ## Quickstart
 1. Create venv and install:
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+	 ```bash
+	 python -m venv .venv
+	 ```
+
+	 Activate the virtual environment (choose the command for your OS/shell):
+
+	 - macOS / Linux (bash/zsh):
+		 ```bash
+		 source .venv/bin/activate
+		 ```
+
+	 - Windows (PowerShell):
+		 ```powershell
+		 .\.venv\Scripts\Activate.ps1
+		 ```
+
+	 - Windows (cmd.exe):
+		 ```bat
+		 .venv\Scripts\activate.bat
+		 ```
+
+	 Then install requirements:
+	 ```bash
+	 pip install -r requirements.txt
+	 ```
 
 2. Run:
 streamlit run main.py
