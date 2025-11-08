@@ -1,36 +1,90 @@
 # agents/execution.py
 
 import subprocess
-import textwrap
+import sys
 import os
-import sys  # 👈 IMPORTANT
+import tempfile
+import textwrap
 
-def execute_script(script_code: str, script_path: str = "generated_test.py"):
+
+def execute_script(script_code: str):
     """
-    Execution Agent:
-    - Writes script to file
-    - Runs it with the SAME Python interpreter as Streamlit (sys.executable)
-    - Returns success flag, logs, screenshot path
+    Execute the given Playwright script code in an isolated Python process.
+
+    Returns:
+        {
+            "success": bool,
+            "log": str,
+            "screenshot_path": str | None
+        }
     """
-    # Write script to file
-    with open(script_path, "w", encoding="utf-8") as f:
-        f.write(script_code)
+    # Basic validation
+    if not script_code or not script_code.strip():
+        return {
+            "success": False,
+            "log": "No script code provided.",
+            "screenshot_path": None,
+        }
 
-    # Use the current interpreter, not plain "python"
-    result = subprocess.run(
-        [sys.executable, script_path],   # 👈 this is the key change
-        capture_output=True,
-        text=True
-    )
+    # Write script to a temporary file
+    try:
+        with tempfile.NamedTemporaryFile(
+            delete=False, suffix=".py", mode="w", encoding="utf-8"
+        ) as tmp:
+            # Normalize indentation a bit and ensure trailing newline
+            tmp.write(textwrap.dedent(script_code).strip() + "\n")
+            tmp_path = tmp.name
+    except Exception as e:
+        return {
+            "success": False,
+            "log": f"Failed to create temporary script file: {e}",
+            "screenshot_path": None,
+        }
 
-    success = (result.returncode == 0)
-    logs = textwrap.dedent(result.stdout + "\n" + result.stderr).strip()
+    try:
+        env = os.environ.copy()
 
-    # Pick screenshot file based on what the script produced
-    screenshot_path = None
-    if os.path.exists("run_result.png") and success:
-        screenshot_path = "run_result.png"
-    elif os.path.exists("run_error.png"):
-        screenshot_path = "run_error.png"
+        # Run the script as a subprocess
+        proc = subprocess.run(
+            [sys.executable, tmp_path],
+            capture_output=True,
+            text=True,
+            timeout=180,
+            env=env,
+        )
 
-    return success, logs.splitlines() if logs else [], screenshot_path
+        stdout = proc.stdout or ""
+        stderr = proc.stderr or ""
+        combined_log = (stdout + ("\n" + stderr if stderr else "")).strip()
+
+        # Determine screenshot path: prefer success screenshot, else error screenshot
+        screenshot_path = None
+        if os.path.exists("run_result.png"):
+            screenshot_path = "run_result.png"
+        elif os.path.exists("run_error.png"):
+            screenshot_path = "run_error.png"
+
+        return {
+            "success": proc.returncode == 0,
+            "log": combined_log,
+            "screenshot_path": screenshot_path,
+        }
+
+    except subprocess.TimeoutExpired as e:
+        return {
+            "success": False,
+            "log": f"Execution timed out: {e}",
+            "screenshot_path": None,
+        }
+    except Exception as e:
+        return {
+            "success": False,
+            "log": f"Execution failed: {e}",
+            "screenshot_path": None,
+        }
+    finally:
+        # Always try to clean up the temp file
+        try:
+            os.remove(tmp_path)
+        except Exception:
+            pass
