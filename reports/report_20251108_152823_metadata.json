@@ -1,0 +1,12 @@
+{
+  "report_id": "report_20251108_152823",
+  "generated_at": "2025-11-08T15:28:23.155737",
+  "report_type": "research_report",
+  "version": "1.0",
+  "agents_used": [
+    "contextual_retriever",
+    "critical_analysis",
+    "insight_generation",
+    "report_builder"
+  ]
+}
