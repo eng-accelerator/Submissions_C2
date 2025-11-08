@@ -1,0 +1,17 @@
+# Medical MCP Server Dependencies
+# Install with: pip install -r requirements.txt
+
+# MCP Framework
+mcp>=1.21.0
+
+# Web Search (Fallback)
+duckduckgo-search>=8.1.1
+
+# Geocoding and Distance Calculation
+geopy>=2.4.1
+
+# OpenAI API for LLM parsing
+openai>=2.7.1
+
+# Environment Variable Management
+python-dotenv>=1.0.0
