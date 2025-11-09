@@ -1,0 +1,41 @@
+2025-11-08T09:54:00.000Z UTC [54321] FATAL:  remaining connection slots are reserved for non-replication superuser connections
+2025-11-08T09:54:05.000Z UTC [12345] user=app_rw db=aurora-pgsql-prod ERROR:  deadlock detected
+2025-11-08T09:54:05.000Z UTC [12345] DETAIL:  Process 12345 waits for ShareLock; blocked by process 67890.
+2025-11-08T09:54:11.000Z UTC [54321] FATAL:  remaining connection slots are reserved for non-replication superuser connections
+2025-11-08T09:54:20.000Z UTC [12345] user=app_rw db=aurora-pgsql-prod ERROR:  deadlock detected
+2025-11-08T09:54:20.000Z UTC [12345] DETAIL:  Process 12345 waits for ShareLock; blocked by process 67890.
+2025-11-08T09:54:21.000Z UTC [54321] FATAL:  remaining connection slots are reserved for non-replication superuser connections
+2025-11-08T09:54:30.000Z UTC [54321] FATAL:  remaining connection slots are reserved for non-replication superuser connections
+2025-11-08T09:54:35.000Z UTC [12345] user=app_rw db=aurora-pgsql-prod ERROR:  deadlock detected
+2025-11-08T09:54:35.000Z UTC [12345] DETAIL:  Process 12345 waits for ShareLock; blocked by process 67890.
+2025-11-08T09:54:42.000Z UTC [54321] FATAL:  remaining connection slots are reserved for non-replication superuser connections
+2025-11-08T09:55:00.000Z UTC [54321] FATAL:  remaining connection slots are reserved for non-replication superuser connections
+2025-11-08T09:55:05.000Z UTC [12345] user=app_rw db=aurora-pgsql-prod ERROR:  deadlock detected
+2025-11-08T09:55:05.000Z UTC [12345] DETAIL:  Process 12345 waits for ShareLock; blocked by process 67890.
+2025-11-08T09:55:12.000Z UTC [54321] FATAL:  remaining connection slots are reserved for non-replication superuser connections
+2025-11-08T09:55:20.000Z UTC [54321] FATAL:  remaining connection slots are reserved for non-replication superuser connections
+2025-11-08T09:55:20.000Z UTC [12345] user=app_rw db=aurora-pgsql-prod ERROR:  deadlock detected
+2025-11-08T09:55:20.000Z UTC [12345] DETAIL:  Process 12345 waits for ShareLock; blocked by process 67890.
+2025-11-08T09:55:32.000Z UTC [54321] FATAL:  remaining connection slots are reserved for non-replication superuser connections
+2025-11-08T09:55:35.000Z UTC [12345] user=app_rw db=aurora-pgsql-prod ERROR:  deadlock detected
+2025-11-08T09:55:35.000Z UTC [12345] DETAIL:  Process 12345 waits for ShareLock; blocked by process 67890.
+2025-11-08T09:55:41.000Z UTC [54321] FATAL:  remaining connection slots are reserved for non-replication superuser connections
+2025-11-08T09:56:02.000Z UTC [54321] FATAL:  remaining connection slots are reserved for non-replication superuser connections
+2025-11-08T09:56:05.000Z UTC [12345] user=app_rw db=aurora-pgsql-prod ERROR:  deadlock detected
+2025-11-08T09:56:05.000Z UTC [12345] DETAIL:  Process 12345 waits for ShareLock; blocked by process 67890.
+2025-11-08T09:56:11.000Z UTC [54321] FATAL:  remaining connection slots are reserved for non-replication superuser connections
+2025-11-08T09:56:20.000Z UTC [12345] user=app_rw db=aurora-pgsql-prod ERROR:  deadlock detected
+2025-11-08T09:56:20.000Z UTC [12345] DETAIL:  Process 12345 waits for ShareLock; blocked by process 67890.
+2025-11-08T09:56:21.000Z UTC [54321] FATAL:  remaining connection slots are reserved for non-replication superuser connections
+2025-11-08T09:56:32.000Z UTC [54321] FATAL:  remaining connection slots are reserved for non-replication superuser connections
+2025-11-08T09:56:35.000Z UTC [12345] user=app_rw db=aurora-pgsql-prod ERROR:  deadlock detected
+2025-11-08T09:56:35.000Z UTC [12345] DETAIL:  Process 12345 waits for ShareLock; blocked by process 67890.
+2025-11-08T09:56:42.000Z UTC [54321] FATAL:  remaining connection slots are reserved for non-replication superuser connections
+2025-11-08T09:58:00.000Z UTC [22222] LOG:  duration: 4123.457 ms  statement: UPDATE orders SET status='SHIPPED' WHERE id=$1
+2025-11-08T09:58:09.000Z UTC [22222] LOG:  duration: 4123.457 ms  statement: UPDATE orders SET status='SHIPPED' WHERE id=$1
+2025-11-08T09:58:18.000Z UTC [22222] LOG:  duration: 4123.457 ms  statement: UPDATE orders SET status='SHIPPED' WHERE id=$1
+2025-11-08T09:58:27.000Z UTC [22222] LOG:  duration: 4123.457 ms  statement: UPDATE orders SET status='SHIPPED' WHERE id=$1
+2025-11-08T09:58:36.000Z UTC [22222] LOG:  duration: 4123.457 ms  statement: UPDATE orders SET status='SHIPPED' WHERE id=$1
+2025-11-08T09:58:45.000Z UTC [22222] LOG:  duration: 4123.457 ms  statement: UPDATE orders SET status='SHIPPED' WHERE id=$1
+2025-11-08T09:58:54.000Z UTC [22222] LOG:  duration: 4123.457 ms  statement: UPDATE orders SET status='SHIPPED' WHERE id=$1
+2025-11-08T09:59:03.000Z UTC [22222] LOG:  duration: 4123.457 ms  statement: UPDATE orders SET status='SHIPPED' WHERE id=$1

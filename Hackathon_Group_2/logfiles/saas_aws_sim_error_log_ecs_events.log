@@ -1,0 +1,6 @@
+2025-11-08T10:01:05.000Z prod-ecs-cluster orders-service TASK_STATE_CHANGE task=task-045da2df container=orders-ctr exit_code=137 reason="OutOfMemoryKilled" az=us-west-2c
+2025-11-08T10:01:12.000Z prod-ecs-cluster orders-service TASK_STATE_CHANGE task=task-26004822 container=orders-ctr exit_code=137 reason="OutOfMemoryKilled" az=us-east-1c
+2025-11-08T10:01:19.000Z prod-ecs-cluster orders-service TASK_STATE_CHANGE task=task-faa7bd82 container=orders-ctr exit_code=137 reason="OutOfMemoryKilled" az=us-east-1c
+2025-11-08T10:02:05.000Z prod-ecs-cluster orders-service TASK_STATE_CHANGE task=task-1e33190d container=orders-ctr exit_code=137 reason="OutOfMemoryKilled" az=us-west-2b
+2025-11-08T10:02:12.000Z prod-ecs-cluster orders-service TASK_STATE_CHANGE task=task-49dad6d0 container=orders-ctr exit_code=137 reason="OutOfMemoryKilled" az=us-east-1a
+2025-11-08T10:02:19.000Z prod-ecs-cluster orders-service TASK_STATE_CHANGE task=task-853009ad container=orders-ctr exit_code=137 reason="OutOfMemoryKilled" az=us-east-1a
