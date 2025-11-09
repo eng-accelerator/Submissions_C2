@@ -508,17 +508,13 @@ def render_dashboard():
     # Action Buttons
     st.subheader("🎯 What would you like to do?")
     
-    col1, col2, col3 = st.columns(3)
+    col1, col2 = st.columns(3)
     
     with col1:
-        if st.button("📊 View Detailed Reports", use_container_width=True):
-            st.info("💡 Coming soon: Detailed financial reports")
-    
-    with col2:
         if st.button("💬 Ask AI Coach", use_container_width=True, type="primary"):
             st.switch_page("pages/AI_Financial_Planner.py")
       
-    with col3:
+    with col2:
         if st.button("🎯 Create New Goal", use_container_width=True):
             st.switch_page("pages/Create_Goal.py")
 
