@@ -4,7 +4,7 @@
 
 ---
 
-## 📹 Project Demo Video Link:
+## 📹 Project Demo Video Link: https://drive.google.com/file/d/1glLEIVay_GB-sVtGv1E6fXPfV_iQTZcF/view?usp=sharing
 
 ---
 
