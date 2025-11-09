@@ -9,6 +9,15 @@ from agents.error_diagnosis import diagnose
 from agents.adaptive_repair import self_heal
 from agents.regression_monitor import run_visual_check
 
+# ===== CHATBOT INTEGRATION - NEW IMPORT =====
+try:
+    from agents.llm.IChatbot import Chatbot
+    CHATBOT_AVAILABLE = True
+except ImportError:
+    CHATBOT_AVAILABLE = False
+    Chatbot = None
+# ============================================
+
 
 def _init_state():
     st.session_state.setdefault("target_url_input", "")
@@ -16,14 +25,21 @@ def _init_state():
     st.session_state.setdefault("last_script", "")
     st.session_state.setdefault("repaired_script", None)
     st.session_state.setdefault("last_run_label", "")
+    
+    # ===== CHATBOT INTEGRATION - INITIALIZE CHATBOT =====
+    if CHATBOT_AVAILABLE and "chatbot" not in st.session_state:
+        st.session_state.chatbot = Chatbot()
+    if "chat_history" not in st.session_state:
+        st.session_state.chat_history = []
+    # ===================================================
 
 _init_state()
+
 
 st.set_page_config(page_title="AI Browser Automation Lab", page_icon="🧪", layout="wide")
 
 st.markdown("""
 <style>
-/* Professional theme inspired by BrowserStack */
 .stApp { 
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     color: #1a1f36;
@@ -185,189 +201,179 @@ img {
 }
 
 img:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-    transform: scale(1.01);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Checkboxes */
+.stCheckbox>label {
+    color: #1e293b;
+    font-weight: 500;
+}
+
+/* Progress bars */
+.stProgress>div>div>div>div {
+    background-color: #0d9488;
 }
 
 /* Dividers */
 hr {
-    border-color: #e5e7eb;
+    border-color: #cbd5e1;
     margin: 2rem 0;
-}
-
-/* Text styling */
-p, li, span {
-    color: #475569;
-}
-
-strong {
-    color: #1e293b;
-    font-weight: 600;
-}
-
-/* Caption text */
-.caption {
-    color: #64748b;
-    font-size: 0.9rem;
-}
-
-/* Spinner */
-.stSpinner > div {
-    border-top-color: #0d9488 !important;
-}
-
-/* Success messages */
-.success {
-    background-color: #f0fdf4;
-    border-left-color: #10b981;
-}
-
-/* Error messages */
-.error {
-    background-color: #fef2f2;
-    border-left-color: #ef4444;
-}
-
-/* Warning messages */
-.warning {
-    background-color: #fffbeb;
-    border-left-color: #f59e0b;
-}
-
-/* Scrollbar styling */
-::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: #f1f5f9;
-    border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
-    border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8;
 }
 
 /* Example subtitle styling */
 .example-subtitle {
     color: #64748b;
+    font-size: 0.95rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.75rem;
+}
+
+/* Chat message styling */
+.chat-message {
+    padding: 0.75rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.chat-message.user {
+    background-color: #eff6ff;
+    border-left: 3px solid #0d9488;
+}
+
+.chat-message.assistant {
+    background-color: #f8fafc;
+    border-left: 3px solid #2563eb;
+}
+
+/* Sidebar styling */
+[data-testid="stSidebar"] {
+    background-color: #ffffff;
+    padding: 1rem;
+}
+
+[data-testid="stSidebar"] .stButton>button {
     font-size: 0.85rem;
-    font-style: italic;
+    padding: 0.5rem 1rem;
+}
+
+[data-testid="stSidebar"] h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Pulse animation for AI Assistant button */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(13, 148, 136, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0); }
+}
+
+.pulse-button {
+    animation: pulse 2s infinite;
+}
+
+/* AI Assistant badge */
+.ai-badge {
+    background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 2px 4px rgba(13, 148, 136, 0.3);
 }
 </style>
 """, unsafe_allow_html=True)
 
 st.title("🧪 AI Browser Automation Lab")
-st.caption("Multi-agent browser testing with Playwright. Powered by AI for intelligent test generation and self-healing.")
-st.markdown("**Pipeline:** Flow Discovery → Script Generation → Execution → Diagnosis & Self-Heal → Visual Regression Guard")
+st.markdown('<p class="example-subtitle">Your AI-powered testing companion with Self-Healing & Visual Regression Guard</p>', unsafe_allow_html=True)
 
-def _use_example(url: str, goal: str):
-    st.session_state["target_url_input"] = url
-    st.session_state["goal_prompt_input"] = goal
+# ===== CHATBOT INTEGRATION - ADD VISIBLE "ASK AI" BUTTON =====
+if CHATBOT_AVAILABLE:
+    col_title, col_ai_button = st.columns([4, 1])
+    with col_ai_button:
+        st.markdown("<br>", unsafe_allow_html=True)  # Add spacing
+        if st.button("💬 Ask AI Assistant", use_container_width=True, type="primary", help="Get help from AI", key="ask_ai_btn"):
+            # Add welcome message to chat if empty
+            if not st.session_state.chat_history:
+                welcome_msg = "👋 Hi! I'm your AI assistant. I can help you with browser automation, test failures, examples, and more. What would you like to know?"
+                st.session_state.chat_history.append(("assistant", welcome_msg))
+            st.rerun()
+else:
+    st.markdown("")
+# =================================================================
 
-def _cleanup_screenshots():
-    for name in ("run_result.png", "run_error.png"):
+def _use_example(url_val: str, goal_val: str):
+    st.session_state["target_url_input"] = url_val
+    st.session_state["goal_prompt_input"] = goal_val
+    st.session_state["repaired_script"] = None
+
+def _is_valid_playwright_script(code):
+    if not isinstance(code, str): return False
+    code_l = code.lower()
+    if "# script generation failed" in code_l or "# error" in code_l: return False
+    if "from playwright" in code_l or "sync_playwright" in code_l: return True
+    return False
+
+def _run_execution(script_code, step_marker, log_box, label="Execution"):
+    step_marker.markdown(f"**Stage 3/5 — {label}:** ⏳ running...")
+    with st.spinner(f"{label} Agent is executing the Playwright script..."):
         try:
-            if os.path.exists(name):
-                os.remove(name)
-        except Exception:
-            pass
-
-def _normalize_execution_result(result):
-    success, log, screenshot_path = False, "", None
-    if isinstance(result, dict):
-        success = bool(result.get("success"))
-        raw_log = result.get("log", "")
-        log = "\n".join(str(x) for x in raw_log) if isinstance(raw_log, (list, tuple)) else str(raw_log or "")
-        screenshot_path = result.get("screenshot_path")
-    elif isinstance(result, (tuple, list)):
-        if len(result) > 0: success = bool(result[0])
-        if len(result) > 1:
-            raw_log = result[1]
-            log = "\n".join(str(x) for x in raw_log) if isinstance(raw_log, (list, tuple)) else str(raw_log or "")
-        if len(result) > 2: screenshot_path = result[2]
-    else:
-        log = str(result)
-    return success, log, screenshot_path
-
-def _is_valid_playwright_script(script_code: str) -> bool:
-    if not script_code: return False
-    s = script_code.strip()
-    if s.startswith("# Script generation failed"): return False
-    return "from playwright.sync_api import sync_playwright" in s and "def run():" in s
-
-def _get_test_id_from_url_goal(url: str, goal: str) -> str:
-    u = (url or "").lower()
-    if "the-internet.herokuapp.com" in u:
-        if "login" in goal.lower(): return "herokuapp_login"
-        if "dynamic" in goal.lower(): return "herokuapp_dynamic"
-        if "dropdown" in goal.lower(): return "herokuapp_dropdown"
-        if "upload" in goal.lower(): return "herokuapp_upload"
-    if "saucedemo.com" in u:
-        g = goal.lower()
-        if "intentionally" in g or "demonstrate visual regression" in g: return "saucedemo_visual_regression"
-        if "backpack" in g: return "saucedemo_backpack"
-        return "saucedemo_checkout"
-    if "demoblaze.com" in u: return "demoblaze_checkout"
-    raw = url or ""
-    slug = re.sub(r"[^a-zA-Z0-9]+", "_", raw).strip("_").lower()
-    return slug[:80] or "default_scenario"
-
-def _get_visual_ids(url: str, goal: str):
-    test_id = _get_test_id_from_url_goal(url, goal)
-    print(f"\n{'='*60}\n[Visual IDs] Self-Baseline Mode\n  Test ID: {test_id}\n  - First run: CREATE baseline\n  - Subsequent runs: COMPARE against baseline\n{'='*60}\n")
-    return test_id, None, False
-
-def _run_execution(script_code: str, step_exec, log_box, label: str):
-    _cleanup_screenshots()
-    st.session_state["last_run_label"] = label
-    step_exec.markdown(f"**Stage 3/5 — {label}:** ⏳ running...")
-    with st.spinner(f"{label} Agent is running the script..."):
-        try:
-            raw = execute_script(script_code)
+            result = execute_script(script_code)
         except Exception as e:
-            success, log, screenshot_path = False, f"Exception while executing script:\n{e}", None
-        else:
-            success, log, screenshot_path = _normalize_execution_result(raw)
-    step_exec.markdown("**Stage 3/5 — Execution:** ✅ passed" if success else "**Stage 3/5 — Execution:** ❌ failed")
-    log_box.markdown("**Execution Log:**")
-    log_box.code(log or "(no log output)", language="bash")
+            result = {"success": False, "log": f"Execution error: {e}", "screenshot_path": None}
+    success = result.get("success", False)
+    log = result.get("log", "")
+    screenshot_path = result.get("screenshot_path")
+    if success: step_marker.markdown(f"**Stage 3/5 — {label}:** ✅ passed")
+    else: step_marker.markdown(f"**Stage 3/5 — {label}:** ❌ failed")
+    log_box.markdown(f"**{label} Log:**")
+    if success: log_box.success(f"Test passed! ✅\n\n```\n{log}\n```")
+    else: log_box.error(f"Test failed. ❌\n\n```\n{log}\n```")
     if screenshot_path and os.path.exists(screenshot_path):
-        st.image(screenshot_path, caption=f"{label} screenshot", use_container_width=True)
+        st.image(screenshot_path, caption=f"{label} Screenshot", use_container_width=True)
     return success, log, screenshot_path
 
-def _run_diagnosis_and_repair(script_code, log, step_diag, diag_box, repair_box):
-    step_diag.markdown("**Stage 4/5 — Diagnosis & Self-Heal:** ⏳ running...")
-    with st.spinner("Error Diagnosis Agent is analyzing the failure..."):
+def _run_diagnosis_and_repair(script_code, error_log, step_marker, diag_box, repair_box):
+    step_marker.markdown("**Stage 4/5 — Diagnosis & Self-Heal:** ⏳ running...")
+    with st.spinner("Diagnosis Agent is analyzing the error..."):
         try:
-            diagnosis = diagnose(log)
+            diagnosis_msg = diagnose(error_log)
         except Exception as e:
-            diagnosis = f"Diagnosis error: {e}"
-    diag_box.markdown(f"**Diagnosis:** {diagnosis}")
-    with st.spinner("Adaptive Repair Agent is proposing a fix..."):
+            diagnosis_msg = f"Diagnosis error: {e}"
+    diag_box.markdown("**Diagnosis:**")
+    diag_box.warning(diagnosis_msg)
+    with st.spinner("Adaptive Repair Agent is attempting to fix the script..."):
         try:
-            repaired_script, note = self_heal(script_code, log)
+            healed_script, heal_note = self_heal(script_code, error_log)
         except Exception as e:
-            repaired_script, note = None, f"Self-heal error: {e}"
-    if repaired_script and repaired_script.strip() and repaired_script.strip() != script_code.strip() and _is_valid_playwright_script(repaired_script):
-        st.session_state["repaired_script"] = repaired_script
-        step_diag.markdown("**Stage 4/5 — Diagnosis & Self-Heal:** ✅ fix proposed")
-        repair_box.empty()
-        repair_box.markdown(f"**Adaptive Repair Note:** {note}")
-        repair_box.code(repaired_script, language="python")
-        diag_box.info("A self-healed script has been generated. Click **Apply Fix & Re-Run** below to execute the repaired test.")
+            healed_script, heal_note = None, f"Self-heal error: {e}"
+    if healed_script:
+        step_marker.markdown("**Stage 4/5 — Diagnosis & Self-Heal:** ✅ repair available")
+        repair_box.markdown("**Adaptive Repair Result:**")
+        repair_box.info(f"🔧 {heal_note}")
+        repair_box.code(healed_script, language="python")
+        st.session_state["repaired_script"] = healed_script
     else:
-        st.session_state["repaired_script"] = None
-        step_diag.markdown("**Stage 4/5 — Diagnosis & Self-Heal:** ⚠️ no automatic fix applied")
-        repair_box.info(note or "No automatic self-heal applied. The failure likely requires manual adjustment.")
+        step_marker.markdown("**Stage 4/5 — Diagnosis & Self-Heal:** ⭕ no auto-repair")
+        repair_box.markdown("**Adaptive Repair Result:**")
+        repair_box.info(f"ℹ️ {heal_note}")
 
-def _run_visual_guard(url: str, goal: str, screenshot_path: str, step_visual, vr_box):
+def _get_visual_ids(url, goal):
+    test_id = re.sub(r"[^\w\-]", "_", (url + " " + goal).lower())[:100]
+    baseline_id = None
+    create_baseline_only = False
+    goal_l = (goal or "").lower()
+    if "intentionally" in goal_l or "demonstrate visual regression" in goal_l:
+        baseline_id = re.sub(r"[^\w\-]", "_", (url + " saucedemo_baseline").lower())[:100]
+    return test_id, baseline_id, create_baseline_only
+
+def _run_visual_guard(url, goal, screenshot_path, step_visual, vr_box):
     step_visual.markdown("**Stage 5/5 — Visual Regression Guard:** ⏳ running...")
     if not screenshot_path or not os.path.exists(screenshot_path):
         step_visual.markdown("**Stage 5/5 — Visual Regression Guard:** ⭕ skipped (no screenshot)")
@@ -393,8 +399,14 @@ def _run_visual_guard(url: str, goal: str, screenshot_path: str, step_visual, vr
         if diff_path and os.path.exists(diff_path):
             st.image(diff_path, caption="Visual difference vs baseline", use_container_width=True)
     else: vr_box.info(message)
+    
+    # ===== CHATBOT INTEGRATION - RETURN VISUAL RESULT FOR CONTEXT =====
+    return result
+    # ==================================================================
 
 with st.expander("📋 Example Test Scenarios", expanded=False):
+    st.info("💡 **Tip:** These are pre-built examples, but you can test **any website**! Just enter your own URL and goal below. The AI will generate a custom test script for you.")
+    st.markdown("---")
     
     st.markdown("#### 1. **Herokuapp Login** - Basic Form Interaction ✅")
     st.markdown('<p class="example-subtitle">Test standard login flow with form validation</p>', unsafe_allow_html=True)
@@ -488,11 +500,28 @@ vr_box = st.empty()
 
 if run_button:
     st.session_state["repaired_script"] = None
+    
+    # ===== CHATBOT INTEGRATION - INITIALIZE TEST CONTEXT TRACKING =====
+    test_context = {
+        'success': False,
+        'log': '',
+        'screenshot_path': None,
+        'visual_check': None,
+        'self_heal_applied': None,
+        'scenario': None,
+        'error_diagnosis': None
+    }
+    # ==================================================================
+    
     if not target_url.strip() or not goal_prompt.strip():
         st.warning("Please provide both a Target URL and a Goal / Prompt.")
     else:
         url = target_url.strip()
         goal = goal_prompt.strip()
+        
+        # ===== CHATBOT INTEGRATION - SET SCENARIO NAME =====
+        test_context['scenario'] = f"{url} - {goal[:50]}"
+        # ===================================================
         
         step_flow.markdown("**Stage 1/5 — Flow Discovery:** ⏳ running...")
         with st.spinner("Flow Discovery Agent is analyzing your goal & app..."):
@@ -527,13 +556,56 @@ if run_button:
             vr_box.info("Visual regression guard skipped (no runnable script).")
         else:
             success, log, screenshot_path = _run_execution(script_code, step_exec, log_box, "Execution")
+            
+            # ===== CHATBOT INTEGRATION - UPDATE TEST CONTEXT =====
+            test_context['success'] = success
+            test_context['log'] = log
+            test_context['screenshot_path'] = screenshot_path
+            # =====================================================
+            
             if not success:
-                _run_diagnosis_and_repair(script_code, log, step_diag, diag_box, repair_box)
+                # Run diagnosis and repair
+                step_diag.markdown("**Stage 4/5 — Diagnosis & Self-Heal:** ⏳ running...")
+                with st.spinner("Diagnosis Agent is analyzing the error..."):
+                    try:
+                        diagnosis_msg = diagnose(log)
+                        test_context['error_diagnosis'] = diagnosis_msg  # CHATBOT INTEGRATION
+                    except Exception as e:
+                        diagnosis_msg = f"Diagnosis error: {e}"
+                        test_context['error_diagnosis'] = diagnosis_msg  # CHATBOT INTEGRATION
+                diag_box.markdown("**Diagnosis:**")
+                diag_box.warning(diagnosis_msg)
+                
+                with st.spinner("Adaptive Repair Agent is attempting to fix the script..."):
+                    try:
+                        healed_script, heal_note = self_heal(script_code, log)
+                        if healed_script:
+                            test_context['self_heal_applied'] = heal_note  # CHATBOT INTEGRATION
+                    except Exception as e:
+                        healed_script, heal_note = None, f"Self-heal error: {e}"
+                
+                if healed_script:
+                    step_diag.markdown("**Stage 4/5 — Diagnosis & Self-Heal:** ✅ repair available")
+                    repair_box.markdown("**Adaptive Repair Result:**")
+                    repair_box.info(f"🔧 {heal_note}")
+                    repair_box.code(healed_script, language="python")
+                    st.session_state["repaired_script"] = healed_script
+                else:
+                    step_diag.markdown("**Stage 4/5 — Diagnosis & Self-Heal:** ⭕ no auto-repair")
+                    repair_box.markdown("**Adaptive Repair Result:**")
+                    repair_box.info(f"ℹ️ {heal_note}")
+                
                 step_visual.markdown("**Stage 5/5 — Visual Regression Guard:** ⭕ skipped (test failed)")
                 vr_box.info("Visual regression guard skipped because the test run failed.")
             else:
                 step_diag.markdown("**Stage 4/5 — Diagnosis & Self-Heal:** ✅ skipped (execution passed)")
-                _run_visual_guard(url, goal, screenshot_path, step_visual, vr_box)
+                visual_result = _run_visual_guard(url, goal, screenshot_path, step_visual, vr_box)
+                test_context['visual_check'] = visual_result  # CHATBOT INTEGRATION
+        
+        # ===== CHATBOT INTEGRATION - INJECT CONTEXT INTO CHATBOT =====
+        if CHATBOT_AVAILABLE and st.session_state.get("chatbot"):
+            st.session_state.chatbot.set_test_context(test_context)
+        # =============================================================
 
 if st.session_state.get("repaired_script"):
     st.markdown("---")
@@ -541,16 +613,164 @@ if st.session_state.get("repaired_script"):
     if st.button("✅ Apply Fix & Re-Run", use_container_width=True, key="apply_fix"):
         repaired_script = st.session_state.get("repaired_script")
         if repaired_script and _is_valid_playwright_script(repaired_script):
+            # ===== CHATBOT INTEGRATION - TRACK RE-RUN CONTEXT =====
+            rerun_context = {
+                'success': False,
+                'log': '',
+                'screenshot_path': None,
+                'visual_check': None,
+                'self_heal_applied': 'Re-running with repaired script',
+                'scenario': 'Re-run with repaired script',
+                'error_diagnosis': None
+            }
+            # =====================================================
+            
             step_flow.markdown("**Stage 1/5 — Flow Discovery:** ♻️ reused from previous run")
             step_script.markdown("**Stage 2/5 — Script Generation:** ♻️ using repaired script from Adaptive Repair")
             success, log, screenshot_path = _run_execution(repaired_script, step_exec, log_box, "Re-run (Repaired Script)")
+            
+            # ===== CHATBOT INTEGRATION - UPDATE RE-RUN CONTEXT =====
+            rerun_context['success'] = success
+            rerun_context['log'] = log
+            rerun_context['screenshot_path'] = screenshot_path
+            # =======================================================
+            
             if success:
                 step_diag.markdown("**Stage 4/5 — Diagnosis & Self-Heal:** ✅ repaired script passed")
-                _run_visual_guard(st.session_state.get("target_url_input", ""), st.session_state.get("goal_prompt_input", ""), screenshot_path, step_visual, vr_box)
+                visual_result = _run_visual_guard(st.session_state.get("target_url_input", ""), st.session_state.get("goal_prompt_input", ""), screenshot_path, step_visual, vr_box)
+                rerun_context['visual_check'] = visual_result  # CHATBOT INTEGRATION
                 st.session_state["repaired_script"] = None
             else:
-                _run_diagnosis_and_repair(repaired_script, log, step_diag, diag_box, repair_box)
+                # Re-run diagnosis for failed repair
+                with st.spinner("Analyzing repaired script failure..."):
+                    try:
+                        diagnosis_msg = diagnose(log)
+                        rerun_context['error_diagnosis'] = diagnosis_msg  # CHATBOT INTEGRATION
+                    except Exception as e:
+                        diagnosis_msg = f"Diagnosis error: {e}"
+                        rerun_context['error_diagnosis'] = diagnosis_msg  # CHATBOT INTEGRATION
+                
+                with st.spinner("Attempting second repair..."):
+                    try:
+                        healed_script, heal_note = self_heal(repaired_script, log)
+                        if healed_script:
+                            rerun_context['self_heal_applied'] = f"Second repair: {heal_note}"  # CHATBOT INTEGRATION
+                    except Exception as e:
+                        healed_script, heal_note = None, f"Self-heal error: {e}"
+                
+                if healed_script:
+                    step_diag.markdown("**Stage 4/5 — Diagnosis & Self-Heal:** ✅ second repair available")
+                    repair_box.markdown("**Adaptive Repair Result (Second Attempt):**")
+                    repair_box.info(f"🔧 {heal_note}")
+                    repair_box.code(healed_script, language="python")
+                    st.session_state["repaired_script"] = healed_script
+                else:
+                    step_diag.markdown("**Stage 4/5 — Diagnosis & Self-Heal:** ⭕ no further repair")
+                    repair_box.markdown("**Adaptive Repair Result:**")
+                    repair_box.info(f"ℹ️ {heal_note}")
+                
                 step_visual.markdown("**Stage 5/5 — Visual Regression Guard:** ⭕ skipped (repaired test failed)")
                 vr_box.info("Visual regression guard skipped because the repaired run failed.")
+            
+            # ===== CHATBOT INTEGRATION - INJECT RE-RUN CONTEXT =====
+            if CHATBOT_AVAILABLE and st.session_state.get("chatbot"):
+                st.session_state.chatbot.set_test_context(rerun_context)
+            # =======================================================
         else:
             st.warning("Repaired script is not runnable; please review it manually.")
+
+# ===== CHATBOT INTEGRATION - ADD CHAT INTERFACE IN SIDEBAR =====
+if CHATBOT_AVAILABLE:
+    with st.sidebar:
+        st.markdown('<div class="ai-badge">✨ AI-Powered</div>', unsafe_allow_html=True)
+        st.markdown("## 💬 AI Assistant")
+        st.markdown('<p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem;">Your automation expert, always ready to help!</p>', unsafe_allow_html=True)
+        
+        # Chat display area with scrollable container
+        st.markdown("---")
+        
+        # Display chat history
+        if st.session_state.chat_history:
+            for role, message in st.session_state.chat_history:
+                if role == "user":
+                    st.markdown(f'<div class="chat-message user"><strong>You:</strong><br>{message}</div>', unsafe_allow_html=True)
+                else:
+                    st.markdown(f'<div class="chat-message assistant"><strong>🤖 Assistant:</strong><br>{message}</div>', unsafe_allow_html=True)
+        else:
+            st.info("👋 Hi! I'm your AI assistant. Ask me about:\n- How features work\n- Test failures\n- Which examples to try\n- Playwright tips")
+        
+        st.markdown("---")
+        
+        # Chat input with Enter key support
+        user_input = st.chat_input("Ask a question... (Press Enter to send)")
+        
+        # Handle send (triggered by Enter or clicking send)
+        if user_input and user_input.strip():
+            # Add user message immediately
+            st.session_state.chat_history.append(("user", user_input.strip()))
+            
+            # Show typing indicator
+            with st.spinner("🤖 Assistant is typing..."):
+                response = st.session_state.chatbot.reply(user_input.strip())
+            
+            # Add assistant response
+            st.session_state.chat_history.append(("assistant", response))
+            st.rerun()
+        
+        # Clear button
+        col1, col2 = st.columns(2)
+        with col1:
+            st.markdown("")  # Spacing
+        with col2:
+            clear_button = st.button("Clear Chat 🗑️", use_container_width=True)
+        
+        # Handle clear
+        if clear_button:
+            st.session_state.chatbot.clear_history()
+            st.session_state.chat_history = []
+            st.rerun()
+        
+        # Quick help buttons
+        st.markdown("---")
+        st.markdown("**Quick Questions:**")
+        
+        if st.button("💡 How does self-heal work?", use_container_width=True):
+            response = st.session_state.chatbot.reply("How does self-heal work?")
+            st.session_state.chat_history.append(("user", "How does self-heal work?"))
+            st.session_state.chat_history.append(("assistant", response))
+            st.rerun()
+        
+        if st.button("📸 What is visual regression?", use_container_width=True):
+            response = st.session_state.chatbot.reply("What is visual regression?")
+            st.session_state.chat_history.append(("user", "What is visual regression?"))
+            st.session_state.chat_history.append(("assistant", response))
+            st.rerun()
+        
+        if st.button("🎯 Which example should I try?", use_container_width=True):
+            response = st.session_state.chatbot.reply("Which example should I try?")
+            st.session_state.chat_history.append(("user", "Which example should I try?"))
+            st.session_state.chat_history.append(("assistant", response))
+            st.rerun()
+        
+        if st.button("📚 Show all examples", use_container_width=True):
+            response = st.session_state.chatbot.reply("List all examples")
+            st.session_state.chat_history.append(("user", "List all examples"))
+            st.session_state.chat_history.append(("assistant", response))
+            st.rerun()
+        
+        # Contextual help if test just ran
+        if st.session_state.chatbot.last_test_result:
+            st.markdown("---")
+            test_result = st.session_state.chatbot.last_test_result
+            if not test_result.get('success'):
+                st.warning("⚠️ Last test failed. Ask me why!")
+            elif test_result.get('visual_check', {}).get('status') == 'failed':
+                st.warning("👁️ Visual regression detected!")
+            elif test_result.get('self_heal_applied'):
+                st.success("🔧 Self-heal was applied!")
+
+else:
+    with st.sidebar:
+        st.markdown("## 💬 AI Assistant")
+        st.info("💬 AI Assistant is not available. Install the chatbot module to enable this feature.")
+# =====================================================
