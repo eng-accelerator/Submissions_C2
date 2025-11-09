@@ -55,8 +55,8 @@ Watch our complete pitch including problem statement, solution overview, archite
 
 <div align="center">
 
-[![View Presentation](https://img.shields.io/badge/📊_View_Presentation-blue?style=for-the-badge)](https://gamma.app/docs/Multi-Agent-DevOps-Incident-Analysis-Suite-Jarvis-10-zqu93flphhjhrym?mode=doc)
-[![Open on Gamma](https://img.shields.io/badge/Gamma-View_Slides-000000?style=for-the-badge&logo=gamma&logoColor=white)](https://gamma.app/docs/Multi-Agent-DevOps-Incident-Analysis-Suite-Jarvis-10-zqu93flphhjhrym?mode=doc)
+[![View Presentation](https://img.shields.io/badge/📊_View_Presentation-blue?style=for-the-badge)](https://multi-agent-devops-incid-1pxynd5.gamma.site/)
+[![Open on Gamma](https://img.shields.io/badge/Gamma-View_Slides-000000?style=for-the-badge&logo=gamma&logoColor=white)](https://multi-agent-devops-incid-1pxynd5.gamma.site/)
 [![Download PDF](https://img.shields.io/badge/📥_Download_PDF-red?style=for-the-badge&logo=adobe-acrobat-reader&logoColor=white)](Multi-Agent-DevOps-Incident-Analysis-Suite-Jarvis-10.pdf)
 
 **Complete hackathon presentation deck**
@@ -76,7 +76,7 @@ Includes:
 |----------|------|-------------|
 | 🎥 **Demo Video** | [Watch on Google Drive](https://drive.google.com/file/d/1YoCDy0YdKWrX56N85DfvTJOsFRrlmZJl/view?usp=drive_link) | Full system demonstration (5-10 min) |
 | 🎬 **Presentation Video** | [Watch on Google Drive](https://drive.google.com/file/d/1k6W9hEaD1dj8IU8q59wamEArztS545Gt/view?usp=drive_link) | Complete hackathon pitch with live demo |
-| 📊 **Presentation Slides** | [View on Gamma](https://gamma.app/docs/Multi-Agent-DevOps-Incident-Analysis-Suite-Jarvis-10-zqu93flphhjhrym?mode=doc) | Interactive presentation deck |
+| 📊 **Presentation Slides** | [View on Gamma](https://multi-agent-devops-incid-1pxynd5.gamma.site/) | Interactive presentation deck |
 | 📄 **Presentation PDF** | [Download PDF](Multi-Agent-DevOps-Incident-Analysis-Suite-Jarvis-10.pdf) | Downloadable PDF version of presentation |
 | 🖼️ **Screenshots** | [View Gallery](#) | UI and feature highlights |
 | 📝 **Transcript** | [Read Script](#) | Demo video transcript |
