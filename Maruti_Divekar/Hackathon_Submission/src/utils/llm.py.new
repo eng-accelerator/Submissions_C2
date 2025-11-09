@@ -1,0 +1,74 @@
+"""Lightweight LLM helper with a robust extractive fallback.
+
+This module exposes generate_text(...) which will try to use an attached LLM
+and, if unavailable, will return a concise extractive summary. The module
+also records the source of the last generation so callers (UI) can show a
+visible indicator ("llm" vs "fallback").
+"""
+from __future__ import annotations
+import re
+from typing import List
+
+_LAST_GENERATION_SOURCE: str = 'unknown'
+
+def generate_text(prompt: str, max_tokens: int = 512, temperature: float = 0.2) -> str:
+    """Generate text using an LLM if available; otherwise return an extractive summary.
+
+    This function prefers to call an attached LLM (LangChain/OpenAI). If the
+    LLM call fails for any reason (missing credentials, package not installed,
+    runtime error), it returns a concise extractive summary of the prompt so
+    downstream agents always receive usable, plain-English text.
+    """
+    global _LAST_GENERATION_SOURCE
+    try:
+        # Try to use LangChain/OpenAI if present
+        from langchain.llms import OpenAI  # type: ignore
+        llm = OpenAI(temperature=temperature, max_tokens=max_tokens)
+        out = llm(prompt)
+        if out and isinstance(out, str) and out.strip():
+            _LAST_GENERATION_SOURCE = 'llm'
+            return out.strip()
+    except Exception:
+        # Silent fallback to extractive summarizer below
+        pass
+    
+    # Last-resort: extractive summarize into short plain-English
+    _LAST_GENERATION_SOURCE = 'fallback'
+    return _extractive_summarize(prompt, n_sentences=4)
+
+def _extractive_summarize(text: str, n_sentences: int = 4) -> str:
+    """Simple extractive summarizer using TF-IDF sentence scoring.
+
+    Selects the top n_sentences by TF-IDF weight and returns them in the
+    original order. Falls back to the first N sentences when scoring fails.
+    """
+    try:
+        from sklearn.feature_extraction.text import TfidfVectorizer
+    except Exception:
+        # If sklearn not available, fall back to first-N-sentences
+        sents = re.split(r'(?<=[\.!?])\s+', text.strip())
+        return ' '.join(sents[:n_sentences]).strip()
+
+    # Split into sentences 
+    sents = [s.strip() for s in re.split(r'(?<=[\.!?])\s+', text.strip()) if s.strip()]
+    if not sents:
+        return ''
+    if len(sents) <= n_sentences:
+        return ' '.join(sents)
+
+    try:
+        # Score sentences by TF-IDF weight
+        vec = TfidfVectorizer(stop_words='english')
+        X = vec.fit_transform(sents)
+        scores = X.sum(axis=1).A1
+        # Pick top sentences and keep original order
+        top_idx = sorted(range(len(scores)), key=lambda i: scores[i], reverse=True)[:n_sentences]
+        top_idx_sorted = sorted(top_idx)  
+        return ' '.join(sents[i] for i in top_idx_sorted)
+    except Exception:
+        # On any error, return first N sentences
+        return ' '.join(sents[:n_sentences])
+
+def get_last_generation_source() -> str:
+    """Return the source of the last generation: 'llm' or 'fallback' (or 'unknown')."""
+    return _LAST_GENERATION_SOURCE

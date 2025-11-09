@@ -1,0 +1,19 @@
+Critical Analysis Report
+========================
+Source: unknown
+This source contains 3 passages. Key excerpt: Retrieval Augmented Generation (RAG) for Healthcare ======================================  Abstract -------- This is a sample PDF document discussing the applications of RAG in healthcare settings.  It serves as test data for the deep research system.  1. Introduction -------------- Recent advancements in language models and information retrieval have led to increased  interest in RAG systems for healthcare applications. These systems combine the power  of large language models with domain-specific knowledge retrieval.  2. Methods --------- - Knowledge base construction from medical literature - Hybrid retrieval using dense and sparse vectors - Context-aware generation with citation tracking - Domain-specific evaluation metrics  3. Results --------- Initial trials show: - 95% accuracy in ...
+Credibility: 0.5 - Generic web source; verify with authoritative sources.
+Evidence:
+ - Retrieval Augmented Generation (RAG) for Healthcare
+======================================
+
+Abstract
+--------
+This is a sample PDF document discussing the applications of RAG in healthcare settings: 
+It serves as test data for the deep research system.
+
+1...
+ - Modern RAG implementations often combine dense retrieval with lightweight filtering or hybrid search (e.g., BM25 + embeddings) to improve recall: Modern RAG implementations often combine dense retrieval with lightweight filtering or hybrid search (e.g., BM25 + embeddings) to improve recall
+ - No explicit claim found: 
+
+No major conflicts identified across sources.

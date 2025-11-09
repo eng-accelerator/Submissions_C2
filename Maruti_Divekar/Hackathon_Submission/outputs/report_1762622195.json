@@ -1,0 +1,20 @@
+{
+  "query": "\nWhat are the latest developments and potential impacts of Retrieval-Augmented Generation (RAG) \nin healthcare applications, focusing on studies from 2023-2025? Consider both technical \ninnovations and real-world implementation challenges.\n",
+  "plan": {
+    "query": "\nWhat are the latest developments and potential impacts of Retrieval-Augmented Generation (RAG) \nin healthcare applications, focusing on studies from 2023-2025? Consider both technical \ninnovations and real-world implementation challenges.\n",
+    "hops": [
+      "scoping",
+      "retrieval",
+      "analysis",
+      "verification",
+      "insights",
+      "reporting"
+    ],
+    "estimated_cost_usd": 0.6000000000000001,
+    "estimated_tokens": 6000
+  },
+  "claims": [],
+  "meta": {
+    "generated": "2025-11-08T17:16:35.872313+00:00"
+  }
+}

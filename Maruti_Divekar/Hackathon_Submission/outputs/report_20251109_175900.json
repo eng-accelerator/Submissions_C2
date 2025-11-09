@@ -1,0 +1,102 @@
+{
+  "query": "Tell me abut UAV's usage across globe.",
+  "timestamp": "2025-11-09T17:59:05.453282",
+  "sections": {
+    "executive_summary": "This research report explores the global usage of unmanned aerial vehicles (UAVs), highlighting their diverse applications across civilian, commercial, and military sectors. Key findings indicate a significant expansion of UAV technology, with a structured market segmentation by type, platform, and application, suggesting robust growth potential in various industries. However, the moderate credibility of the sources analyzed emphasizes the necessity for further verification from authoritative references to ensure the accuracy of the findings. To capitalize on the emerging opportunities in the UAV market, stakeholders are encouraged to conduct additional research and cross-reference data to inform strategic decisions. Overall, the report underscores the evolving landscape of UAV usage and the importance of reliable information in navigating this dynamic field.",
+    "methodology": "**Search Strategy:** Multi-source retrieval combining document analysis and web search\n**Source Selection:** Relevance-based ranking with credibility assessment\n**Analysis Methods:** Critical source analysis with pattern identification\n**Validation:** Cross-reference verification and conflict detection",
+    "findings": [
+      {
+        "title": "llm_identified",
+        "description": "**Need for Source Verification**: The moderate credibility of the sources used in the research underscores the importance of cross-referencing information with authoritative sources to ensure accuracy and reliability in the rapidly evolving UAV market."
+      },
+      {
+        "title": "llm_identified",
+        "description": "**Market Segmentation and Growth**: The UAV market is segmented by type (fixed wing, rotary wing, hybrid), platform (civil & commercial, defense & government), and application, suggesting a structured approach to market analysis that highlights the potential for growth in specific areas."
+      },
+      {
+        "title": "llm_identified",
+        "description": "**Diverse Applications of UAVs**: Unmanned aerial vehicles (UAVs) are increasingly being utilized across various sectors, including civilian, commercial, and military applications, indicating a broadening scope of drone technology beyond traditional uses."
+      },
+      {
+        "title": "Finding from source 1",
+        "description": "Unmanned aerial vehicles are used across the world for civilian, commercial, as well as military applications Commercial UAVs * UAV (Drone) Market ## UAV (Drone) Market by Type (Fixed Wing, Rotary Wing, Hybrid), Platform (Civil & Commercial, and Defense & Government), Sales Channel, Systems, Function, Industry, Application, Mode of Operation, MTOW, Range and Region - Global Forecast to 2030 ### UAV (Drone) Market: COMMERCIAL USE CASES ACROSS INDUSTRIES #### UAV (Drone) Market, By System #### UAV"
+      },
+      {
+        "title": "Hypothesis 1: Pattern Significance",
+        "description": "The identified pattern suggests potential relationships that warrant further investigation: **Diverse Applications of UAVs**: Unmanned aerial vehicles (UAVs) are increasingly being utilized ac (confidence: low)"
+      },
+      {
+        "title": "Hypothesis 2: Pattern Significance",
+        "description": "The identified pattern suggests potential relationships that warrant further investigation: **Market Segmentation and Growth**: The UAV market is segmented by type (fixed wing, rotary wing, hy (confidence: low)"
+      }
+    ],
+    "evidence": {
+      "unknown": {
+        "summary": "Unmanned aerial vehicles are used across the world for civilian, commercial, as well as military applications Commercial UAVs * UAV (Drone) Market ## UAV (Drone) Market by Type (Fixed Wing, Rotary Wing, Hybrid), Platform (Civil & Commercial, and Defense & Government), Sales Channel, Systems, Function, Industry, Application, Mode of Operation, MTOW, Range and Region - Global Forecast to 2030 ### UAV (Drone) Market: COMMERCIAL USE CASES ACROSS INDUSTRIES #### UAV (Drone) Market, By System #### UAV",
+        "notes": "Auto-extracted evidence summary"
+      }
+    },
+    "recommendations": [
+      {
+        "title": "Investigate: Hypothesis 1: Pattern Significance",
+        "impact": "Unknown",
+        "effort": "Low"
+      },
+      {
+        "title": "Investigate: Hypothesis 2: Pattern Significance",
+        "impact": "Unknown",
+        "effort": "Low"
+      }
+    ],
+    "appendix": {
+      "summaries": [
+        {
+          "source": "unknown",
+          "summary": "Unmanned aerial vehicles are used across the world for civilian, commercial, as well as military applications Commercial UAVs * UAV (Drone) Market ## UAV (Drone) Market by Type (Fixed Wing, Rotary Wing, Hybrid), Platform (Civil & Commercial, and Defense & Government), Sales Channel, Systems, Function, Industry, Application, Mode of Operation, MTOW, Range and Region - Global Forecast to 2030 ### UAV (Drone) Market: COMMERCIAL USE CASES ACROSS INDUSTRIES #### UAV (Drone) Market, By System #### UAV"
+        }
+      ],
+      "raw_analysis_text": "**Key Findings:**\n1. Unmanned aerial vehicles are used across the world for civilian, commercial, as well as military applications Commercial UAVs * UAV (Drone) Market ## UAV (Drone) Market by Type (Fixed Wing, Rotary Wing, Hybrid), Platform (Civil & Commercial, and Defense & Government), Sales Channel, Systems, Function, Industry, Application, Mode of Operation, MTOW, Range and Region - Global Forecast to 2030 ### UAV (Drone) Market: COMMERCIAL USE CASES ACROSS INDUSTRIES #### UAV (Drone) Market, By System #### UAV.\n\n**Source Credibility:**\nSources show moderate credibility. Additional verification from authoritative sources is recommended.",
+      "insights": {
+        "patterns": [
+          {
+            "description": "**Diverse Applications of UAVs**: Unmanned aerial vehicles (UAVs) are increasingly being utilized across various sectors, including civilian, commercial, and military applications, indicating a broadening scope of drone technology beyond traditional uses.",
+            "strength": "medium",
+            "type": "llm_identified"
+          },
+          {
+            "description": "**Market Segmentation and Growth**: The UAV market is segmented by type (fixed wing, rotary wing, hybrid), platform (civil & commercial, defense & government), and application, suggesting a structured approach to market analysis that highlights the potential for growth in specific areas.",
+            "strength": "medium",
+            "type": "llm_identified"
+          },
+          {
+            "description": "**Need for Source Verification**: The moderate credibility of the sources used in the research underscores the importance of cross-referencing information with authoritative sources to ensure accuracy and reliability in the rapidly evolving UAV market.",
+            "strength": "medium",
+            "type": "llm_identified"
+          }
+        ],
+        "hypotheses": [
+          {
+            "title": "Hypothesis 1: Pattern Significance",
+            "description": "The identified pattern suggests potential relationships that warrant further investigation: **Diverse Applications of UAVs**: Unmanned aerial vehicles (UAVs) are increasingly being utilized ac",
+            "confidence": "low",
+            "type": "pattern_based"
+          },
+          {
+            "title": "Hypothesis 2: Pattern Significance",
+            "description": "The identified pattern suggests potential relationships that warrant further investigation: **Market Segmentation and Growth**: The UAV market is segmented by type (fixed wing, rotary wing, hy",
+            "confidence": "low",
+            "type": "pattern_based"
+          }
+        ],
+        "implications": [],
+        "gaps": [],
+        "chains": [],
+        "text": "**Observed Patterns:**\n- **Diverse Applications of UAVs**: Unmanned aerial vehicles (UAVs) are increasingly being utilized across various sectors, including civilian, commercial, and military applications, indicating a broadening scope of drone technology beyond traditional uses.\n- **Market Segmentation and Growth**: The UAV market is segmented by type (fixed wing, rotary wing, hybrid), platform (civil & commercial, defense & government), and application, suggesting a structured approach to market analysis that highlights the potential for growth in specific areas.\n- **Need for Source Verification**: The moderate credibility of the sources used in the research underscores the importance of cross-referencing information with authoritative sources to ensure accuracy and reliability in the rapidly evolving UAV market.\n\n**Key Hypotheses:**\n- **Hypothesis 1: Pattern Significance** (confidence: low)\n  The identified pattern suggests potential relationships that warrant further investigation: **Diverse Applications of UAVs**: Unmanned aerial vehicles (UAVs) are increasingly being utilized ac\n- **Hypothesis 2: Pattern Significance** (confidence: low)\n  The identified pattern suggests potential relationships that warrant further investigation: **Market Segmentation and Growth**: The UAV market is segmented by type (fixed wing, rotary wing, hy\n"
+      }
+    }
+  },
+  "metadata": {
+    "sources": 1,
+    "insights": 5
+  }
+}

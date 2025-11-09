@@ -1,0 +1,4 @@
+# Sample URLs for demo/testing
+https://www.nature.com/articles/s41586-021-03819-2  # Large language model research
+https://www.who.int/news-room/fact-sheets/detail/artificial-intelligence-in-health-care  # AI in healthcare
+https://arxiv.org/abs/2307.09288  # Recent work on RAG

@@ -1,0 +1,31 @@
+project: deep-researcher
+models:
+  reasoning:
+    provider: openrouter
+    name: openrouter/openai/gpt-4o-mini
+    temperature: 0.2
+    max_tokens: 8192
+  embeddings:
+    provider: openrouter
+    name: text-embedding-3-large
+retrieval:
+  chunk_size: 1200
+  chunk_overlap: 200
+  top_k: 8
+budgets:
+  max_budget_usd_default: 2.00
+  max_tokens_default: 200000
+tools:
+  enable_websearch: true
+  enable_arxiv: true
+  enable_crossref: true
+  enable_http: true
+observability:
+  langsmith_project: deep-researcher
+  enable_langsmith: false
+security:
+  redact_keys: true
+  cache_snippet_chars: 2000
+ui:
+  stream_tokens: true
+  i18n: en

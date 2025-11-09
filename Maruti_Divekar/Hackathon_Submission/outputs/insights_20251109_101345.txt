@@ -1,0 +1,9 @@
+{
+  "patterns": [],
+  "hypotheses": [],
+  "implications": [],
+  "gaps": [],
+  "chains": [],
+  "text": "",
+  "_generated_by": "unknown"
+}

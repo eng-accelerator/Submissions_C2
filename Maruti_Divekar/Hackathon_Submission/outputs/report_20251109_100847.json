@@ -1,0 +1,16 @@
+{
+  "query": "",
+  "timestamp": "2025-11-09T10:08:47.273301",
+  "sections": {
+    "executive_summary": "Research Query: \nScope: 1 sources analyzed\n\n=== Analysis Findings ===\nAs an expert research analyst, write a clear critical analysis report based on the following sources and evidence. === Source Analysis ===\n\nSource: unknown\nSummary: Modern RAG implementations often combine dense retrieval with lightweight filtering or hybrid search (e See discussions, stats, and author profiles for this publication at: https://www Retrieval Augmented Generation (RAG) for Healthcare\n======================================\n\nAbstract\n--------\nThis is a sample PDF document discussing the applications of RAG in healthcare settings\nCredibility: 0.5/1.0 - Generic web source; verify with authoritative sources. Evidence:\n- Modern RAG implementations often combine dense retrieval with lightweight filtering or hybrid search (e.g., BM25 + embeddings) to improve recall: Modern RAG implementations often combine dense retrieval with lightweight filtering or hybrid search (e.g., BM25 + embeddings) to improve recall\n- See discussions, stats, and author profiles for this publication at: https://www.researchgate.net/publication/316983844 Arti\ufb01cial Intelligence and the Future of Defense Book \u00b7 May 2017 CITATIONS 21 READS 16,097 3 authors: Stephan De Spiegel: The user has requested enhancement of the downloaded file... === Supporting Evidence ===\n\u2022 Modern RAG implementations often combine dense retrieval with lightweight filtering or hybrid search (e.g., BM25 + embeddings) to improve recall\n  Support: Modern RAG implementations often combine dense retrieval with lightweight filtering or hybrid search (e.g., BM25 + embeddings) to improve recall\n\u2022 See discussions, stats, and author profiles for this publication at: https://www.researchgate.net/publication/316983844 Arti\ufb01cial Intelligence and the Future of Defense Book \u00b7 May 2017 CITATIONS 21 READS 16,097 3 authors: Stephan De Spiegel\n  Support: The user has requested enhancement of the downloaded file...",
+    "methodology": "Methodology description placeholder",
+    "findings": [],
+    "evidence": {},
+    "recommendations": [],
+    "appendix": {}
+  },
+  "metadata": {
+    "sources": 1,
+    "insights": 0
+  }
+}

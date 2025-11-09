@@ -1,0 +1,16 @@
+{
+  "query": "What is Artificial Narrow Intelligence",
+  "timestamp": "2025-11-09T01:22:38.762053",
+  "sections": {
+    "executive_summary": "Research Query: What is Artificial Narrow Intelligence\nScope: 1 sources analyzed\n\n=== Analysis Findings ===\n=== Source Analysis ===\n\nSource: unknown\nSummary: Methods\n---------\n- Knowledge base construction from medical literature\n- Hybrid retrieval using dense and sparse vectors\n- Context-aware generation with citation tracking\n- Domain-specific evaluation metrics\n\n3. Results\n---------\nInitial trials show:\n- 95% accuracy in medical fact verification\n- 87% retrieval precision for rare conditions\n- Reduced hallucination compared to base LLMs\n- Improved traceability of medical claims\n\n4. ArXiv:2307.09288\nModern RAG implementations often combine dense retrieval with lightweight filtering or hybrid search (e.g., BM25 + embeddings) to improve recall\nCredibility: 0.5/1.0 - Generic web source; verify with authoritative sources. - Modern RAG implementations often combine dense retrieval with lightweight filtering or hybrid search (e.g., BM25 + embeddings) to improve recall: Modern RAG implementations often combine dense retrieval with lightweight filtering or hybrid search (e.g., BM25 + embeddings) to improve recall\n- No explicit claim found: \n\n=== Conflicts Analysis ===\n\nNo significant conflicts were identified between sources.",
+    "methodology": "Methodology description placeholder",
+    "findings": [],
+    "evidence": {},
+    "recommendations": [],
+    "appendix": {}
+  },
+  "metadata": {
+    "sources": 1,
+    "insights": 0
+  }
+}

@@ -1,0 +1,5 @@
+As a research insights specialist, synthesize the following analysis into clear, actionable insights. Start with the strongest patterns and trends identified (1-2 sentences per pattern)
+2. Present key hypotheses, ranked by evidence strength
+3. End with specific recommended next steps
+
+Write in clear business language.
