@@ -100,7 +100,9 @@ By pairing **human-centered heuristics** with **defensible AI reasoning**, we de
                  ├── 👁️  Visual Agent
                  ├── 🧭  UX Heuristics Agent
                  ├── ♿  Accessibility Agent
+                 └── 👥  Market research
                  └── 👥  Persona Suite (sub-graph)
+                 
                         │
                         ├─ Derive personas
                         ├─ Simulate user journeys
