@@ -11,7 +11,7 @@
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](https://github.com)
 [![Status](https://img.shields.io/badge/Status-Hackathon_Ready_🏆-orange?style=for-the-badge)](https://github.com)
 
-[Watch Demo](#) • [Try Live](#) • [Documentation](#) • [Report Bug](#)
+[Watch Demo](https://drive.google.com/file/d/1YoCDy0YdKWrX56N85DfvTJOsFRrlmZJl/view?usp=drive_link) • [Try Live](#) • [Documentation](#) • [Report Bug](#)
 
 ---
 
@@ -21,7 +21,7 @@
 
 <div align="center">
 
-### **Watch the Demo & Download the Presentation** 🎬📊
+### **Watch the Demo, Presentation Video & View the Slides** 🎬📊
 
 </div>
 
@@ -29,8 +29,8 @@
 
 <div align="center">
 
-[![Watch Demo Video](https://img.shields.io/badge/▶️_Watch_Demo_Video-red?style=for-the-badge&logo=youtube)](https://youtube.com)
-[![Demo on YouTube](https://img.shields.io/badge/YouTube-Demo_Video-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtube.com)
+[![Watch Demo Video](https://img.shields.io/badge/▶️_Watch_Demo_Video-red?style=for-the-badge&logo=youtube)](https://drive.google.com/file/d/1YoCDy0YdKWrX56N85DfvTJOsFRrlmZJl/view?usp=drive_link)
+[![Demo on Google Drive](https://img.shields.io/badge/Google_Drive-Demo_Video-4285F4?style=for-the-badge&logo=google-drive&logoColor=white)](https://drive.google.com/file/d/1YoCDy0YdKWrX56N85DfvTJOsFRrlmZJl/view?usp=drive_link)
 
 **Experience the full power of JARVIS in action!**
 
@@ -38,12 +38,26 @@ Watch how our 6 specialized agents collaborate in real-time to analyze incidents
 
 </div>
 
-### 📊 Presentation Slides
+### 🎬 Presentation Video
 
 <div align="center">
 
-[![Download PPT](https://img.shields.io/badge/📊_Download_Presentation-blue?style=for-the-badge)](https://github.com)
-[![View Slides](https://img.shields.io/badge/Google_Slides-View_Presentation-4285F4?style=for-the-badge&logo=google-slides&logoColor=white)](https://docs.google.com)
+[![Watch Presentation Video](https://img.shields.io/badge/🎬_Watch_Presentation_Video-purple?style=for-the-badge)](https://drive.google.com/file/d/1k6W9hEaD1dj8IU8q59wamEArztS545Gt/view?usp=drive_link)
+[![Presentation on Google Drive](https://img.shields.io/badge/Google_Drive-Presentation_Video-4285F4?style=for-the-badge&logo=google-drive&logoColor=white)](https://drive.google.com/file/d/1k6W9hEaD1dj8IU8q59wamEArztS545Gt/view?usp=drive_link)
+
+**Full hackathon presentation with live demo**
+
+Watch our complete pitch including problem statement, solution overview, architecture deep dive, and live system demonstration.
+
+</div>
+
+### 📊 Presentation Slides (PPT)
+
+<div align="center">
+
+[![View Presentation](https://img.shields.io/badge/📊_View_Presentation-blue?style=for-the-badge)](https://gamma.app/docs/Multi-Agent-DevOps-Incident-Analysis-Suite-Jarvis-10-zqu93flphhjhrym?mode=doc)
+[![Open on Gamma](https://img.shields.io/badge/Gamma-View_Slides-000000?style=for-the-badge&logo=gamma&logoColor=white)](https://gamma.app/docs/Multi-Agent-DevOps-Incident-Analysis-Suite-Jarvis-10-zqu93flphhjhrym?mode=doc)
+[![Download PDF](https://img.shields.io/badge/📥_Download_PDF-red?style=for-the-badge&logo=adobe-acrobat-reader&logoColor=white)](Multi-Agent-DevOps-Incident-Analysis-Suite-Jarvis-10.pdf)
 
 **Complete hackathon presentation deck**
 
@@ -60,8 +74,10 @@ Includes:
 
 | Resource | Link | Description |
 |----------|------|-------------|
-| 🎥 **Demo Video** | [Watch on YouTube](#) | Full system demonstration (5-10 min) |
-| 📊 **Presentation** | [Download PPT](#) | Complete hackathon pitch deck |
+| 🎥 **Demo Video** | [Watch on Google Drive](https://drive.google.com/file/d/1YoCDy0YdKWrX56N85DfvTJOsFRrlmZJl/view?usp=drive_link) | Full system demonstration (5-10 min) |
+| 🎬 **Presentation Video** | [Watch on Google Drive](https://drive.google.com/file/d/1k6W9hEaD1dj8IU8q59wamEArztS545Gt/view?usp=drive_link) | Complete hackathon pitch with live demo |
+| 📊 **Presentation Slides** | [View on Gamma](https://gamma.app/docs/Multi-Agent-DevOps-Incident-Analysis-Suite-Jarvis-10-zqu93flphhjhrym?mode=doc) | Interactive presentation deck |
+| 📄 **Presentation PDF** | [Download PDF](Multi-Agent-DevOps-Incident-Analysis-Suite-Jarvis-10.pdf) | Downloadable PDF version of presentation |
 | 🖼️ **Screenshots** | [View Gallery](#) | UI and feature highlights |
 | 📝 **Transcript** | [Read Script](#) | Demo video transcript |
 
