@@ -1,0 +1,43 @@
+# AI Financial Coach - Requirements
+# Python 3.9+
+
+# Core
+streamlit>=1.28.0
+python-dotenv>=1.0.0
+
+# Database
+psycopg2-binary>=2.9.0  # For PostgreSQL (optional)
+
+# Data Processing
+pandas>=2.0.0
+numpy>=1.24.0
+openpyxl>=3.1.0  # For Excel files
+
+# PDF Processing
+pypdf>=3.16.0
+PyPDF2>=3.0.0
+
+# LangChain & AI
+langchain>=0.1.0
+langchain-community>=0.0.10
+langchain-openai>=0.0.2
+openai>=1.3.0
+
+# Vector Database
+faiss-cpu>=1.7.4
+
+# Web Scraping (for crawler)
+beautifulsoup4>=4.12.0
+requests>=2.31.0
+tavily-python>=0.3.0  # Optional: for web search
+
+# Visualization
+plotly>=5.17.0
+
+# Date/Time
+python-dateutil>=2.8.2
+
+# Development (optional)
+pytest>=7.4.0
+black>=23.0.0
+flake8>=6.1.0
