@@ -21,6 +21,14 @@ from typing import Any, Sequence, Tuple, Optional, List, Dict
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
 from mcp.types import Tool, TextContent
+
+# Optional: HTTP/SSE transport for remote connections
+try:
+    from mcp.server.sse import SseServerTransport
+    HTTP_SSE_AVAILABLE = True
+except ImportError:
+    HTTP_SSE_AVAILABLE = False
+    SseServerTransport = None
 from duckduckgo_search import DDGS
 from geopy.geocoders import Nominatim
 from geopy.distance import geodesic
@@ -760,13 +768,97 @@ async def read_resource(uri: str) -> str:
 
 
 async def main():
-    """Run the MCP server."""
-    async with stdio_server() as (read_stream, write_stream):
-        await app.run(
-            read_stream,
-            write_stream,
-            app.create_initialization_options()
-        )
+    """Run the MCP server.
+    
+    Supports two modes:
+    1. stdio (local) - Default mode for local connections
+    2. http (remote) - HTTP/SSE mode for remote connections
+    
+    Set environment variables:
+    - MCP_SERVER_MODE=stdio (default) or http
+    - MCP_SERVER_PORT=8000 (default, for http mode)
+    - MCP_SERVER_HOST=0.0.0.0 (default, for http mode)
+    """
+    # Check if running as HTTP server (remote)
+    server_mode = os.environ.get("MCP_SERVER_MODE", "stdio").lower()
+    port = int(os.environ.get("MCP_SERVER_PORT", "8000"))
+    host = os.environ.get("MCP_SERVER_HOST", "0.0.0.0")
+    
+    if server_mode == "http" or server_mode == "sse":
+        # Remote server mode (HTTP/SSE)
+        print(f"🚀 Starting MCP server in HTTP/SSE mode on {host}:{port}")
+        print(f"   Access at: http://{host}:{port}")
+        
+        try:
+            # Use MCP's SseServerTransport with Starlette/FastAPI
+            # SseServerTransport uses ASGI (scope, receive, send) for SSE connections
+            from mcp.server.sse import SseServerTransport
+            from starlette.applications import Starlette
+            from starlette.routing import Route
+            from starlette.responses import StreamingResponse
+            import uvicorn
+            
+            # Create SSE transport
+            transport = SseServerTransport(endpoint="/sse")
+            
+            # Create ASGI app for SSE
+            async def asgi_app(scope, receive, send):
+                """ASGI application for SSE endpoint."""
+                if scope["type"] == "http" and scope["path"] == "/sse":
+                    # Use SseServerTransport to handle SSE connection
+                    # connect_sse returns an async context manager with streams
+                    async with transport.connect_sse(scope, receive, send) as streams:
+                        await app.run(
+                            streams[0],  # read_stream
+                            streams[1],  # write_stream
+                            app.create_initialization_options()
+                        )
+                else:
+                    # Return 404 for other paths
+                    await send({
+                        "type": "http.response.start",
+                        "status": 404,
+                        "headers": [[b"content-type", b"text/plain"]],
+                    })
+                    await send({
+                        "type": "http.response.body",
+                        "body": b"Not Found",
+                    })
+            
+            # Use ASGI app directly
+            starlette_app = asgi_app
+            
+            # Run with uvicorn
+            config = uvicorn.Config(
+                starlette_app,
+                host=host,
+                port=port,
+                log_level="info"
+            )
+            server = uvicorn.Server(config)
+            await server.serve()
+            return
+        except ImportError as e:
+            print(f"⚠️  MCP HTTP/SSE transport not available: {e}")
+            print("   Install with: pip install 'mcp[sse]' or pip install starlette uvicorn")
+            print("   Falling back to stdio mode...")
+            server_mode = "stdio"
+        except Exception as e:
+            print(f"❌ Error starting HTTP server: {e}")
+            import traceback
+            traceback.print_exc()
+            print("   Falling back to stdio mode...")
+            server_mode = "stdio"
+    
+    # Default: stdio mode (local)
+    if server_mode == "stdio":
+        print("🚀 Starting MCP server in stdio mode (local)")
+        async with stdio_server() as (read_stream, write_stream):
+            await app.run(
+                read_stream,
+                write_stream,
+                app.create_initialization_options()
+            )
 
 
 if __name__ == "__main__":
