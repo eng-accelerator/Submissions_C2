@@ -79,7 +79,7 @@ with tab1:
                     "Policy Type",
                     ["Term Life", "Health Insurance", "Vehicle Insurance", "Other"]
                 )
-                metadata['region'] = st.selectbox("Region", ["India", "USA", "UK", "Singapore", "UAE"])
+                metadata['region'] = st.selectbox("Region", ["India", "Poland"])
             
             elif doc_type == "Loan Agreements":
                 metadata['loan_type'] = st.selectbox(
