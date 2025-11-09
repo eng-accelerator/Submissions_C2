@@ -21,7 +21,7 @@
 
 <div align="center">
 
-### **Watch the Demo, Presentation Video & View the Slides** 🎬📊
+### **Watch the Demo, Presentation Video, Combined Video & View the Slides** 🎬📊
 
 </div>
 
@@ -51,6 +51,19 @@ Watch our complete pitch including problem statement, solution overview, archite
 
 </div>
 
+### 🎬📹 Combined Presentation + Demo Video
+
+<div align="center">
+
+[![Watch Combined Video](https://img.shields.io/badge/🎬📹_Presentation_+_Demo_Video-green?style=for-the-badge)](https://drive.google.com/file/d/1mtvr_OgXocY2zUx1jXE80t80WIjBqOCN/view?usp=drive_link)
+[![Combined Video on Google Drive](https://img.shields.io/badge/Google_Drive-Combined_Video-4285F4?style=for-the-badge&logo=google-drive&logoColor=white)](https://drive.google.com/file/d/1mtvr_OgXocY2zUx1jXE80t80WIjBqOCN/view?usp=drive_link)
+
+**Complete presentation with integrated live demo**
+
+Watch the full hackathon presentation seamlessly integrated with live system demonstration in one comprehensive video.
+
+</div>
+
 ### 📊 Presentation Slides (PPT)
 
 <div align="center">
@@ -76,6 +89,7 @@ Includes:
 |----------|------|-------------|
 | 🎥 **Demo Video** | [Watch on Google Drive](https://drive.google.com/file/d/1YoCDy0YdKWrX56N85DfvTJOsFRrlmZJl/view?usp=drive_link) | Full system demonstration (5-10 min) |
 | 🎬 **Presentation Video** | [Watch on Google Drive](https://drive.google.com/file/d/1k6W9hEaD1dj8IU8q59wamEArztS545Gt/view?usp=drive_link) | Complete hackathon pitch with live demo |
+| 🎬📹 **Presentation + Demo** | [Watch on Google Drive](https://drive.google.com/file/d/1mtvr_OgXocY2zUx1jXE80t80WIjBqOCN/view?usp=drive_link) | Combined presentation with integrated demo |
 | 📊 **Presentation Slides** | [View on Gamma](https://multi-agent-devops-incid-1pxynd5.gamma.site/) | Interactive presentation deck |
 | 📄 **Presentation PDF** | [Download PDF](Multi-Agent-DevOps-Incident-Analysis-Suite-Jarvis-10.pdf) | Downloadable PDF version of presentation |
 | 🖼️ **Screenshots** | [View Gallery](#) | UI and feature highlights |
