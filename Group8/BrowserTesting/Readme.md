@@ -86,6 +86,11 @@ Our solution addresses these by:
 - python-dotenv
 - requests
 
+# LangGraph and LangChain for RAG chatbot
+langgraph>=0.0.40
+langchain>=0.1.0
+langchain-core>=0.1.0
+
 ## Getting Started
 
 1. Install dependencies:
