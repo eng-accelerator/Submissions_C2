@@ -119,7 +119,7 @@ Contact
 - Project Members: 
 - Maintainer: Prasanna Neelavar — prasanna.neelavar@gmail.com
 - Ashish Sahu - ashyshs at gmail
-- Saravanan K (Saro)
+- Saravanan P (Saro)
 - Manohar Negi
 - Srinivas K
 
