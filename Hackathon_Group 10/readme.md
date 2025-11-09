@@ -6,6 +6,9 @@ A production-ready financial management platform powered by multiple AI agents w
 
 ---
 
+## Loom Video
+https://www.loom.com/share/22bdae5741a84e519f5cdae58064ef2e
+
 ## 🌟 Key Features
 
 ### Core Capabilities
