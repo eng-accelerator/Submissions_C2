@@ -193,11 +193,25 @@ import pickle
 # ----------------------------
 # Shared Pipeline State
 # ----------------------------
+# ----------------------------
+# Shared Pipeline State
+# ----------------------------
 class PipelineState(BaseModel):
+    """
+    Pydantic model that holds the pipeline state.
+
+    Note: we allow arbitrary types (like the custom `Document` class used
+    by the pipeline) by setting model_config.arbitrary_types_allowed = True.
+    This avoids PydanticSchemaGenerationError when Pydantic attempts to
+    generate a schema for custom types.
+    """
+    model_config = {"arbitrary_types_allowed": True}
+
     query: str = Field(default="")
     sources: List[Dict[str, Any]] = Field(default_factory=list)
-    raw_docs: List[Document] = Field(default_factory=list)
-    chunks: List[Document] = Field(default_factory=list)
+    # Document is a custom class; keep the annotation but allow arbitrary types
+    raw_docs: List[Any] = Field(default_factory=list)
+    chunks: List[Any] = Field(default_factory=list)
     vectorstore: Any = Field(default=None)
     critical_analysis: Dict[str, Any] = Field(default_factory=dict)
     insights: List[Dict[str, Any]] = Field(default_factory=list)
@@ -205,6 +219,7 @@ class PipelineState(BaseModel):
     report_json: Dict[str, Any] = Field(default_factory=dict)
     logs: List[str] = Field(default_factory=list)
     memory: Dict[str, Any] = Field(default_factory=dict)
+
 
 def log(state: Dict[str, Any], msg: str):
     state.setdefault("logs", []).append(f"{time.strftime('%H:%M:%S')} {msg}")
@@ -420,8 +435,11 @@ def build_report(state: PipelineState) -> PipelineState:
 # ===============================================================
 # LangGraph Pipeline Setup
 # ===============================================================
+# ===============================================================
+# LangGraph Pipeline Setup (unified run() wrapper)
+# ===============================================================
 def build_pipeline():
-    graph = StateGraph(PipelineState) # Pass the Pydantic model class directly
+    graph = StateGraph(PipelineState)
     graph.add_node("retrieve_data", retrieve_data)
     graph.add_node("critical_analysis", critical_analysis)
     graph.add_node("generate_insights", generate_insights)
@@ -433,7 +451,24 @@ def build_pipeline():
     graph.add_edge("generate_insights", "report_builder")
     graph.add_edge("report_builder", END)
 
-    return graph
+    compiled = graph.compile()
+
+    # --- Wrapper to expose a consistent .run() ---
+    class PipelineWrapper:
+        def __init__(self, compiled_graph):
+            self.compiled = compiled_graph
+
+        def run(self, state):
+            """Unified run() that calls invoke() when available."""
+            if hasattr(self.compiled, "invoke"):
+                return self.compiled.invoke(state)
+            elif hasattr(self.compiled, "run"):
+                return self.compiled.run(state)
+            else:
+                raise AttributeError("Compiled graph has neither run() nor invoke()")
+
+    return PipelineWrapper(compiled)
+
 
 # ===============================================================
 # Example Run

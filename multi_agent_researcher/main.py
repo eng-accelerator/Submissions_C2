@@ -17,7 +17,7 @@ Keep the same module names and data shapes as previous version to ensure backend
 # rest of your app code below
 from dotenv import load_dotenv
 load_dotenv()
-import guard
+# import guard
 
 import streamlit as st
 from home_ui import sidebar_controls, page_header
