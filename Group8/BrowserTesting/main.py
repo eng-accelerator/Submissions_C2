@@ -1,4 +1,5 @@
 import os
+import re
 import streamlit as st
 
 from agents.flow_discovery import discover_flow
@@ -6,9 +7,7 @@ from agents.script_generator import generate_script
 from agents.execution import execute_script
 from agents.error_diagnosis import diagnose
 from agents.adaptive_repair import self_heal
-
-
-# ===================== Session State =====================
+from agents.regression_monitor import run_visual_check
 
 
 def _init_state():
@@ -18,45 +17,270 @@ def _init_state():
     st.session_state.setdefault("repaired_script", None)
     st.session_state.setdefault("last_run_label", "")
 
-
 _init_state()
 
+st.set_page_config(page_title="AI Browser Automation Lab", page_icon="🧪", layout="wide")
 
-# ===================== Page Config =====================
+st.markdown("""
+<style>
+/* Professional theme inspired by BrowserStack */
+.stApp { 
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    color: #1a1f36;
+}
 
+.block-container { 
+    padding-top: 2rem; 
+    padding-bottom: 2rem; 
+    max-width: 1400px;
+}
 
-st.set_page_config(
-    page_title="AI Browser Automation Lab",
-    page_icon="🧪",
-    layout="wide",
-)
+/* Headers with professional styling */
+h1 { 
+    color: #1a1f36;
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+h2 { 
+    color: #2563eb;
+    font-weight: 600;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 0.5rem;
+    margin-top: 2rem;
+}
+
+h3 { 
+    color: #1e40af;
+    font-weight: 600;
+}
+
+h4 { 
+    color: #475569;
+    font-weight: 600;
+}
+
+/* Professional buttons with blue gradient */
+.stButton>button {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    color: #ffffff;
+    border-radius: 8px;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+    font-size: 1rem;
+}
+
+.stButton>button:hover {
+    background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+    box-shadow: 0 6px 12px rgba(37, 99, 235, 0.3);
+    transform: translateY(-2px);
+}
+
+.stButton>button:active {
+    transform: translateY(0px);
+}
+
+/* Code blocks with clean styling */
+.stCodeBlock {
+    background-color: #f8fafc !important;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+code {
+    background-color: #f1f5f9 !important;
+    color: #1e293b !important;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    border: 1px solid #e2e8f0;
+    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+}
+
+/* Text inputs with professional styling */
+.stTextInput>div>div>input {
+    background-color: #ffffff;
+    border: 2px solid #cbd5e1;
+    color: #1e293b;
+    border-radius: 8px;
+    padding: 0.75rem;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.stTextInput>div>div>input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    outline: none;
+}
+
+/* Select boxes */
+.stSelectbox>div>div>select {
+    background-color: #ffffff;
+    border: 2px solid #cbd5e1;
+    color: #1e293b;
+    border-radius: 8px;
+    padding: 0.75rem;
+}
+
+/* Alert boxes with clean styling */
+.stAlert {
+    border-radius: 8px;
+    background-color: #eff6ff;
+    border-left: 4px solid #2563eb;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+}
+
+/* Expanders with card styling */
+.streamlit-expanderHeader {
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    padding: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.streamlit-expanderHeader:hover {
+    background-color: #f8fafc;
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Images with clean borders */
+img {
+    border-radius: 8px;
+    border: 2px solid #e5e7eb;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+img:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    transform: scale(1.01);
+}
+
+/* Dividers */
+hr {
+    border-color: #e5e7eb;
+    margin: 2rem 0;
+}
+
+/* Text styling */
+p, li, span {
+    color: #475569;
+}
+
+strong {
+    color: #1e293b;
+    font-weight: 600;
+}
+
+/* Caption text */
+.caption {
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+/* Spinner */
+.stSpinner > div {
+    border-top-color: #2563eb !important;
+}
+
+/* Success messages */
+.success {
+    background-color: #f0fdf4;
+    border-left-color: #10b981;
+}
+
+/* Error messages */
+.error {
+    background-color: #fef2f2;
+    border-left-color: #ef4444;
+}
+
+/* Warning messages */
+.warning {
+    background-color: #fffbeb;
+    border-left-color: #f59e0b;
+}
+
+/* Step indicators */
+.step-indicator {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+.step-success {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.step-running {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.step-error {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.step-skipped {
+    background-color: #f3f4f6;
+    color: #6b7280;
+}
+
+/* Professional card styling */
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    margin-bottom: 1rem;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+</style>
+""", unsafe_allow_html=True)
 
 st.title("🧪 AI Browser Automation Lab")
-st.caption(
-    "Playwright + Agents. All LLM/OpenRouter logic is centralized in the llm/ package."
-)
-
-st.markdown(
-    """
-Pipeline:
-1. **Flow Discovery** – understand your goal & app.
-2. **Script Generation** – create a runnable Playwright script.
-3. **Execution** – run in an isolated subprocess with screenshot capture.
-4. **Diagnosis & Self-Heal** – explain failures & propose fixes (Demoblaze demo).
-"""
-)
-
-
-# ===================== Helpers =====================
-
+st.caption("Multi-agent browser testing with Playwright. Powered by AI for intelligent test generation and self-healing.")
+st.markdown("**Pipeline:** Flow Discovery → Script Generation → Execution → Diagnosis & Self-Heal → Visual Regression Guard")
 
 def _use_example(url: str, goal: str):
     st.session_state["target_url_input"] = url
     st.session_state["goal_prompt_input"] = goal
 
-
 def _cleanup_screenshots():
-    """Remove old screenshots so we never reuse stale images across runs."""
     for name in ("run_result.png", "run_error.png"):
         try:
             if os.path.exists(name):
@@ -64,396 +288,239 @@ def _cleanup_screenshots():
         except Exception:
             pass
 
-
 def _normalize_execution_result(result):
-    """
-    Normalize execute_script(...) into:
-        (success: bool, log: str, screenshot_path: str | None)
-    """
-    success = False
-    log = ""
-    screenshot_path = None
-
+    success, log, screenshot_path = False, "", None
     if isinstance(result, dict):
         success = bool(result.get("success"))
         raw_log = result.get("log", "")
-        if isinstance(raw_log, (list, tuple)):
-            log = "\n".join(str(x) for x in raw_log)
-        else:
-            log = str(raw_log or "")
+        log = "\n".join(str(x) for x in raw_log) if isinstance(raw_log, (list, tuple)) else str(raw_log or "")
         screenshot_path = result.get("screenshot_path")
-
     elif isinstance(result, (tuple, list)):
-        if len(result) > 0:
-            success = bool(result[0])
+        if len(result) > 0: success = bool(result[0])
         if len(result) > 1:
             raw_log = result[1]
-            if isinstance(raw_log, (list, tuple)):
-                log = "\n".join(str(x) for x in raw_log)
-            else:
-                log = str(raw_log or "")
-        if len(result) > 2:
-            screenshot_path = result[2]
-
+            log = "\n".join(str(x) for x in raw_log) if isinstance(raw_log, (list, tuple)) else str(raw_log or "")
+        if len(result) > 2: screenshot_path = result[2]
     else:
         log = str(result)
-
     return success, log, screenshot_path
 
-
 def _is_valid_playwright_script(script_code: str) -> bool:
-    """
-    Only execute real harness-based scripts, not error messages.
-    """
-    if not script_code:
-        return False
-
+    if not script_code: return False
     s = script_code.strip()
+    if s.startswith("# Script generation failed"): return False
+    return "from playwright.sync_api import sync_playwright" in s and "def run():" in s
 
-    if s.startswith("# Script generation failed"):
-        return False
+def _get_test_id_from_url_goal(url: str, goal: str) -> str:
+    u = (url or "").lower()
+    if "the-internet.herokuapp.com" in u and "login" in goal.lower(): return "herokuapp_login"
+    if "saucedemo.com" in u:
+        g = goal.lower()
+        if "intentionally" in g or "demonstrate visual regression" in g: return "saucedemo_visual_regression"
+        if "backpack" in g: return "saucedemo_backpack"
+        return "saucedemo_checkout"
+    if "demoblaze.com" in u: return "demoblaze_checkout"
+    raw = url or ""
+    slug = re.sub(r"[^a-zA-Z0-9]+", "_", raw).strip("_").lower()
+    return slug[:80] or "default_scenario"
 
-    if "from playwright.sync_api import sync_playwright" not in s:
-        return False
-
-    if "def run():" not in s:
-        return False
-
-    return True
-
+def _get_visual_ids(url: str, goal: str):
+    test_id = _get_test_id_from_url_goal(url, goal)
+    print(f"\n{'='*60}\n[Visual IDs] Self-Baseline Mode\n  Test ID: {test_id}\n  - First run: CREATE baseline\n  - Subsequent runs: COMPARE against baseline\n{'='*60}\n")
+    return test_id, None, False
 
 def _run_execution(script_code: str, step_exec, log_box, label: str):
-    """
-    Execute script, render results, and return (success, log, screenshot_path).
-    """
     _cleanup_screenshots()
-
     st.session_state["last_run_label"] = label
-    step_exec.markdown(f"**Step 3/4 – {label}:** ⏳ running...")
-
+    step_exec.markdown(f"**Step 3/5 — {label}:** ⏳ running...")
     with st.spinner(f"{label} Agent is running the script..."):
         try:
             raw = execute_script(script_code)
         except Exception as e:
-            success = False
-            log = f"Exception while executing script:\n{e}"
-            screenshot_path = None
+            success, log, screenshot_path = False, f"Exception while executing script:\n{e}", None
         else:
             success, log, screenshot_path = _normalize_execution_result(raw)
-
-    if success:
-        step_exec.markdown(f"**Step 3/4 – {label}:** ✅ passed")
-    else:
-        step_exec.markdown(f"**Step 3/4 – {label}:** ❌ failed")
-
+    step_exec.markdown("**Step 3/5 — Execution:** ✅ passed" if success else "**Step 3/5 — Execution:** ❌ failed")
     log_box.markdown("**Execution Log:**")
     log_box.code(log or "(no log output)", language="bash")
-
     if screenshot_path and os.path.exists(screenshot_path):
-        st.image(
-            screenshot_path,
-            caption=f"{label} screenshot",
-            use_container_width=True,
-        )
-
+        st.image(screenshot_path, caption=f"{label} screenshot", use_container_width=True)
     return success, log, screenshot_path
 
-
-def _run_diagnosis_and_repair(
-    script_code: str,
-    log: str,
-    step_diag,
-    diag_box,
-    repair_box,
-):
-    """
-    Run diagnosis + adaptive repair.
-    If a valid repaired script is produced, store it in session and show it.
-    """
-    step_diag.markdown("**Step 4/4 – Diagnosis & Self-Heal:** ⏳ running...")
-
-    # Diagnosis
+def _run_diagnosis_and_repair(script_code, log, step_diag, diag_box, repair_box):
+    step_diag.markdown("**Step 4/5 — Diagnosis & Self-Heal:** ⏳ running...")
     with st.spinner("Error Diagnosis Agent is analyzing the failure..."):
         try:
             diagnosis = diagnose(log)
         except Exception as e:
             diagnosis = f"Diagnosis error: {e}"
-
     diag_box.markdown(f"**Diagnosis:** {diagnosis}")
-
-    # Self-heal
     with st.spinner("Adaptive Repair Agent is proposing a fix..."):
         try:
             repaired_script, note = self_heal(script_code, log)
         except Exception as e:
             repaired_script, note = None, f"Self-heal error: {e}"
-
-    if (
-        repaired_script
-        and repaired_script.strip()
-        and repaired_script.strip() != script_code.strip()
-        and _is_valid_playwright_script(repaired_script)
-    ):
+    if repaired_script and repaired_script.strip() and repaired_script.strip() != script_code.strip() and _is_valid_playwright_script(repaired_script):
         st.session_state["repaired_script"] = repaired_script
-        step_diag.markdown(
-            "**Step 4/4 – Diagnosis & Self-Heal:** ✅ fix proposed"
-        )
+        step_diag.markdown("**Step 4/5 — Diagnosis & Self-Heal:** ✅ fix proposed")
+        repair_box.empty()
         repair_box.markdown(f"**Adaptive Repair Note:** {note}")
         repair_box.code(repaired_script, language="python")
+        diag_box.info("A self-healed script has been generated. Click **Apply Fix & Re-Run** below to execute the repaired test.")
     else:
         st.session_state["repaired_script"] = None
-        step_diag.markdown(
-            "**Step 4/4 – Diagnosis & Self-Heal:** ⚠️ no automatic fix applied"
-        )
-        repair_box.info(
-            note
-            or "No automatic self-heal applied. The failure likely requires manual adjustment."
-        )
+        step_diag.markdown("**Step 4/5 — Diagnosis & Self-Heal:** ⚠️ no automatic fix applied")
+        repair_box.info(note or "No automatic self-heal applied. The failure likely requires manual adjustment.")
 
+def _run_visual_guard(url: str, goal: str, screenshot_path: str, step_visual, vr_box):
+    step_visual.markdown("**Step 5/5 — Visual Regression Guard:** ⏳ running...")
+    if not screenshot_path or not os.path.exists(screenshot_path):
+        step_visual.markdown("**Step 5/5 — Visual Regression Guard:** ⭕ skipped (no screenshot)")
+        vr_box.info("No screenshot available for visual regression check.")
+        return
+    test_id, baseline_id, create_baseline_only = _get_visual_ids(url, goal)
+    with st.spinner("Visual Regression Guard is comparing screenshots..."):
+        result = run_visual_check(test_id=test_id, screenshot_path=screenshot_path, baseline_dir="screenshots", baseline_id=baseline_id, create_baseline_only=create_baseline_only)
+    status = result.get("status")
+    message = result.get("message", "")
+    diff_path = result.get("diff_path")
+    if status == "baseline_created": step_visual.markdown("**Step 5/5 — Visual Regression Guard:** ✅ baseline created")
+    elif status == "passed": step_visual.markdown("**Step 5/5 — Visual Regression Guard:** ✅ passed")
+    elif status == "failed": step_visual.markdown("**Step 5/5 — Visual Regression Guard:** ❌ failed")
+    else: step_visual.markdown("**Step 5/5 — Visual Regression Guard:** ⚠️ unavailable")
+    id_info = f"test_id={test_id}"
+    if baseline_id: id_info += f", baseline_id={baseline_id}"
+    vr_box.markdown(f"*Visual IDs:* `{id_info}`")
+    if status == "baseline_created": vr_box.success(message)
+    elif status == "passed": vr_box.success(message)
+    elif status == "failed":
+        vr_box.error(message)
+        if diff_path and os.path.exists(diff_path):
+            st.image(diff_path, caption="Visual difference vs baseline", use_container_width=True)
+    else: vr_box.info(message)
 
-# ===================== Example Scenarios =====================
-
-
-with st.expander("Example scenarios"):
-    st.markdown(
-        """
-        <style>
-        .examples-scroll {
-            max-height: 420px;
-            overflow-y: auto;
-            overflow-x: hidden;
-            padding-right: 8px;
-            box-sizing: border-box;
-        }
-        .examples-scroll code {
-            font-size: 0.8rem;
-        }
-        </style>
-        <div class="examples-scroll">
-        """,
-        unsafe_allow_html=True,
-    )
-
-    # 1) Login
-    st.markdown("#### 1️⃣ Login – the-internet.herokuapp.com")
+with st.expander("📋 Example scenarios", expanded=False):
+    st.markdown("#### 1️⃣ Login — the-internet.herokuapp.com")
     u = "https://the-internet.herokuapp.com/login"
-    g = (
-        "Open the login page, log in with username 'tomsmith' and "
-        "password 'SuperSecretPassword!', then verify the secure area."
-    )
+    g = "Open the login page, log in with username 'tomsmith' and password 'SuperSecretPassword!', then verify the secure area."
     c1, c2 = st.columns([3, 1])
-    with c1:
-        st.code(f"URL: {u}\nGoal: {g}", language="text")
-    with c2:
-        st.button("Use this", key="ex_login", on_click=_use_example, args=(u, g))
-
+    with c1: st.code(f"URL: {u}\nGoal: {g}", language="text")
+    with c2: st.button("Use this", key="ex_login", on_click=_use_example, args=(u, g))
     st.markdown("---")
-
-    # 2) Demoblaze checkout – self-heal demo
-    st.markdown("#### 2️⃣ Demoblaze checkout – Self-heal demo")
+    st.markdown("#### 2️⃣ Saucedemo checkout — Add to cart")
+    u = "https://www.saucedemo.com"
+    g = "Log in with 'standard_user'/'secret_sauce', add 'Sauce Labs Backpack' to cart, open cart and verify the item is listed."
+    c1, c2 = st.columns([3, 1])
+    with c1: st.code(f"URL: {u}\nGoal: {g}", language="text")
+    with c2: st.button("Use this", key="ex_sauce_base", on_click=_use_example, args=(u, g))
+    st.markdown("---")
+    st.markdown("#### 3️⃣ Saucedemo — Visual regression demo")
+    u = "https://www.saucedemo.com"
+    g = "Log in with 'standard_user'/'secret_sauce', add 'Sauce Labs Backpack' to cart. This scenario intentionally produces different screenshots on each run to demonstrate visual regression detection."
+    c1, c2 = st.columns([3, 1])
+    with c1: st.code(f"URL: {u}\nGoal: {g}", language="text")
+    with c2: st.button("Use this", key="ex_sauce_vr", on_click=_use_example, args=(u, g))
+    st.markdown("---")
+    st.markdown("#### 4️⃣ Demoblaze checkout — Self-heal demo")
     u = "https://www.demoblaze.com"
-    g = (
-        "Go to Laptops, add 'Sony vaio i5' to cart, open cart, place order, fill details, "
-        "complete purchase, and verify purchase confirmation."
-    )
+    g = "Go to Laptops, add 'Sony vaio i5' to cart, open cart, place order, fill details, complete purchase, and verify confirmation."
     c1, c2 = st.columns([3, 1])
-    with c1:
-        st.code(f"URL: {u}\nGoal: {g}", language="text")
-    with c2:
-        st.button("Use this", key="ex_demoblaze", on_click=_use_example, args=(u, g))
-
-    st.markdown("---")
-
-    # 3) AutomationExercise – Signup
-    st.markdown("#### 3️⃣ AutomationExercise – Signup")
-    u = "https://automationexercise.com"
-    g = (
-        "Open the homepage, click 'Signup / Login', register a new user with a random email, "
-        "and verify account creation."
-    )
-    c1, c2 = st.columns([3, 1])
-    with c1:
-        st.code(f"URL: {u}\nGoal: {g}", language="text")
-    with c2:
-        st.button("Use this", key="ex_signup", on_click=_use_example, args=(u, g))
-
-    st.markdown("---")
-
-    # 4) AutomationExercise – Contact Us
-    st.markdown("#### 4️⃣ AutomationExercise – Contact Us")
-    u = "https://automationexercise.com"
-    g = (
-        "Open the homepage, navigate to 'Contact us', fill the contact form with a sample "
-        "message, submit it, and verify the success confirmation."
-    )
-    c1, c2 = st.columns([3, 1])
-    with c1:
-        st.code(f"URL: {u}\nGoal: {g}", language="text")
-    with c2:
-        st.button("Use this", key="ex_contact", on_click=_use_example, args=(u, g))
-
-    st.markdown("</div>", unsafe_allow_html=True)
-
-
-# ===================== Inputs =====================
-
+    with c1: st.code(f"URL: {u}\nGoal: {g}", language="text")
+    with c2: st.button("Use this", key="ex_demo", on_click=_use_example, args=(u, g))
 
 st.markdown("---")
 cols = st.columns([3, 5, 2])
-
-with cols[0]:
-    target_url = st.text_input("Target URL", key="target_url_input")
-
-with cols[1]:
-    goal_prompt = st.text_input("Goal / Prompt", key="goal_prompt_input")
-
-with cols[2]:
-    engine = st.selectbox(
-        "Automation Engine",
-        ["Playwright (Python)"],
-        index=0,
-        help="Currently using Playwright Python harness.",
-    )
+with cols[0]: target_url = st.text_input("Target URL", key="target_url_input", placeholder="https://example.com")
+with cols[1]: goal_prompt = st.text_input("Goal / Prompt", key="goal_prompt_input", placeholder="Describe what you want to test...")
+with cols[2]: engine = st.selectbox("Automation Engine", ["Playwright (Python)"], index=0)
 
 run_button = st.button("🚀 Generate & Run", use_container_width=True)
 
-
-# ===================== Layout Placeholders =====================
-
-
 st.markdown("---")
-step_cols = st.columns(4)
+step_cols = st.columns(5)
 step_flow = step_cols[0].empty()
 step_script = step_cols[1].empty()
 step_exec = step_cols[2].empty()
 step_diag = step_cols[3].empty()
+step_visual = step_cols[4].empty()
 
 st.markdown("### 🧭 Discovered Flow")
 flow_box = st.empty()
-
 st.markdown("### 🧪 Generated Script")
 script_box = st.empty()
-
 st.markdown("### 📜 Execution Log")
 log_box = st.empty()
-
-st.markdown("### 🩻 Diagnosis & Self-Heal")
+st.markdown("### 🩹 Diagnosis & Self-Heal")
 diag_box = st.empty()
 repair_box = st.empty()
-
-
-# ===================== Main Pipeline =====================
-
+st.markdown("### 👁️ Visual Regression Guard")
+vr_box = st.empty()
 
 if run_button:
-    # New run: clear any previous repair script
     st.session_state["repaired_script"] = None
-
     if not target_url.strip() or not goal_prompt.strip():
-        st.warning("Please provide both a **Target URL** and a **Goal / Prompt**.")
+        st.warning("Please provide both a Target URL and a Goal / Prompt.")
     else:
         url = target_url.strip()
         goal = goal_prompt.strip()
-
-        # ---- Step 1: Flow Discovery ----
-        step_flow.markdown("**Step 1/4 – Flow Discovery:** ⏳ running...")
+        
+        step_flow.markdown("**Step 1/5 — Flow Discovery:** ⏳ running...")
         with st.spinner("Flow Discovery Agent is analyzing your goal & app..."):
             try:
                 flow = discover_flow(url, goal)
             except Exception as e:
                 flow = [f"Flow discovery failed: {e}"]
-
-        step_flow.markdown("**Step 1/4 – Flow Discovery:** ✅ completed")
-
-        if isinstance(flow, (list, tuple)):
-            flow_str = "\n".join(f"- {s}" for s in flow)
-        else:
-            flow_str = str(flow)
-
+        step_flow.markdown("**Step 1/5 — Flow Discovery:** ✅ completed")
+        flow_str = "\n".join(f"- {s}" for s in flow) if isinstance(flow, (list, tuple)) else str(flow)
         flow_box.markdown("**Discovered Flow:**")
         flow_box.code(flow_str, language="markdown")
-
-        # ---- Step 2: Script Generation ----
-        step_script.markdown("**Step 2/4 – Script Generation:** ⏳ running...")
+        
+        step_script.markdown("**Step 2/5 — Script Generation:** ⏳ running...")
         with st.spinner("Script Generation Agent is producing a Playwright script..."):
             try:
                 script_code = generate_script(url, goal)
             except Exception as e:
                 script_code = f"# Script generation failed: {e}"
-
-        if not isinstance(script_code, str):
-            script_code = str(script_code)
-
+        if not isinstance(script_code, str): script_code = str(script_code)
         st.session_state["last_script"] = script_code
-
         if _is_valid_playwright_script(script_code):
-            step_script.markdown("**Step 2/4 – Script Generation:** ✅ completed")
+            step_script.markdown("**Step 2/5 — Script Generation:** ✅ completed")
         else:
-            step_script.markdown("**Step 2/4 – Script Generation:** ❌ failed")
-
+            step_script.markdown("**Step 2/5 — Script Generation:** ❌ failed")
         script_box.markdown("**Generated Script:**")
         script_box.code(script_code, language="python")
-
-        # ---- Step 3 & 4: Execution + Self-Heal ----
+        
         if not _is_valid_playwright_script(script_code):
-            step_exec.markdown(
-                "**Step 3/4 – Execution:** ⏭️ skipped (no runnable script)"
-            )
-            step_diag.markdown(
-                "**Step 4/4 – Diagnosis & Self-Heal:** ⏭️ skipped"
-            )
+            step_exec.markdown("**Step 3/5 — Execution:** ⭕ skipped (no runnable script)")
+            step_diag.markdown("**Step 4/5 — Diagnosis & Self-Heal:** ⭕ skipped")
+            step_visual.markdown("**Step 5/5 — Visual Regression Guard:** ⭕ skipped")
+            vr_box.info("Visual regression guard skipped (no runnable script).")
         else:
-            success, log, _ = _run_execution(
-                script_code,
-                step_exec=step_exec,
-                log_box=log_box,
-                label="Execution",
-            )
-
+            success, log, screenshot_path = _run_execution(script_code, step_exec, log_box, "Execution")
             if not success:
-                _run_diagnosis_and_repair(
-                    script_code, log, step_diag, diag_box, repair_box
-                )
+                _run_diagnosis_and_repair(script_code, log, step_diag, diag_box, repair_box)
+                step_visual.markdown("**Step 5/5 — Visual Regression Guard:** ⭕ skipped (test failed)")
+                vr_box.info("Visual regression guard skipped because the test run failed.")
             else:
-                step_diag.markdown(
-                    "**Step 4/4 – Diagnosis & Self-Heal:** ✅ skipped (execution passed)"
-                )
-
-
-# ===================== Apply Repaired Script =====================
-
+                step_diag.markdown("**Step 4/5 — Diagnosis & Self-Heal:** ✅ skipped (execution passed)")
+                _run_visual_guard(url, goal, screenshot_path, step_visual, vr_box)
 
 if st.session_state.get("repaired_script"):
     st.markdown("---")
-    st.markdown("### 🔁 Apply Adaptive Repair")
-
+    st.markdown("### 🔧 Apply Adaptive Repair")
     if st.button("✅ Apply Fix & Re-Run", use_container_width=True, key="apply_fix"):
         repaired_script = st.session_state.get("repaired_script")
-
         if repaired_script and _is_valid_playwright_script(repaired_script):
-            # Reuse flow; show that we’re using the repaired script
-            step_flow.markdown(
-                "**Step 1/4 – Flow Discovery:** ♻️ reused from previous run"
-            )
-            step_script.markdown(
-                "**Step 2/4 – Script Generation:** ♻️ using repaired script from Adaptive Repair"
-            )
-
-            success, log, _ = _run_execution(
-                repaired_script,
-                step_exec=step_exec,
-                log_box=log_box,
-                label="Re-run (Repaired Script)",
-            )
-
+            step_flow.markdown("**Step 1/5 — Flow Discovery:** ♻️ reused from previous run")
+            step_script.markdown("**Step 2/5 — Script Generation:** ♻️ using repaired script from Adaptive Repair")
+            success, log, screenshot_path = _run_execution(repaired_script, step_exec, log_box, "Re-run (Repaired Script)")
             if success:
-                step_diag.markdown(
-                    "**Step 4/4 – Diagnosis & Self-Heal:** ✅ repaired script passed"
-                )
+                step_diag.markdown("**Step 4/5 — Diagnosis & Self-Heal:** ✅ repaired script passed")
+                _run_visual_guard(st.session_state.get("target_url_input", ""), st.session_state.get("goal_prompt_input", ""), screenshot_path, step_visual, vr_box)
                 st.session_state["repaired_script"] = None
             else:
-                _run_diagnosis_and_repair(
-                    repaired_script, log, step_diag, diag_box, repair_box
-                )
+                _run_diagnosis_and_repair(repaired_script, log, step_diag, diag_box, repair_box)
+                step_visual.markdown("**Step 5/5 — Visual Regression Guard:** ⭕ skipped (repaired test failed)")
+                vr_box.info("Visual regression guard skipped because the repaired run failed.")
         else:
             st.warning("Repaired script is not runnable; please review it manually.")

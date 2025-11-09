@@ -2,7 +2,7 @@
 
 from agents.script_generator import _script_demoblaze_checkout_v2
 
-# Centralized LLM helpers (under agents.llm). Fallbacks keep this optional.
+# Optional centralized LLM helpers (if present).
 try:
     from agents.llm.llm_client import llm_chat
     from agents.llm.llm_utils import has_meaningful_code_change, clean_llm_code
@@ -20,6 +20,29 @@ except ImportError:
             return text
 
 
+def _extract_demoblaze_base_url(script_code: str) -> str:
+    """
+    Extract clean base URL from a line like:
+        page.goto("https://www.demoblaze.com", wait_until="load")
+    Fallback to canonical if anything is odd.
+    """
+    base_url = "https://www.demoblaze.com"
+
+    for line in script_code.splitlines():
+        if "page.goto(" in line and "demoblaze" in line:
+            try:
+                frag = line.split("page.goto(", 1)[1].split(")", 1)[0]
+                # Only take the part before the first comma as the URL literal
+                url_part = frag.split(",", 1)[0].strip().strip('"').strip("'")
+                if url_part:
+                    base_url = url_part
+            except Exception:
+                pass
+            break
+
+    return base_url
+
+
 def self_heal(script_code: str, error_log: str):
     """
     Adaptive repair entrypoint.
@@ -27,9 +50,9 @@ def self_heal(script_code: str, error_log: str):
     Returns:
         (repaired_script: str | None, note: str)
 
-    Behavior:
-      1. Deterministic Demoblaze upgrade: broken v1 -> hardened v2.
-      2. Optional minimal LLM-based patch for other scripts.
+    Strategy:
+      1. Deterministic Demoblaze fix: ANY Demoblaze failure -> hardened v2.
+      2. Optional minimal LLM-based patch for other flows.
       3. Otherwise, no-op with explanation.
     """
     if not script_code:
@@ -41,29 +64,19 @@ def self_heal(script_code: str, error_log: str):
     # ---------- 1) Deterministic Demoblaze fix ----------
 
     if "demoblaze.com" in lower_log or "demoblaze.com" in lower_script:
-        if "sony vaio i5" in lower_log or "sony vaio i5" in lower_script:
-            # Try to infer base URL; fallback to canonical
-            base_url = "https://www.demoblaze.com"
-            for line in script_code.splitlines():
-                if "page.goto(" in line and "demoblaze" in line:
-                    frag = line.split("page.goto(")[1].split(")")[0]
-                    candidate = frag.strip().strip('"').strip("'")
-                    if candidate:
-                        base_url = candidate
-                    break
+        base_url = _extract_demoblaze_base_url(script_code)
+        note = (
+            "Detected Demoblaze checkout failure. "
+            "Replaced it with a hardened script using stable selectors and waits."
+        )
+        return _script_demoblaze_checkout_v2(base_url), note
 
-            note = (
-                "Replaced brittle Demoblaze checkout flow with hardened version "
-                "using better waits, stable selectors, and the correct confirmation check."
-            )
-            return _script_demoblaze_checkout_v2(base_url), note
-
-    # ---------- 2) Minimal LLM-based fix (conservative, optional) ----------
+    # ---------- 2) Minimal LLM-based fix (optional, conservative) ----------
 
     if llm_chat is not None:
         system_prompt = (
             "You are improving a flaky Playwright sync script used for browser automation tests. "
-            "Return ONLY a full Python script. "
+            "Return ONLY a full Python script that keeps the existing harness style. "
             "You may adjust selectors and add waits, but MUST NOT:\n"
             "- Change the overall scenario intent.\n"
             "- Add unrelated imports.\n"

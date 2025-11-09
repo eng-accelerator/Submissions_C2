@@ -18,7 +18,6 @@ def execute_script(script_code: str):
             "screenshot_path": str | None
         }
     """
-    # Basic validation
     if not script_code or not script_code.strip():
         return {
             "success": False,
@@ -31,7 +30,6 @@ def execute_script(script_code: str):
         with tempfile.NamedTemporaryFile(
             delete=False, suffix=".py", mode="w", encoding="utf-8"
         ) as tmp:
-            # Normalize indentation a bit and ensure trailing newline
             tmp.write(textwrap.dedent(script_code).strip() + "\n")
             tmp_path = tmp.name
     except Exception as e:
@@ -44,7 +42,6 @@ def execute_script(script_code: str):
     try:
         env = os.environ.copy()
 
-        # Run the script as a subprocess
         proc = subprocess.run(
             [sys.executable, tmp_path],
             capture_output=True,
@@ -56,16 +53,26 @@ def execute_script(script_code: str):
         stdout = proc.stdout or ""
         stderr = proc.stderr or ""
         combined_log = (stdout + ("\n" + stderr if stderr else "")).strip()
+        success = proc.returncode == 0
 
-        # Determine screenshot path: prefer success screenshot, else error screenshot
+        # Decide screenshot based on success/failure.
+        result_exists = os.path.exists("run_result.png")
+        error_exists = os.path.exists("run_error.png")
+
         screenshot_path = None
-        if os.path.exists("run_result.png"):
-            screenshot_path = "run_result.png"
-        elif os.path.exists("run_error.png"):
-            screenshot_path = "run_error.png"
+        if success:
+            if result_exists:
+                screenshot_path = "run_result.png"
+            elif error_exists:
+                screenshot_path = "run_error.png"
+        else:
+            if error_exists:
+                screenshot_path = "run_error.png"
+            elif result_exists:
+                screenshot_path = "run_result.png"
 
         return {
-            "success": proc.returncode == 0,
+            "success": success,
             "log": combined_log,
             "screenshot_path": screenshot_path,
         }
@@ -83,7 +90,6 @@ def execute_script(script_code: str):
             "screenshot_path": None,
         }
     finally:
-        # Always try to clean up the temp file
         try:
             os.remove(tmp_path)
         except Exception:
