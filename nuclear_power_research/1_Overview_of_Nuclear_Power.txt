@@ -1,0 +1,9 @@
+Overview of Nuclear Power
+
+Nuclear power is a form of energy production that harnesses the energy released from atomic nuclei through nuclear reactions. The most common method is nuclear fission, where heavy atomic nuclei such as uranium-235 or plutonium-239 split into smaller parts, releasing a significant amount of energy.
+
+History:
+The concept of nuclear energy emerged in the early 20th century, with key discoveries in atomic theory and radioactivity. The first controlled nuclear chain reaction was achieved by Enrico Fermi in 1942. The first commercial nuclear power plant began operation in the 1950s.
+
+Basic Principles:
+Nuclear reactors use fuel rods containing fissile material. When atoms in the fuel undergo fission, they release heat, which is used to produce steam. This steam drives turbines connected to generators, producing electricity. Control rods and coolant systems regulate the reaction and maintain safety.

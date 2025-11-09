@@ -1,0 +1,13 @@
+Advantages and Disadvantages of Nuclear Energy
+
+Advantages:
+1. Low Greenhouse Gas Emissions: Nuclear power produces minimal CO2 compared to fossil fuels.
+2. High Energy Density: A small amount of nuclear fuel can produce a large amount of energy.
+3. Reliability: Nuclear plants provide stable base-load power and operate continuously for long periods.
+4. Energy Security: Reduces dependence on imported fossil fuels.
+
+Disadvantages:
+1. Radioactive Waste: Nuclear reactors produce waste that remains hazardous for thousands of years.
+2. High Costs: Construction and decommissioning of nuclear plants are expensive.
+3. Risk of Accidents: Incidents like Chernobyl and Fukushima highlight potential dangers.
+4. Limited Fuel Supply: Uranium resources are finite and require careful management.
