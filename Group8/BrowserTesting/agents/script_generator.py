@@ -2,7 +2,6 @@
 
 import textwrap
 import os
-import hashlib
 from urllib.parse import urlparse
 
 try:
@@ -53,6 +52,8 @@ def _indent(code: str, spaces: int = 12) -> str:
     return textwrap.indent(code.strip("\n"), " " * spaces)
 
 
+# ==================== Herokuapp Examples ====================
+
 def _script_login_internet(url: str) -> str:
     body = f"""\
 # Scenario: Herokuapp login
@@ -65,6 +66,55 @@ page.screenshot(path="run_result.png", full_page=True)
 """
     return HARNESS_HEADER + _indent(body) + "\n" + HARNESS_FOOTER
 
+
+def _script_dynamic_content(url: str) -> str:
+    body = f"""\
+# Scenario: Dynamic Content
+page.goto("{url}")
+page.wait_for_selector("div#content", timeout=5000)
+page.wait_for_timeout(1000)
+page.screenshot(path="run_result.png", full_page=True)
+"""
+    return HARNESS_HEADER + _indent(body) + "\n" + HARNESS_FOOTER
+
+
+def _script_dropdown(url: str) -> str:
+    body = f"""\
+# Scenario: Dropdown Selection
+page.goto("{url}")
+page.select_option("#dropdown", "1")
+page.wait_for_timeout(500)
+page.screenshot(path="run_result.png", full_page=True)
+"""
+    return HARNESS_HEADER + _indent(body) + "\n" + HARNESS_FOOTER
+
+
+def _script_file_upload(url: str) -> str:
+    body = f"""\
+# Scenario: File Upload
+import tempfile
+import os
+
+page.goto("{url}")
+
+# Create a temporary test file
+with tempfile.NamedTemporaryFile(mode='w', suffix='.txt', delete=False) as tmp:
+    tmp.write("Test file for upload")
+    tmp_path = tmp.name
+
+try:
+    page.set_input_files("#file-upload", tmp_path)
+    page.click("#file-submit")
+    page.wait_for_selector("#uploaded-files", timeout=5000)
+    page.screenshot(path="run_result.png", full_page=True)
+finally:
+    if os.path.exists(tmp_path):
+        os.remove(tmp_path)
+"""
+    return HARNESS_HEADER + _indent(body) + "\n" + HARNESS_FOOTER
+
+
+# ==================== Saucedemo Examples ====================
 
 def _script_saucedemo_checkout_baseline(url: str) -> str:
     body = f"""\
@@ -87,10 +137,7 @@ page.screenshot(path="run_result.png", full_page=True)
 
 
 def _get_visual_regression_counter():
-    """
-    Track how many times Example 3 has been run using a counter file.
-    Returns the current count and increments it.
-    """
+    """Track how many times Example 3 has been run using a counter file."""
     counter_file = "visual_regression_counter.txt"
     
     try:
@@ -102,7 +149,6 @@ def _get_visual_regression_counter():
     except Exception:
         count = 0
     
-    # Increment for next run
     try:
         with open(counter_file, 'w') as f:
             f.write(str(count + 1))
@@ -113,26 +159,16 @@ def _get_visual_regression_counter():
 
 
 def _script_saucedemo_visual_regression_demo(url: str) -> str:
-    """
-    Alternates between cart and inventory views based on run counter.
-    Even runs (0, 2, 4...): Cart page
-    Odd runs (1, 3, 5...): Inventory page
-    This ensures visual differences are detected.
-    """
     run_count = _get_visual_regression_counter()
-    
-    # Determine which view to show
     is_cart_view = (run_count % 2 == 0)
     
     print(f"\n{'='*60}")
     print(f"[Script Generator] Visual Regression Demo")
     print(f"  Run count: {run_count}")
     print(f"  View: {'CART' if is_cart_view else 'INVENTORY'}")
-    print(f"  Expected: Run {run_count} should {'CREATE baseline' if run_count == 0 else 'COMPARE vs baseline'}")
     print(f"{'='*60}\n")
     
     if is_cart_view:
-        # CART VIEW - Shows cart page with item
         body = f"""\
 # Scenario: Saucedemo Visual Regression Demo (CART VIEW - Run {run_count})
 print("\\n=== VISUAL REGRESSION: Generating CART view ===\\n")
@@ -145,7 +181,6 @@ page.click("#login-button")
 page.wait_for_selector(".inventory_item", timeout=5000)
 page.click("button#add-to-cart-sauce-labs-backpack")
 
-# Navigate to CART page
 page.click("a.shopping_cart_link")
 page.wait_for_selector(".cart_item", timeout=5000)
 
@@ -153,7 +188,6 @@ print("\\n=== Screenshot: CART page with items ===\\n")
 page.screenshot(path="run_result.png", full_page=True)
 """
     else:
-        # INVENTORY VIEW - Shows inventory page (different from cart)
         body = f"""\
 # Scenario: Saucedemo Visual Regression Demo (INVENTORY VIEW - Run {run_count})
 print("\\n=== VISUAL REGRESSION: Generating INVENTORY view ===\\n")
@@ -166,7 +200,6 @@ page.click("#login-button")
 page.wait_for_selector(".inventory_item", timeout=5000)
 page.click("button#add-to-cart-sauce-labs-backpack")
 
-# Stay on INVENTORY page (different from cart)
 page.wait_for_timeout(500)
 
 print("\\n=== Screenshot: INVENTORY page ===\\n")
@@ -175,6 +208,8 @@ page.screenshot(path="run_result.png", full_page=True)
     
     return HARNESS_HEADER + _indent(body) + "\n" + HARNESS_FOOTER
 
+
+# ==================== Demoblaze Examples ====================
 
 def _script_demoblaze_checkout_v1(url: str) -> str:
     body = f"""\
@@ -236,6 +271,8 @@ def _script_demoblaze_checkout_v2(url: str) -> str:
     return script_demoblaze_checkout_fixed(url)
 
 
+# ==================== Generic LLM ====================
+
 def _script_generic(url: str, goal: str) -> str:
     system_prompt = "You are a senior QA engineer generating Playwright sync code. You ONLY write Python code that uses an existing `page` object."
     user_prompt = f"URL under test: {url}\nTest goal: {goal}\n\nWrite ONLY Python code using Playwright sync API on `page`.\nRules:\n- Do NOT import anything or start Playwright.\n- Do NOT define run() or main().\n- Start with page.goto(\"{url}\", wait_until=\"load\").\n- Add waits where appropriate.\n- On success, call page.screenshot(path=\"run_result.png\", full_page=True).\n"
@@ -258,6 +295,8 @@ page.screenshot(path="run_result.png", full_page=True)
     return HARNESS_HEADER + _indent(code) + "\n" + HARNESS_FOOTER
 
 
+# ==================== Router ====================
+
 def generate_script(url: str, goal: str) -> str:
     url = (url or "").strip()
     goal = (goal or "").strip()
@@ -265,14 +304,24 @@ def generate_script(url: str, goal: str) -> str:
     domain = (parsed.netloc or "").lower()
     goal_l = goal.lower()
 
+    # Herokuapp examples
     if "the-internet.herokuapp.com" in domain:
-        return _script_login_internet(url)
+        if "login" in goal_l:
+            return _script_login_internet(url)
+        elif "dynamic" in goal_l:
+            return _script_dynamic_content(url)
+        elif "dropdown" in goal_l:
+            return _script_dropdown(url)
+        elif "upload" in goal_l:
+            return _script_file_upload(url)
 
+    # Saucedemo examples
     if "saucedemo.com" in domain:
         if "intentionally" in goal_l or "demonstrate visual regression" in goal_l:
             return _script_saucedemo_visual_regression_demo(url)
         return _script_saucedemo_checkout_baseline(url)
 
+    # Demoblaze self-heal
     if "demoblaze.com" in domain and "sony vaio i5" in goal_l:
         return _script_demoblaze_checkout_v1(url)
 
