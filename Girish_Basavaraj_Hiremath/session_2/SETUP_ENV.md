@@ -32,20 +32,20 @@ Create a file named `.env` in the `Day_6/session_2/` folder with the following c
 **Windows (Command Prompt):**
 ```cmd
 cd C:\Users\gengi\OneDrive\Desktop\ai-accelerator-C2\Day_6\session_2
-echo OPENROUTER_API_KEY=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 > .env
+echo OPENROUTER_API_KEY=open-router-key > .env
 ```
 
 **Windows (PowerShell):**
 ```powershell
 cd "C:\Users\gengi\OneDrive\Desktop\ai-accelerator-C2\Day_6\session_2"
-"OPENROUTER_API_KEY=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" | Out-File -FilePath .env -Encoding utf8
+"OPENROUTER_API_KEY=open-router-key" | Out-File -FilePath .env -Encoding utf8
 ```
 
 **Using a Text Editor:**
 1. Open Notepad, VS Code, or any text editor
 2. Paste this content:
    ```
-   OPENROUTER_API_KEY=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
+   OPENROUTER_API_KEY=open-router-key
    ```
 3. Save the file as `.env` (with the dot at the start) in the `session_2` folder
 4. Make sure it's saved as a plain text file (not `.env.txt`)
@@ -56,7 +56,7 @@ Your `.env` file should:
 - Be located at: `Day_6/session_2/.env`
 - Contain exactly:
   ```
-  OPENROUTER_API_KEY=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
+  OPENROUTER_API_KEY=open-router-key
   ```
 - Have no extra spaces or quotes around the key
 
@@ -146,12 +146,12 @@ If you prefer to set environment variables directly (without .env file):
 
 **Windows (Command Prompt):**
 ```cmd
-set OPENROUTER_API_KEY=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
+set OPENROUTER_API_KEY=open-router-key
 ```
 
 **Windows (PowerShell):**
 ```powershell
-$env:OPENROUTER_API_KEY="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"
+$env:OPENROUTER_API_KEY="open-router-key"
 ```
 
 **Note**: These only last for the current session. `.env` file is more convenient.
