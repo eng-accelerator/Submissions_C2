@@ -11,7 +11,7 @@ A web-based interface for the Multi-Agent AI Researcher system that uses multipl
 - 💾 **Export Results**: Download research reports as text files
 - ⚡ **Performance Metrics**: Track processing times for each agent
 
-## Installation
+### Installation
 
 1. Install the required packages:
 ```bash
