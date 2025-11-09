@@ -51,13 +51,10 @@ You: "I understand that feeling! Sometimes taking a break helps. If you're stuck
 1. **Login Validation** (the-internet.herokuapp.com) - Basic auth flow testing
 2. **Add to Cart** (saucedemo.com) - E-commerce cart functionality
 3. **Visual Regression Demo** (saucedemo.com) - Alternates between views to demonstrate visual changes
-4. **Contact Form** (automationexercise.com) - Form submission testing
-5. **Checkout with Self-Heal** (demoblaze.com) - Intentionally broken script that auto-repairs
-6. **Dynamic Content** (herokuapp) - Handles dynamically loaded elements
-7. **Drag and Drop** (herokuapp) - Tests drag-drop interactions
-8. **File Upload** (herokuapp) - Upload functionality testing
-9. **Dropdown Selection** (herokuapp) - Dropdown interaction testing
-10. **Multiple Windows** (herokuapp) - Multi-window/tab handling
+4. **Checkout with Self-Heal** (demoblaze.com) - Intentionally broken script that auto-repairs
+5. **Dropdown Selection** (herokuapp) - Dropdown interaction testing
+6. **File Upload** (herokuapp) - Upload functionality testing
+7. **Dynamic Content** (herokuapp) - Handles dynamically loaded elements
 
 **KEY FEATURES:**
 
@@ -204,28 +201,25 @@ Remember: You're a helpful companion, not just a documentation bot. Be friendly!
                 "   - Example 1: Login test (simple, stable)\n"
                 "   - Example 2: Add to cart (e-commerce basics)\n\n"
                 "🔧 **Self-Healing Demo:**\n"
-                "   - Example 5: Demoblaze checkout (auto-repairs broken selectors)\n\n"
+                "   - Example 4: Demoblaze checkout (auto-repairs broken selectors)\n\n"
                 "👁️ **Visual Regression:**\n"
                 "   - Example 3: Saucedemo (run twice to see baseline → comparison)\n\n"
-                "⚡ **Advanced Interactions:**\n"
-                "   - Example 7: Drag and drop\n"
-                "   - Example 8: File upload\n"
-                "   - Example 10: Multiple windows\n\n"
-                "💡 **Tip:** Check the 'Enable Self-Heal' and 'Enable Visual Regression' options!"
+                "⚡ **UI Component Testing:**\n"
+                "   - Example 5: Dropdown selection\n"
+                "   - Example 6: File upload\n"
+                "   - Example 7: Dynamic content\n\n"
+                "💡 **Tip:** Try Example 3 or 4 to see the advanced features in action!"
             ),
             
             ("examples list", "all examples", "list examples", "available scenarios"): (
-                "**All 10 Test Scenarios:**\n\n"
-                "1. Login Validation (herokuapp)\n"
-                "2. Add to Cart (saucedemo)\n"
+                "**All 7 Test Scenarios:**\n\n"
+                "1. Login Validation (herokuapp) - Basic form interaction\n"
+                "2. Add to Cart (saucedemo) - E-commerce flow\n"
                 "3. Visual Regression Demo (saucedemo) ⭐\n"
-                "4. Contact Form (automationexercise)\n"
-                "5. Checkout with Self-Heal (demoblaze) ⭐\n"
-                "6. Dynamic Content (herokuapp)\n"
-                "7. Drag and Drop (herokuapp)\n"
-                "8. File Upload (herokuapp)\n"
-                "9. Dropdown Selection (herokuapp)\n"
-                "10. Multiple Windows (herokuapp)\n\n"
+                "4. Checkout with Self-Heal (demoblaze) ⭐\n"
+                "5. Dropdown Selection (herokuapp) - UI component testing\n"
+                "6. File Upload (herokuapp) - File handling\n"
+                "7. Dynamic Content (herokuapp) - Wait & load testing\n\n"
                 "⭐ = Recommended for feature demos\n\n"
                 "💡 **You can also test ANY website!** Just enter your own URL and describe what you want to test."
             ),
@@ -452,7 +446,7 @@ Remember: You're a helpful companion, not just a documentation bot. Be friendly!
         Get detailed information about a specific example.
         
         Args:
-            example_number: Example number (1-10)
+            example_number: Example number (1-7)
         """
         examples = {
             1: {
@@ -477,58 +471,37 @@ Remember: You're a helpful companion, not just a documentation bot. Be friendly!
                 "tip": "Run twice to see baseline creation → comparison workflow"
             },
             4: {
-                "name": "Contact Form",
-                "site": "automationexercise.com",
-                "description": "Tests form submission with multiple fields",
-                "features": ["Form filling", "Submission", "Success message verification"],
-                "tip": "Good example of handling contact/feedback forms"
-            },
-            5: {
                 "name": "Checkout with Self-Heal",
                 "site": "demoblaze.com",
                 "description": "Intentionally broken script that demonstrates automatic repair",
                 "features": ["Self-healing", "Selector repair", "Multi-step checkout"],
                 "tip": "Enable Self-Heal to see automatic script repair in action!"
             },
-            6: {
-                "name": "Dynamic Content",
-                "site": "the-internet.herokuapp.com",
-                "description": "Handles dynamically loaded content",
-                "features": ["Dynamic waits", "Content verification", "Timing handling"],
-                "tip": "Shows how to wait for elements that load asynchronously"
-            },
-            7: {
-                "name": "Drag and Drop",
-                "site": "the-internet.herokuapp.com",
-                "description": "Tests drag-and-drop interactions",
-                "features": ["Mouse actions", "Element manipulation", "Position verification"],
-                "tip": "Demonstrates advanced mouse interaction patterns"
-            },
-            8: {
-                "name": "File Upload",
-                "site": "the-internet.herokuapp.com",
-                "description": "Tests file upload functionality",
-                "features": ["File input", "Temporary file creation", "Upload verification"],
-                "tip": "Shows how to handle file inputs and uploads"
-            },
-            9: {
+            5: {
                 "name": "Dropdown Selection",
                 "site": "the-internet.herokuapp.com",
                 "description": "Tests dropdown/select element interaction",
                 "features": ["Dropdown handling", "Option selection", "Value verification"],
                 "tip": "Simple example of working with select elements"
             },
-            10: {
-                "name": "Multiple Windows",
+            6: {
+                "name": "File Upload",
                 "site": "the-internet.herokuapp.com",
-                "description": "Tests handling multiple browser windows/tabs",
-                "features": ["Window management", "Context switching", "Multi-window verification"],
-                "tip": "Shows how to work with multiple browser contexts"
+                "description": "Tests file upload functionality",
+                "features": ["File input", "Temporary file creation", "Upload verification"],
+                "tip": "Shows how to handle file inputs and uploads"
+            },
+            7: {
+                "name": "Dynamic Content",
+                "site": "the-internet.herokuapp.com",
+                "description": "Handles dynamically loaded content",
+                "features": ["Dynamic waits", "Content verification", "Timing handling"],
+                "tip": "Shows how to wait for elements that load asynchronously"
             },
         }
         
         if example_number not in examples:
-            return f"Example {example_number} not found. Available examples: 1-10"
+            return f"Example {example_number} not found. Available examples: 1-7"
         
         ex = examples[example_number]
         return (
