@@ -118,7 +118,7 @@ Repository structure (important folders)
 Contact
 - Project Members: 
 - Maintainer: Prasanna Neelavar — prasanna.neelavar@gmail.com
-- Ashish Saha
+- Ashish Sahu - ashyshs at gmail
 - Saravanan K (Saro)
 - Manohar Negi
 - Srinivas K
