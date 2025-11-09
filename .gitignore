@@ -1,1 +1,56 @@
-.gitignore
+# Environment
+.env
+*.env
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# Vector stores
+vector_stores/
+*.faiss
+*.pkl
+
+# Logs
+*.log
+logs/
+uploaded_logs/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data
+data/
+*.db
+
+# Generated files
+cookbooks/*.json
+!cookbooks/.gitkeep
+
+# Streamlit
+.streamlit/
+
+# Temporary files
+*.tmp
+*.bak
+*~
+
+# Hackathon specific
+STATUS.txt
+JUDGE_REVIEW.md
+PROJECT_SUMMARY.md
+

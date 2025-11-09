@@ -1,0 +1,42 @@
+# Core LangChain & LangGraph
+langchain>=0.2.0
+langchain-community>=0.2.0
+langchain-core>=0.2.0
+langchain-openai>=0.1.0
+langgraph>=0.1.0
+langsmith>=0.1.0
+
+# Embeddings and Models
+langchain-huggingface>=1.0.0
+sentence-transformers>=2.2.2
+openai>=1.6.1
+tiktoken>=0.5.2
+
+# Vector Stores
+faiss-cpu>=1.7.4
+chromadb>=0.4.22
+
+# Document Processing
+pypdf>=3.17.4
+python-docx>=1.1.0
+
+# Web Framework
+streamlit>=1.29.0
+streamlit-extras>=0.4.0
+
+# API Integrations
+slack-sdk>=3.23.0
+jira>=3.5.2
+requests>=2.31.0
+
+# Utilities
+python-dotenv>=1.0.0
+pydantic>=2.5.3
+pandas>=2.1.4
+numpy>=1.26.2
+plotly>=5.18.0
+
+# Async
+aiohttp>=3.9.0
+asyncio>=3.4.3
+

@@ -1,0 +1,18 @@
+# Database & Data Layer Errors - Sample Logs
+
+2024-11-07 07:55:20 CRITICAL [PostgreSQL] Database replication lag: replica db-slave-02 is 45 minutes behind master
+2024-11-07 07:55:23 ERROR [MySQL] Deadlock detected: transaction rolled back, tables users and orders locked
+2024-11-07 07:55:25 ERROR [MongoDB] Replica set member down: mongo-replica-3:27017 unreachable, election in progress
+2024-11-07 07:55:28 CRITICAL [Redis] Master node failed: redis-master-01:6379 not responding, failover to slave initiated
+2024-11-07 07:55:30 ERROR [Elasticsearch] Cluster status RED: 5 shards unassigned, data loss possible
+2024-11-07 07:55:33 ERROR [Query-Performance] Slow query detected: SELECT * FROM transactions taking 45s, missing index on user_id
+2024-11-07 07:55:35 CRITICAL [Data-Corruption] Checksum mismatch detected: corrupted data blocks in table customer_orders
+2024-11-07 07:55:38 ERROR [Connection-Pool] Database connection pool exhausted: 200/200 connections in use, requests queuing
+2024-11-07 07:55:40 ERROR [Cassandra] Node cassandra-node-4 status DOWN: gossip timeout, consistency level cannot be achieved
+2024-11-07 07:55:43 CRITICAL [Backup] Automated backup failed for database prod_orders: insufficient disk space on backup volume
+2024-11-07 07:55:45 ERROR [Migration] Database schema migration v2.5.0 failed: foreign key constraint violation on table payments
+2024-11-07 07:55:48 ERROR [NoSQL] DynamoDB hot partition detected: partition key user_status=active receiving 90% of traffic
+2024-11-07 07:55:50 WARNING [Storage] Table growth alert: audit_logs table size 500GB, 85% of allocated storage
+2024-11-07 07:55:53 CRITICAL [Transaction] Distributed transaction timeout: 2-phase commit failed across 3 databases
+2024-11-07 07:55:55 ERROR [Cache] Cache stampede detected: 10000 simultaneous requests for expired key product_catalog
+

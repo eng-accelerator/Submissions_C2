@@ -1,0 +1,18 @@
+# Cloud Infrastructure Errors - Sample Logs
+
+2024-11-07 05:30:15 CRITICAL [AWS-EC2] Instance i-0abc123def456 terminated unexpectedly: StatusCheckFailed_System, hardware failure
+2024-11-07 05:30:18 ERROR [AWS-RDS] Database instance db-prod-master in failed state: storage full, automatic backup failed
+2024-11-07 05:30:20 ERROR [AWS-ELB] Target group TG-WebApp-Prod all targets unhealthy: health check failing on /health endpoint
+2024-11-07 05:30:23 CRITICAL [AWS-Lambda] Function ProcessOrders throttled: concurrent execution limit (1000) exceeded
+2024-11-07 05:30:25 ERROR [AWS-S3] Bucket access denied: s3://prod-data-backup insufficient IAM permissions for PutObject
+2024-11-07 05:30:28 ERROR [AWS-CloudFront] Distribution E2ABCDEF12345 returning 502 errors: origin connection timeout
+2024-11-07 05:30:30 WARNING [AWS-Auto-Scaling] Auto Scaling group failed to launch instances: InsufficientInstanceCapacity in us-east-1a
+2024-11-07 05:30:33 CRITICAL [AWS-Route53] Health check CRITICAL for endpoint api.production.com: 100% failure rate
+2024-11-07 05:30:35 ERROR [Azure-VNet] Virtual Network Gateway disconnected: BGP session down, VPN tunnel inactive
+2024-11-07 05:30:38 ERROR [GCP-GKE] Cluster node pool exhausted: no available nodes, quota limit reached in zone us-central1-a
+2024-11-07 05:30:40 CRITICAL [AWS-DynamoDB] Table OrdersTable throttled: consumed read capacity exceeds provisioned 1000 RCU
+2024-11-07 05:30:43 ERROR [AWS-SNS] Message delivery failed to topic arn:aws:sns:us-east-1:123:alerts: endpoint unreachable
+2024-11-07 05:30:45 ERROR [AWS-Secrets] Secret rotation failed for prod/database/password: Lambda function execution error
+2024-11-07 05:30:48 WARNING [AWS-Cost] Budget alert: November spend at $45,000 exceeds forecasted $40,000 by 12.5%
+2024-11-07 05:30:50 CRITICAL [Multi-Region] Cross-region replication lag: 15 minutes behind primary region, data consistency at risk
+

@@ -1,0 +1,18 @@
+# Kubernetes Production Errors - Sample Logs
+
+2024-11-07 03:15:23 ERROR [K8s-Scheduler] Failed to schedule pod frontend-deployment-7d9f8b5c-xk2mn: 0/5 nodes available, 3 Insufficient memory, 2 node(s) had taint
+2024-11-07 03:15:25 CRITICAL [K8s-API] etcd cluster unhealthy: member 1a2b3c4d is unreachable, quorum lost
+2024-11-07 03:15:27 ERROR [Pod] CrashLoopBackOff for pod payment-service-6f8d9c-qwer in namespace prod, restart count: 15
+2024-11-07 03:15:30 WARNING [K8s-HPA] HorizontalPodAutoscaler failed to get CPU utilization: unable to get metrics for resource cpu
+2024-11-07 03:15:33 CRITICAL [K8s-Node] Node worker-node-3 NotReady: kubelet stopped posting node status
+2024-11-07 03:15:35 ERROR [Ingress] IngressController nginx-ingress-controller crashed: panic: runtime error: invalid memory address
+2024-11-07 03:15:38 ERROR [PV] PersistentVolumeClaim data-mysql-0 in Lost state: volume mount failed, no such file or directory
+2024-11-07 03:15:40 CRITICAL [K8s-Master] kube-controller-manager not responding, control plane degraded
+2024-11-07 03:15:43 ERROR [ServiceMesh] Istio sidecar injection failed for deployment user-api: webhook admission error
+2024-11-07 03:15:45 WARNING [K8s-Resource] Namespace prod exceeding ResourceQuota: requests.memory 95% of 100Gi limit
+2024-11-07 03:15:48 ERROR [CNI] Container Network Interface plugin failure: failed to allocate IP address from subnet 10.244.0.0/16
+2024-11-07 03:15:50 CRITICAL [ImagePull] Failed to pull image redis:7.0.5 from registry: unauthorized, authentication required
+2024-11-07 03:15:53 ERROR [Liveness] Liveness probe failed for container api-gateway: HTTP probe failed with status code 503
+2024-11-07 03:15:55 ERROR [ConfigMap] ConfigMap app-config not found in namespace production
+2024-11-07 03:15:58 WARNING [PodDisruptionBudget] PodDisruptionBudget violation: disruption budget requires 3 available, found 2
+

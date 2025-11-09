@@ -1,0 +1,24 @@
+# Sample DevOps Operational Logs
+# Use these for testing the Multi-Agent Incident Analysis Suite
+
+2024-11-06 14:23:45 ERROR [DatabasePool] Connection timeout after 30s - host: db.prod.local:5432, database: users_db
+2024-11-06 14:23:46 CRITICAL [ApplicationServer] OutOfMemoryError: Java heap space, current: 3.8GB/4GB, triggered by UserService.loadAll()
+2024-11-06 14:23:47 ERROR [LoadBalancer] HTTP 503 Service Unavailable - upstream /api/v1/users timed out, backend: 192.168.1.45:8080
+2024-11-06 14:23:48 WARNING [Metrics] High CPU usage detected: node-3 at 95%, top process: java (PID: 1234)
+2024-11-06 14:23:50 ERROR [ServiceMesh] Connection refused: tcp://auth-service:8080, max retries exceeded (3/3)
+2024-11-06 14:23:52 CRITICAL [DiskMonitor] Disk space full on /var/log partition - 100% usage (0 bytes free), cannot write logs
+2024-11-06 14:23:55 ERROR [UserController] NullPointerException at UserController.getUser() line 247, userId was null
+2024-11-06 14:23:58 ERROR [AuthService] Authentication failed for user admin@example.com - JWT token expired (issued: 2024-11-05, expiry: 2024-11-06 12:00)
+2024-11-06 14:24:00 WARNING [MemoryMonitor] Memory usage at 85% (6.8GB/8GB) - consider horizontal scaling
+2024-11-06 14:24:02 ERROR [DNSResolver] Failed to resolve DNS for api.external.com - timeout after 10s, nameserver: 8.8.8.8
+2024-11-06 14:24:05 ERROR [PaymentGateway] HTTP 500 Internal Server Error - exception in payment processing, transaction_id: txn_abc123
+2024-11-06 14:24:08 CRITICAL [RedisCluster] Redis master node down - 192.168.1.20:6379 unreachable, failover initiated
+2024-11-06 14:24:10 WARNING [RateLimiter] Rate limit exceeded for IP 203.45.67.89 - 1000 requests in 1 minute, threshold: 100/min
+2024-11-06 14:24:15 ERROR [EmailService] SMTP connection failed - host: smtp.gmail.com:587, error: SSL certificate verification failed
+2024-11-06 14:24:18 INFO [HealthCheck] /health endpoint responding normally - all dependencies green
+2024-11-06 14:24:20 ERROR [KafkaConsumer] Message consumption lagging - current offset: 1000, latest: 15000, lag: 14000 messages
+2024-11-06 14:24:25 CRITICAL [SecurityAlert] Potential SQL injection detected - query: 'SELECT * FROM users WHERE id=' OR '1'='1', source IP: 45.67.89.12
+2024-11-06 14:24:30 WARNING [APIGateway] Slow response time on /api/v1/orders - p99: 5000ms, threshold: 1000ms
+2024-11-06 14:24:35 ERROR [S3Bucket] Access denied to s3://prod-backups/daily/ - insufficient IAM permissions for role backup-service
+2024-11-06 14:24:40 INFO [Deployment] New version v2.3.1 deployed successfully to production, health checks passing
+

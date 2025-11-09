@@ -1,0 +1,18 @@
+# Microservices Architecture Errors - Sample Logs
+
+2024-11-07 04:22:10 ERROR [API-Gateway] Circuit breaker OPEN for service user-service: 50% failure rate over 10s window
+2024-11-07 04:22:12 CRITICAL [Service-Discovery] Consul cluster split-brain detected: 3 nodes in partition A, 2 nodes in partition B
+2024-11-07 04:22:15 ERROR [Distributed-Tracing] Jaeger collector unreachable: connection timeout after 5s, traces being dropped
+2024-11-07 04:22:18 ERROR [Message-Queue] RabbitMQ queue orders.processing at capacity: 50000 messages, consumers stalled
+2024-11-07 04:22:20 CRITICAL [Saga-Pattern] Distributed transaction failed: payment-service timeout, rollback initiated for order-123456
+2024-11-07 04:22:23 ERROR [gRPC] RPC failed: rpc error: code = Unavailable desc = connection refused to inventory-service:50051
+2024-11-07 04:22:25 WARNING [Rate-Limiter] API rate limit exceeded for client app-mobile-v2: 10000 req/hour limit reached
+2024-11-07 04:22:28 ERROR [Service-Mesh] Envoy proxy sidecar OOMKilled: memory limit 512Mi exceeded, current usage 520Mi
+2024-11-07 04:22:30 CRITICAL [Event-Bus] Kafka broker down: broker-2 (id: 2) disconnected, under-replicated partitions: 45
+2024-11-07 04:22:33 ERROR [Auth-Service] JWT token validation failed: signature verification error, invalid issuer claim
+2024-11-07 04:22:35 ERROR [BFF] Backend-for-Frontend timeout: aggregate query to 5 services exceeded 10s deadline
+2024-11-07 04:22:38 WARNING [Health-Check] Service recommendation-service failing health checks: 3/5 instances unhealthy
+2024-11-07 04:22:40 CRITICAL [Data-Consistency] Eventual consistency violation detected: read-after-write inconsistency for user-456789
+2024-11-07 04:22:43 ERROR [API-Versioning] Deprecated API v1 endpoint called: /api/v1/users, support ends 2024-11-30
+2024-11-07 04:22:45 ERROR [Service-Dependency] Cascade failure detected: cart-service -> payment-service -> fraud-detection offline
+

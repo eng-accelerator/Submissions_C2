@@ -1,0 +1,18 @@
+# Security & Compliance Errors - Sample Logs
+
+2024-11-07 06:45:12 CRITICAL [WAF] SQL injection attack blocked: 250 attempts from IP 45.67.89.123 in last 60 seconds
+2024-11-07 06:45:15 CRITICAL [Security] Brute force attack detected: 500 failed login attempts for user admin@company.com
+2024-11-07 06:45:18 ERROR [SSL/TLS] Certificate expiration warning: wildcard cert *.production.com expires in 3 days
+2024-11-07 06:45:20 CRITICAL [Intrusion-Detection] Malware detected: suspicious binary /tmp/.hidden_miner executing on server web-03
+2024-11-07 06:45:23 ERROR [OAuth] Token leakage detected: access token found in application logs, immediate rotation required
+2024-11-07 06:45:25 CRITICAL [DDoS] Distributed Denial of Service attack: 50,000 req/sec from botnet, exceeding normal 500 req/sec
+2024-11-07 06:45:28 ERROR [Encryption] Data at rest not encrypted: volume vol-0abc123 missing encryption, compliance violation
+2024-11-07 06:45:30 CRITICAL [Privilege-Escalation] Unauthorized sudo access attempt by user developer01 on production database server
+2024-11-07 06:45:33 ERROR [Firewall] Security group rule violation: port 22 (SSH) exposed to 0.0.0.0/0 on production instance
+2024-11-07 06:45:35 CRITICAL [Data-Breach] Unauthorized data export detected: 10GB customer PII downloaded by suspended user account
+2024-11-07 06:45:38 ERROR [Compliance] GDPR violation: user data retained beyond 30-day deletion request, audit finding
+2024-11-07 06:45:40 ERROR [MFA] Multi-factor authentication bypass attempt: anomalous login from new location Russia
+2024-11-07 06:45:43 CRITICAL [Ransomware] File encryption activity detected: 1000+ files modified with .encrypted extension
+2024-11-07 06:45:45 ERROR [API-Security] Exposed API key found in public GitHub repository: key sk-prod-abc123xyz active
+2024-11-07 06:45:48 WARNING [Vulnerability] CVE-2024-12345 HIGH severity vulnerability detected in log4j version 2.14.0
+
