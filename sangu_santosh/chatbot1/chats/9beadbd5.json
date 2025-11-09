@@ -1,0 +1,22 @@
+{
+  "id": "9beadbd5",
+  "title": "I’m not sure which country you’re asking about—could you…",
+  "created": "2025-10-31T12:25:30.791946+00:00",
+  "updated": "2025-10-31T12:35:55.482936+00:00",
+  "persona": "General",
+  "model": "openai/gpt-oss-20b:free",
+  "messages": [
+    {
+      "role": "user",
+      "content": "who is the current president?"
+    },
+    {
+      "role": "assistant",
+      "content": "🔵 **Detected Language:** English\n\n🎯 **Translation (German):** \"Wer ist der aktuelle Präsident?\"\n\n💡 **Cultural Note:** In Deutschland ist der 'Präsident' ein parlamentarisches Staatsoberhaupt, nicht der Exekutivchef.\n\n✨ **Alternative:** \"Wer ist der derzeitige Präsident?\"\n\n🌍 **Regional Note:** Im deutschsprachigen Raum wird 'Präsident' selten für den Bundeskanzler benutzt."
+    }
+  ],
+  "summaries": {
+    "key_points": "",
+    "action_items": ""
+  }
+}

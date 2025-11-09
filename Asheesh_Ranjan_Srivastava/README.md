@@ -1,425 +1,206 @@
-# 🚀 Text Summarization MVP with Multi-Format Export
+# 🚀 AI Engineering Bootcamp - Sprint Submissions
 
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![Gradio](https://img.shields.io/badge/Gradio-5.0+-orange.svg)](https://gradio.app/)
-[![HuggingFace](https://img.shields.io/badge/🤗-HuggingFace-yellow.svg)](https://huggingface.co/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-
-> **Day 2 Project** - AI Engineering Bootcamp
-> A production-ready text summarization application with professional export capabilities built using Transformers and Gradio.
+**Student:** Asheesh Ranjan Srivastava
+**Program:** OutSkill AI Engineering Bootcamp 2025
+**Cohort:** C2
 
 ---
 
-## 📋 Table of Contents
-
-- [Overview](#overview)
-- [Features](#features)
-- [Demo](#demo)
-- [Quick Start](#quick-start)
-- [Deployment Options](#deployment-options)
-- [Technologies](#technologies)
-- [Architecture](#architecture)
-- [Usage Guide](#usage-guide)
-- [Bootcamp Learning Outcomes](#bootcamp-learning-outcomes)
-- [Future Enhancements](#future-enhancements)
-- [Contributing](#contributing)
-- [License](#license)
-
----
-
-## 🎯 Overview
-
-This project delivers an **AI-powered text summarization tool** that generates high-quality summaries and exports them in multiple professional formats. Built as part of the AI Engineering Bootcamp (Day 2), it demonstrates practical application of:
-
-- ✅ **Prompt Engineering** (Zero-shot, Few-shot, Chain-of-Thought)
-- ✅ **HuggingFace Transformers** (Model loading, tokenization, inference)
-- ✅ **Gradio Interface Design** (Multi-tab UI, file handling)
-- ✅ **Production Best Practices** (Caching, error handling, logging)
-
-### 🎥 **Why Multi-Format Export?**
-
-Different use cases require different formats:
-- **Markdown**: Documentation, GitHub, blogs
-- **JSON**: API integration, data pipelines
-- **Audio (TTS)**: Accessibility, learning while commuting
-- **PDF**: Professional reports, sharing with stakeholders
-
----
-
-## ✨ Features
-
-### Core Capabilities
-- 🤖 **4 AI Models**: BART, T5-Small, T5-Base, Pegasus
-- 📊 **Smart Caching**: 83% cost reduction via MD5-based cache
-- 📏 **Adjustable Length**: 10%-50% compression ratio
-- ⚡ **GPU Support**: Auto-detects CUDA for faster inference
-
-### Export Formats
-- 📄 **Markdown**: Full report with metadata and statistics
-- 📊 **JSON**: Structured data with ISO timestamps
-- 🎵 **Audio**: Text-to-speech in 10 languages
-- 📑 **PDF**: Professional document with formatting
-
-### User Experience
-- 🎨 **Clean Gradio UI**: Multi-tab interface (Summarize → Export → Help)
-- 📈 **Real-time Stats**: Word count, compression ratio, processing time
-- 💾 **Batch Export**: Download all formats with one click
-- 📱 **Google Colab Optimized**: File download utilities included
-
----
-
-## 🎥 Demo
-
-### 🔴 **Important Note on Live Demo**
-
-**Gradio Share Links Limitations:**
-- ⏰ **Active Session**: 72 hours maximum
-- 🔗 **Public URL**: Valid for 7 days
-- ⚠️ **Not Suitable**: For long-term/permanent hosting
-
-**For bootcamp submission, we provide:**
-
-### Option 1: **Local Setup** (Recommended for Evaluation)
-```bash
-# Clone and run locally (5 minutes)
-git clone <your-repo-url>
-cd day2-text-summarization-mvp
-pip install -r requirements.txt
-jupyter notebook text_summarization_mvp_enhanced.ipynb
-```
-
-### Option 2: **HuggingFace Spaces** (Free Permanent Hosting)
-```bash
-# Deploy to Spaces (permanent URL)
-gradio deploy
-```
-See [DEPLOYMENT.md](docs/DEPLOYMENT.md) for detailed instructions.
-
-### Option 3: **Screenshots & Video**
-- 📸 [Interface Screenshots](docs/screenshots/)
-- 🎥 [Demo Video](docs/demo-video-link.md) (YouTube/Loom)
-
----
-
-## 🚀 Quick Start
-
-### Prerequisites
-- Python 3.8+
-- 4GB RAM minimum (8GB recommended)
-- Internet connection (first run downloads models ~500MB)
-
-### Installation
-
-**1. Clone Repository**
-```bash
-git clone https://github.com/AsheeshSrivastava/day2-text-summarization-mvp.git
-cd day2-text-summarization-mvp
-```
-
-**2. Install Dependencies**
-```bash
-pip install -r requirements.txt
-```
-
-**3. (Optional) Set HuggingFace Token**
-```bash
-# Copy environment template
-cp .env.example .env
-
-# Add your token (optional, for gated models)
-echo "HF_TOKEN=your_token_here" >> .env
-```
-
-**4. Run Application**
-
-**Option A: Jupyter Notebook**
-```bash
-jupyter notebook text_summarization_mvp_enhanced.ipynb
-```
-
-**Option B: Google Colab**
-1. Upload `text_summarization_mvp_enhanced.ipynb` to Colab
-2. Run all cells
-3. Access via public link (valid 7 days)
-
-**Option C: Python Script** (Coming soon)
-```bash
-python app.py --share
-```
-
----
-
-## 🌐 Deployment Options
-
-### 1. **Local Development** (Best for Testing)
-- ✅ **Pros**: Full control, no time limits, offline capable
-- ❌ **Cons**: Requires Python environment
-
-```bash
-jupyter notebook text_summarization_mvp_enhanced.ipynb
-# Access at http://localhost:8888
-```
-
-### 2. **HuggingFace Spaces** (Best for Sharing)
-- ✅ **Pros**: Free, permanent, GPU support available
-- ❌ **Cons**: Requires HF account
-
-```bash
-# One-time setup
-huggingface-cli login
-
-# Deploy
-cd day2-text-summarization-mvp
-gradio deploy
-```
-
-**Result**: Permanent URL at `https://huggingface.co/spaces/AsheeshSrivastava/text-summarization`
-
-### 3. **Google Colab** (Best for Quick Demo)
-- ✅ **Pros**: No setup, works anywhere, free GPU
-- ❌ **Cons**: 72-hour session limit, 7-day link expiry
-
-```python
-# In Colab cell
-interface.launch(share=True)
-# Creates temporary public URL
-```
-
-### 4. **Streamlit Cloud / Railway / Render**
-See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for alternative platforms.
-
----
-
-## 🛠️ Technologies
-
-### Machine Learning
-- **Transformers** (v4.57+): Model inference
-- **PyTorch** (v2.0+): Deep learning backend
-- **HuggingFace Hub**: Model repository
-
-### Interface & Export
-- **Gradio** (v5.0+): Web UI framework
-- **gTTS**: Text-to-speech (10 languages)
-- **ReportLab**: PDF generation
-- **Markdown**: Documentation format
-
-### Architecture Patterns
-- **Class-Based Design**: Separation of concerns
-- **Dependency Injection**: Loosely coupled components
-- **Caching Strategy**: MD5-based result storage
-- **Error Handling**: Comprehensive try-except blocks
-
----
-
-## 📐 Architecture
-
-```
-┌─────────────────────────────────────────┐
-│         Gradio Interface                │
-│  (Tabs: Summarize | Export | Help)      │
-└─────────────┬───────────────────────────┘
-              │
-              ▼
-┌─────────────────────────────────────────┐
-│     SummarizationEngine                 │
-│  - Orchestrates summarization workflow  │
-└─────────────┬───────────────────────────┘
-              │
-    ┌─────────┼─────────┬─────────┐
-    ▼         ▼         ▼         ▼
-┌─────────┐ ┌──────┐ ┌────────┐ ┌────────┐
-│ Model   │ │Cache │ │ Text   │ │Export  │
-│ Manager │ │Mgr   │ │Proc.   │ │Manager │
-└─────────┘ └──────┘ └────────┘ └────────┘
-    │           │         │          │
-    ▼           ▼         ▼          ▼
-[Models]   [Cache DB]  [Utils]   [Files]
-```
-
-**Key Components:**
-
-1. **ModelManager**: Loads and caches Transformers models
-2. **CacheManager**: MD5-based summary caching (83% cost reduction)
-3. **TextProcessor**: Preprocessing and statistics calculation
-4. **ExportManager**: Multi-format file generation
-5. **SummarizationEngine**: Coordinates all components
-
-See [ARCHITECTURE.md](ARCHITECTURE.md) for detailed technical documentation.
-
----
-
-## 📖 Usage Guide
-
-### Basic Workflow
-
-**1. Generate Summary**
-```python
-# In Gradio interface:
-1. Select model (T5-Small for speed, BART for quality)
-2. Adjust summary length slider (30% default)
-3. Paste text (minimum 50 characters)
-4. Click "Generate Summary"
-```
-
-**2. Export Results**
-```python
-# Navigate to Export tab:
-- Markdown: Click "Export as Markdown" → Download
-- JSON: Click "Export as JSON" → Download
-- Audio: Select language → Click "Export as Audio" → Download
-- PDF: Click "Export as PDF" → Download
-```
-
-### Model Selection Guide
-
-| Model | Best For | Speed | Quality | Size |
-|-------|----------|-------|---------|------|
-| **T5-Small** | Quick tests | ⚡⚡⚡ | ⭐⭐ | 242MB |
-| **T5-Base** | Balanced | ⚡⚡ | ⭐⭐⭐ | 892MB |
-| **BART-CNN** | News articles | ⚡ | ⭐⭐⭐⭐ | 1.6GB |
-| **Pegasus** | Abstractive | ⚡⚡ | ⭐⭐⭐⭐ | 2.2GB |
-
-### Advanced Configuration
-
-**Adjust Generation Parameters** (in code):
-```python
-# In SummarizationEngine.summarize()
-summary_ids = model.generate(
-    inputs["input_ids"],
-    num_beams=4,           # Beam search width (4-8 optimal)
-    length_penalty=2.0,    # Encourages longer summaries
-    temperature=0.7,       # Add for creativity (0.0 = deterministic)
-    top_p=0.9             # Nucleus sampling
-)
-```
-
----
-
-## 🎓 Bootcamp Learning Outcomes
-
-### Day 2 Concepts Applied
-
-#### 1. **Prompt Engineering**
-- ✅ **Zero-shot**: `"summarize: " + text` (T5 models)
-- ✅ **JSON Format**: Structured metadata in exports
-- 🔄 **Few-shot**: Could add example summaries (future enhancement)
-- 🔄 **Chain-of-Thought**: Could add step-by-step reasoning
-
-#### 2. **HuggingFace Ecosystem**
-```python
-# Model Loading
-tokenizer = AutoTokenizer.from_pretrained(model_id)
-model = AutoModelForSeq2SeqLM.from_pretrained(model_id)
-
-# Token Management
-inputs = tokenizer(text, max_length=512, truncation=True)
-outputs = model.generate(inputs["input_ids"])
-summary = tokenizer.decode(outputs[0])
-```
-
-#### 3. **Gradio Interface Design**
-- Multi-tab layout (Summarize | Export | Help)
-- File download components
-- Real-time status updates
-- Slider for adjustable parameters
-
-#### 4. **Production Best Practices**
-- Caching (83% cost reduction strategy from Day 1)
-- Error handling with user-friendly messages
-- Configuration management (centralized `Config` class)
-- Logging and statistics tracking
-
-### Key Insights
-
-**Problem Solved**: Manual summarization is time-consuming and inconsistent.
-
-**System Built**: Automated pipeline with professional export capabilities.
-
-**Win Achieved**:
-- 70% compression ratio (avg)
-- 4 export formats
-- Sub-5-second processing
+## 📚 Project Index
+
+### 🎯 [Day 2: AI-Powered Text Summarization](./Day-2/)
+**Built:** Multi-model text summarization system with professional export capabilities
+
+**Tech Stack:** Python • Transformers • Gradio • BART • T5 • Pegasus
+**Key Features:**
+- 4 AI models with smart caching
+- Multi-format export (MD, JSON, Audio, PDF)
 - Production-ready architecture
+- 83% cost reduction through caching
+
+**Status:** ✅ Complete | 📝 [View Documentation](./Day-2/README.md)
 
 ---
 
-## 🔮 Future Enhancements
+### 🤖 [Day 3: Multi-Persona Chatbot](./Day-3/)
+**Built:** Conversational AI with personality switching and conversation management
 
-### Short-Term (1-2 Weeks)
-- [ ] Add few-shot examples for improved quality
-- [ ] Implement batch processing (multiple texts)
-- [ ] Add summary comparison view (side-by-side models)
-- [ ] Create standalone Python script (no notebook required)
+**Tech Stack:** Python • Streamlit • OpenAI API • JSON
+**Key Features:**
+- 4 distinct AI personas
+- Multi-session chat management
+- Export conversations (TXT/JSON/CSV)
+- Real-time streaming responses
 
-### Medium-Term (1 Month)
-- [ ] Fine-tune model on domain-specific data
-- [ ] Add chain-of-thought reasoning mode
-- [ ] Implement user feedback loop
-- [ ] Create REST API endpoint
-
-### Long-Term (3+ Months)
-- [ ] Multi-language support (summarize in any language)
-- [ ] Integration with document parsers (PDF, DOCX)
-- [ ] Custom model training pipeline
-- [ ] Analytics dashboard (usage statistics)
+**Status:** ✅ Complete | 🔗 [Live Demo](http://questandcrossfire.com/chatbot) | 📝 [View Documentation](./Day-3/README.md)
 
 ---
 
-## 🤝 Contributing
+### ⚡ [Day 4: Automated LinkedIn Job Application System](./Day-4/)
+**Built:** Email-based workflow automation with AI-powered personalization and video generation
 
-Contributions are welcome! This is a bootcamp project, but I'm open to:
+**Tech Stack:** n8n • Gmail API • OpenAI (GPT-5, GPT-4o) • HeyGen API • Google Sheets
+**Key Features:**
+- Processes 50+ jobs daily on autopilot
+- Multi-model AI strategy (extraction, rating, cover letters, video scripts)
+- Profile-matched rating system (0-5 scale)
+- Conditional AI video generation for high-match jobs
+- Human-AI collaboration case study
 
-- Bug fixes
-- Documentation improvements
-- New export formats
-- Model additions
-- UI enhancements
-
-Please open an issue first to discuss proposed changes.
-
----
-
-## 📄 License
-
-This project is licensed under the **MIT License** - see [LICENSE](LICENSE) file.
-
-**Bootcamp Context**: Created as part of the AI Engineering Bootcamp (Day 2) - October 28, 2025
+**Status:** ✅ Complete | 📝 [View Documentation](./Day-4/README.md) | 🎓 [Learning Journey](./Day-4/README.md#the-real-learning-journey)
 
 ---
 
-## 🙏 Acknowledgments
+### 🎯 [Day 5: Quest And Crossfire LinkedIn AI - Serverless Application](./Day-5/)
+**Built:** AI-powered LinkedIn post generator with OAuth 2.0 authentication and serverless architecture
 
-- **AI Engineering Bootcamp**: For structured learning curriculum
-- **HuggingFace**: For Transformers library and model hosting
-- **Gradio Team**: For intuitive interface framework
-- **OpenAI Research**: For attention mechanisms (Transformers foundation)
+**Tech Stack:** Vercel Serverless • n8n AI Agent • LinkedIn OAuth 2.0 • JWT • OpenAI GPT-4o-mini • Supabase
+**Key Features:**
+- LinkedIn OAuth 2.0 login with JWT session management
+- AI post generation with Quest And Crossfire brand voice (200+ line system prompt)
+- Direct LinkedIn publishing via Share API
+- 3-layer security architecture (frontend gate + backend JWT + email whitelist)
+- Private application with email whitelist protection
+- Comprehensive documentation (7 files, 6,148 lines)
 
----
-
-## 📞 Contact & Showcase
-
-**Created by**: ASHEESH RANJAN SRIVASTAVA
-**Bootcamp**: AI Engineering Accelerator (Batch [Oct 2025])
-**GitHub**: [@AsheeshSrivastava](https://github.com/AsheeshSrivastava)
-**LinkedIn**: [Asheesh Ranjan Srivastava](https://www.linkedin.com/in/asheesh-ranjan-srivastava/)
-
-**Related Projects**:
-- Day 1: Chat Completion and Gen AI Overview
-- Day 2: Prompt Engineering, HuggingFace and Gradio
-- Day 3: [Coming Soon]
+**Status:** ✅ Complete | 🔗 [Live App](https://quest-crossfire-linkedin-app.vercel.app) | 💻 [GitHub](https://github.com/AsheeshSrivastava/quest-crossfire-linkedin-app) | 📝 [View Documentation](./Day-5/README.md)
 
 ---
 
-## 📊 Project Statistics
+### 📚 [Days 6-7: Advanced RAG Application Development](./Day-6/)
+**Built:** Complete RAG system with vector databases, advanced retrieval techniques, and production deployment
 
-- **Code Quality**: Production-ready class-based architecture
-- **Lines of Code**: ~1,200 (with documentation)
-- **Dependencies**: 12 packages
-- **Models Supported**: 4 (expandable)
-- **Export Formats**: 4 (Markdown, JSON, Audio, PDF)
-- **Languages (TTS)**: 10 (English, Spanish, French, German, Italian, Portuguese, Hindi, Chinese, Japanese, Korean)
+> **Note:** The RAG work covered both Day 6 and Day 7 of the bootcamp (no separate Day 7 submission). All four RAG assignments and the enhanced production application are documented in the Day-6 folder.
+
+**Tech Stack:** LlamaIndex • LanceDB • HuggingFace Embeddings • OpenAI GPT-4o-mini • Gradio • Pydantic
+**Key Achievements:**
+- **Assignment 1:** Vector Database Basics (39 docs, 14,976 embeddings, semantic search)
+- **Assignment 2:** Advanced RAG Techniques (SimilarityPostprocessor, TreeSummarize, Pydantic outputs, 50-60% cost savings)
+- **Assignment 3a:** Basic Gradio RAG interface
+- **Assignment 3b:** Advanced Gradio RAG with parameter tuning
+- **Bonus:** Enhanced production application deployed to HuggingFace Spaces
+
+**Status:** ✅ Complete (Days 6-7, 4/4 Assignments) | 🚀 [Live Demo](https://huggingface.co/spaces/asheeshsrivastava9/QnC) | 📝 [View Documentation](./Day-6/README.md)
 
 ---
 
-**⭐ Star this repo if you find it useful!**
+## 🛠️ Skills Demonstrated
 
+**AI/ML:**
+- Transformer model integration
+- Prompt engineering (200+ line system prompts)
+- Multi-model architecture
+- RAG (Retrieval-Augmented Generation) systems
+- Vector databases & semantic search
+- Advanced retrieval techniques (SimilarityPostprocessor, TreeSummarize)
+- Pydantic structured outputs
+- System design for AI applications
+- AI collaboration & orchestration
+
+**Automation & Integration:**
+- n8n workflow automation
+- Gmail API integration (OAuth2)
+- LinkedIn API (OAuth 2.0 + Share API)
+- Multi-API orchestration
+- Scheduled task automation
+- Error handling & graceful degradation
+
+**Backend:**
+- OpenAI API integration (GPT-5, GPT-4o, GPT-4o-mini)
+- HeyGen video generation API
+- LlamaIndex RAG framework
+- LanceDB vector database
+- HuggingFace Transformers & Embeddings
+- Vercel serverless functions
+- JWT session management
+- Session state management
+- Caching strategies
+- Base64 decoding & HTML parsing
+
+**Frontend:**
+- Streamlit web apps
+- Gradio interfaces (basic + advanced parameter tuning)
+- Real-time streaming
+- User interaction design
+- Multi-tab interfaces
+
+**Security:**
+- OAuth 2.0 implementation (LinkedIn)
+- JWT authentication & session management
+- 3-layer security architecture (frontend + backend + whitelist)
+- Email whitelist protection
+- Rate limiting (10/hour, 20/session)
+- API key validation & format checking
+- HTTP-only secure cookies
+- Environment variable management
+
+**Professional Practices:**
+- Comprehensive documentation
+- Version control (Git)
+- Open source licensing
+- Security best practices (credentials, .gitignore)
+- Professional code structure
+- Human-AI collaboration transparency
+- Systems thinking & first principles
+- Cost optimization strategies (50-60% token savings)
+
+---
+
+## 📊 Progress Tracker
+
+| Sprint | Day | Status | Projects |
+|--------|-----|--------|----------|
+| **Sprint 1** | Day 1 | ⏳ Prep | Bootcamp orientation |
+| **Sprint 1** | Day 2 | ✅ Complete | Text Summarization MVP |
+| **Sprint 1** | Day 3 | ✅ Complete | Multi-Persona Chatbot |
+| **Sprint 1** | Day 4 | ✅ Complete | LinkedIn Job Automation (n8n workflow) |
+| **Sprint 2** | Day 5 | ✅ Complete | Quest And Crossfire LinkedIn AI (Serverless App) |
+| **Sprint 3** | Days 6-7 | ✅ Complete | Advanced RAG Application (4 Assignments + Production Deployment) |
+| **Sprint 4** | Day 8+ | 🔄 Upcoming | Coming soon... |
+
+---
+
+## 🔗 Quick Links
+
+**Live Deployments:**
+- [Quest And Crossfire LinkedIn AI](https://quest-crossfire-linkedin-app.vercel.app) - Day 5 serverless app
+- [Aethelgard Concept Generator](https://huggingface.co/spaces/asheeshsrivastava9/QnC) - Day 6 enhanced RAG app
+- [Multi-Persona Chatbot](http://questandcrossfire.com/chatbot) - Day 3 project
+- [Obsidian AI Assistant](http://questandcrossfire.com/obsidian) *(Portfolio project)*
+
+**GitHub Repositories:**
+- [Quest And Crossfire LinkedIn AI](https://github.com/AsheeshSrivastava/quest-crossfire-linkedin-app) - Full source code & documentation
+- [Aethelgard Concept Generator](https://github.com/AsheeshSrivastava/aethelgard-concept-generator) - Production RAG application
+
+**Documentation:**
+- [Day 2 README](./Day-2/README.md) - Text Summarization
+- [Day 3 README](./Day-3/README.md) - Multi-Persona Chatbot
+- [Day 4 README](./Day-4/README.md) - LinkedIn Job Automation
+  - [Setup Guide](./Day-4/SETUP.md)
+  - [Credentials Guide](./Day-4/CREDENTIALS.md)
+  - [File Summary](./Day-4/FILE_SUMMARY.md)
+- [Day 5 README](./Day-5/README.md) - Quest And Crossfire LinkedIn AI
+- [Days 6-7 README](./Day-6/README.md) - Advanced RAG Application Development
+
+---
+
+## 💡 Project Philosophy
+
+Each project demonstrates:
+- ✅ Production-ready code
+- ✅ Comprehensive documentation
+- ✅ Security best practices
+- ✅ Real-world applicability
+- ✅ Continuous learning mindset
+
+---
+
+## 📬 Connect
+
+Building AI applications and learning in public.
+
+*Part of QUEST AND CROSSFIRE™*
+
+---
+
+**Last Updated:** November 3, 2025 | Sprint 3 Complete (Days 6-7)

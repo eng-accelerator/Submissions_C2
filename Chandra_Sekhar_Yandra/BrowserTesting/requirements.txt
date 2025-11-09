@@ -1,0 +1,14 @@
+# Core dependencies - compatible with Python 3.8+
+streamlit>=1.28.0
+playwright>=1.40.0
+python-dotenv>=1.0.0
+requests>=2.31.0
+
+# Data processing
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Supporting packages (installed automatically with above, but listed for clarity)
+altair>=5.0.0
+pillow>=10.0.0
+pyarrow>=14.0.0

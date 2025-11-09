@@ -1,0 +1,135 @@
+GNU AFFERO GENERAL PUBLIC LICENSE
+Version 3, 19 November 2007
+
+Copyright (C) 2025 Asheesh Ranjan Srivastava
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+==============================================================================
+
+Quest And Crossfire LinkedIn AI - Serverless Application
+AI-powered LinkedIn post generator with OAuth 2.0 authentication
+
+Built for OutSkill AI Engineering Bootcamp 2025 - Day 5
+Quest And Crossfire™ © 2025 Asheesh Ranjan Srivastava
+
+==============================================================================
+
+COPYRIGHT HOLDER RIGHTS:
+
+As the copyright holder, Asheesh Ranjan Srivastava retains ALL RIGHTS
+to use this code in any manner, including:
+- Closed-source applications
+- Commercial products
+- Proprietary derivatives
+- Alternative licensing arrangements
+
+AGPL-3.0 restrictions apply ONLY to derivative works created by others.
+
+For commercial licensing inquiries or alternative licensing arrangements:
+Contact: asheesh.srivastava@questandcrossfire.com
+
+==============================================================================
+
+ADDITIONAL NOTICES:
+
+1. TRADEMARKS
+   - "Aethelgard Academy" is a trademark of Asheesh Ranjan Srivastava
+     (Trademark Filed - awaiting certification)
+   - "Quest And Crossfire" is a trademark of Asheesh Ranjan Srivastava
+     (Trademark Filed - awaiting certification)
+   - Use of these trademarks requires explicit permission
+
+2. AI ATTRIBUTION
+   This software was developed with assistance from:
+   - Claude Code (Anthropic) for technical implementation and debugging
+   - Human strategic decisions and quality control by Asheesh Ranjan Srivastava
+   - This represents human-AI collaboration in modern software development
+
+3. THIRD-PARTY SERVICES AND DEPENDENCIES
+   This application uses the following services:
+   - Vercel (serverless hosting platform)
+   - LinkedIn API (OAuth 2.0 + Share on LinkedIn)
+   - n8n (AI workflow automation)
+   - OpenAI API (GPT-4o-mini)
+   - Supabase PostgreSQL (database)
+   - Node.js libraries (jsonwebtoken, etc.)
+
+   Each service is subject to its respective terms of service and pricing.
+
+4. BOOTCAMP ATTRIBUTION
+   This project was created as part of the OutSkill AI Engineering Bootcamp 2025.
+   Architecture, OAuth 2.0 implementation, 3-layer security design, and
+   Quest And Crossfire brand integration by Asheesh Ranjan Srivastava.
+
+5. SECURITY IMPLEMENTATION
+   This application implements:
+   - LinkedIn OAuth 2.0 authentication
+   - JWT session management (7-day expiration)
+   - 3-layer security architecture (frontend gate + backend JWT + email whitelist)
+   - Email whitelist protection (private application)
+   - HTTP-only secure cookies
+   - Environment variable management
+
+6. DATA AND PRIVACY
+   - This is a private application with email whitelist
+   - User data is stored in Supabase with RLS policies
+   - API keys and credentials required (not included)
+   - No warranty for production use or data privacy
+
+7. COPYLEFT NOTICE (AGPL-3.0)
+   Under AGPL-3.0, any derivative works or modifications must also be
+   released under AGPL-3.0 or compatible license.
+
+   If you use this code in your project, you must:
+   - Make your source code available
+   - License your project under AGPL-3.0
+   - Attribute the original work
+   - State your changes
+   - If used in a web service, provide source code to users
+
+   AGPL-3.0 NETWORK USE CLAUSE:
+   If you run a modified version of this software as a web service
+   (e.g., Vercel deployment, cloud hosting), you MUST make the
+   complete source code available to users of that service.
+
+==============================================================================
+
+FULL SOURCE CODE AVAILABILITY:
+
+The complete source code for this project is publicly available at:
+https://github.com/AsheeshSrivastava/quest-crossfire-linkedin-app
+
+This includes:
+- All serverless functions (OAuth, generation, publishing)
+- Frontend HTML/CSS/JavaScript
+- Security implementation
+- Comprehensive documentation (7 files, 6,148 lines)
+- Setup guides and learning journey
+
+==============================================================================
+
+For the complete GNU Affero General Public License v3.0 text, see:
+https://www.gnu.org/licenses/agpl-3.0.txt
+
+==============================================================================
+
+CONTACT:
+Author: Asheesh Ranjan Srivastava
+Email: asheesh.srivastava@questandcrossfire.com
+Brand: Quest And Crossfire
+Project: Aethelgard Academy
+Live App: https://quest-crossfire-linkedin-app.vercel.app
+
+◇ Where chaos becomes clarity. Small fixes, big clarity.
