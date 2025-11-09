@@ -1,0 +1,29 @@
+# FastAPI and server
+fastapi
+uvicorn[standard]
+python-multipart
+
+# LangChain and AI
+langchain
+langchain-openai
+langchain-community
+langgraph
+openai
+pydantic
+
+# Environment and configuration
+python-dotenv
+dotenv
+
+# Database
+supabase
+
+# MCP Integration (LangChain)
+langchain-mcp-adapters
+# Image processing
+pillow
+pytesseract
+
+
+#pdf export
+reportlab
