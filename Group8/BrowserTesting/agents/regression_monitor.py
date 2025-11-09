@@ -139,14 +139,27 @@ def run_visual_check(
     if baseline_id is not None:
         print(f"[Visual Check] MODE: Explicit comparison (baseline_id={baseline_id})")
         if not os.path.exists(baseline_path):
-            print(f"[Visual Check] ✗ Baseline not found at {baseline_path}")
-            return {
-                "status": "unavailable",
-                "message": f"Baseline screenshot not found. Please run the baseline scenario first.",
-                "baseline_path": None,
-                "diff_path": None,
-            }
-        print(f"[Visual Check] ✓ Baseline found, proceeding to comparison")
+            print(f"[Visual Check] Baseline not found, creating it now...")
+            # Auto-create baseline on first run
+            try:
+                with Image.open(screenshot_path) as img:
+                    img.convert("RGBA").save(baseline_path)
+                print(f"[Visual Check] Baseline created at {baseline_path}")
+                return {
+                    "status": "baseline_created",
+                    "message": "Baseline screenshot captured. Run again to compare against this baseline.",
+                    "baseline_path": baseline_path,
+                    "diff_path": None,
+                }
+            except Exception as e:
+                print(f"[Visual Check] Failed to create baseline: {e}")
+                return {
+                    "status": "unavailable",
+                    "message": f"Failed to create baseline: {e}",
+                    "baseline_path": None,
+                    "diff_path": None,
+                }
+        print(f"[Visual Check] Baseline found, proceeding to comparison")
 
     # Mode 3: Self-baseline (baseline_id is None and create_baseline_only is False)
     elif not os.path.exists(baseline_path):
