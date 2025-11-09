@@ -1,0 +1,13 @@
+4. Multi-Agent AI Deep Researcher
+
+What it demonstrates:
+An AI-powered research assistant for multi-hop, multi-source investigations. The system spins up specialized agents that:
+Contextual Retriever Agent – Pulls data from research papers, news articles, reports, and APIs.
+Critical Analysis Agent – Summarizes findings, highlights contradictions, and validates sources.
+Insight Generation Agent – Suggests hypotheses or trends using reasoning chains.
+Report Builder Agent – Compiles all insights into a structured report
+Any more agents you want to add
+
+Why it's ideal:
+Showcases agent collaboration, retrieval-augmented reasoning, and long-context synthesis.
+You can use frameworks like LangChain/Langgraph, LlamaIndex, etc to build this.

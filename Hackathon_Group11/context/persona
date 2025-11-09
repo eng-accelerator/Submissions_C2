@@ -1,0 +1,201 @@
+Primary Persona: The AI Engineering Professional
+Core Profile
+Technical Level: Advanced (Senior Engineers, ML Engineers, AI Researchers)
+
+This project targets professionals who are deeply invested in cutting-edge AI systems and possess both theoretical knowledge and practical implementation experience. They understand the limitations of single-agent systems and are exploring distributed intelligence architectures.
+
+Key Characteristics
+Professional Background
+
+AI/ML Engineers at tech companies building production AI systems
+
+Research Scientists working on autonomous agent frameworks
+
+Senior Software Engineers transitioning into AI infrastructure
+
+Technical Leads architecting next-generation intelligent applications
+
+Technical Competencies
+
+Strong proficiency in Python and AI frameworks (LangChain, LangGraph, LlamaIndex)
+
+Experience with LLM APIs (OpenAI, Anthropic, open-source models)
+
+Understanding of RAG (Retrieval-Augmented Generation) architectures
+
+Familiarity with vector databases, embeddings, and semantic search
+
+Knowledge of orchestration patterns and agent communication protocols
+
+Motivation Drivers
+
+Building portfolio projects that demonstrate advanced AI capabilities
+
+Preparing for interviews at AI-focused companies (OpenAI, Anthropic, AI startups)
+
+Exploring multi-agent systems before they become mainstream in enterprise
+
+Solving real research bottlenecks in their current work
+
+Staying ahead of the rapid evolution in agentic AI
+
+Problem Statement They Face
+Current Challenges:
+
+Manual research is time-consuming and fragmented across multiple sources
+
+Single-agent LLM systems struggle with complex, multi-step research tasks
+
+Need to validate information across contradictory sources
+
+Difficulty synthesizing insights from diverse data types (papers, news, APIs)
+
+Lack of systematic approaches to fact-checking and source validation
+
+What They're Seeking:
+
+Hands-on experience building agent orchestration systems
+
+Understanding of when to decompose tasks across specialized agents
+
+Practical patterns for agent communication and state management
+
+Experience with long-context reasoning and information synthesis
+
+Portfolio-worthy projects demonstrating real-world AI capabilities
+
+Secondary Persona: The Domain Expert Researcher
+Core Profile
+Technical Level: Intermediate (Comfortable with coding, new to AI agents)
+
+These are professionals from specific domains who need powerful research tools and see AI agents as the solution.
+
+Professional Background
+
+Academic researchers (PhD students, postdocs)
+
+Market research analysts and competitive intelligence professionals
+
+Data journalists investigating complex stories
+
+Policy researchers and think tank analysts
+
+Investment analysts conducting due diligence
+
+Technical Competencies
+
+Basic Python programming skills
+
+Experience with data analysis tools (Pandas, Jupyter)
+
+Understanding of APIs and data retrieval
+
+Willingness to learn AI frameworks with good documentation
+
+Focus on practical outcomes over architectural elegance
+
+Motivation Drivers
+
+Automating repetitive research workflows
+
+Processing larger volumes of information than humanly possible
+
+Ensuring comprehensive coverage of sources in their investigations
+
+Reducing time from research question to actionable insights
+
+Maintaining competitive edge through AI-powered tools
+
+Why This Project Resonates
+For AI Engineers
+Skill Development:
+
+Agent Orchestration: Learn coordination patterns beyond simple chains
+
+Retrieval Systems: Implement sophisticated RAG with multiple data sources
+
+Reasoning Chains: Build systems that perform multi-hop logical inference
+
+Error Handling: Manage agent failures, contradictions, and uncertainty
+
+System Design: Architect modular, extensible agent frameworks
+
+Career Value:
+
+Highly relevant for roles at AI labs and agent-focused startups
+
+Demonstrates understanding of emerging architectural patterns
+
+Shows ability to work with state-of-the-art frameworks
+
+Creates tangible artifact for technical interviews and portfolio
+
+Positions them as early adopters of agentic AI paradigms
+
+For Domain Researchers
+Practical Benefits:
+
+Time Savings: Automate hours of manual literature review and source compilation
+
+Comprehensive Coverage: Ensure no critical sources are missed
+
+Bias Detection: Identify contradictions and alternative perspectives automatically
+
+Structured Output: Generate professional reports ready for stakeholders
+
+Reproducibility: Create repeatable research workflows for ongoing monitoring
+
+Competitive Advantage:
+
+Stay current with rapidly evolving topics (tech trends, policy changes)
+
+Process competitor intelligence at scale
+
+Provide data-driven insights backed by comprehensive research
+
+Demonstrate technical innovation in traditionally non-technical fields
+
+Additional Agents to Consider
+Based on persona needs, these agents would enhance the system:
+
+Source Credibility Agent – Evaluates reliability scores for each source based on publication history, author credentials, citation networks, and cross-referencing
+
+Temporal Analysis Agent – Tracks how information and consensus evolve over time, identifies outdated claims, and highlights emerging trends
+
+Bias Detection Agent – Identifies potential biases in sources, flags echo chambers, and ensures diverse perspectives are represented
+
+Query Refinement Agent – Improves initial research questions through clarification prompts, generates sub-queries for comprehensive coverage, and adapts search strategy based on preliminary findings
+
+Citation Network Agent – Maps relationships between sources, identifies seminal works and derivative research, and discovers related investigations through citation graphs
+
+Data Extraction Agent – Pulls structured data from unstructured text (statistics, dates, claims), normalizes formats across sources, and enables quantitative meta-analysis
+
+Visual Synthesis Agent – Generates concept maps showing relationships between findings, creates timeline visualizations of evolving narratives, and produces comparison matrices for competing hypotheses
+
+Success Metrics for Each Persona
+AI Engineers Value:
+
+System modularity and extensibility
+
+Performance optimization (latency, token usage)
+
+Handling edge cases and failure modes
+
+Code quality and architectural patterns
+
+Integration potential with existing systems
+
+Domain Researchers Value:
+
+Output quality and actionability
+
+Time saved versus manual research
+
+Comprehensiveness of source coverage
+
+Clarity and structure of generated reports
+
+Ease of customization for their specific domain
+
+Conclusion
+This project serves a dual audience with aligned but distinct motivations. AI Engineers see it as a vehicle for mastering agentic architectures and advancing their careers in AI development, while Domain Researchers view it as a powerful tool to augment their research capabilities. Both personas share a recognition that complex research tasks require specialized, collaborative AI systems—making this multi-agent approach both technically compelling and practically valuable.

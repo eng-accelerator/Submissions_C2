@@ -1,0 +1,265 @@
+.research-metrics {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+}
+
+.metrics-title {
+  margin: 0 0 20px 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.metrics-placeholder {
+  text-align: center;
+  padding: 40px 20px;
+  color: #6b7280;
+}
+
+.metrics-placeholder p {
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.metrics-placeholder .hint {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* Summary Cards */
+.metrics-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.metric-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.metric-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.metric-value {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.metric-label {
+  font-size: 12px;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Metrics Sections */
+.metrics-section {
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.metrics-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.section-title {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #374151;
+}
+
+/* Sentiment Analysis */
+.sentiment-chart {
+  margin-top: 12px;
+}
+
+.sentiment-bar {
+  display: flex;
+  height: 32px;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.sentiment-fill {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.sentiment-fill.positive {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.sentiment-fill.neutral {
+  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+}
+
+.sentiment-fill.negative {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+.sentiment-legend {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 14px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+.legend-color.positive {
+  background: #10b981;
+}
+
+.legend-color.neutral {
+  background: #6b7280;
+}
+
+.legend-color.negative {
+  background: #ef4444;
+}
+
+/* Category Distribution */
+.category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.category-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.category-name {
+  min-width: 120px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  text-transform: capitalize;
+}
+
+.category-bar {
+  flex: 1;
+  height: 24px;
+  background: #f3f4f6;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.category-fill {
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  transition: width 0.3s ease;
+}
+
+.category-count {
+  min-width: 40px;
+  text-align: right;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+/* Source Quality Breakdown */
+.quality-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.quality-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.quality-label {
+  min-width: 180px;
+  font-size: 14px;
+  color: #374151;
+}
+
+.quality-bar {
+  flex: 1;
+  height: 24px;
+  background: #f3f4f6;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.quality-fill {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.quality-fill.high {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.quality-fill.medium {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.quality-fill.low {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+.quality-count {
+  min-width: 40px;
+  text-align: right;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .research-metrics {
+    padding: 16px;
+  }
+  
+  .metrics-summary {
+    grid-template-columns: 1fr;
+  }
+  
+  .category-name,
+  .quality-label {
+    min-width: 100px;
+    font-size: 12px;
+  }
+  
+  .sentiment-legend {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+

@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports:
+      - "8000:8000"
+    environment:
+      - OPEN_ROUTER_KEY=${OPEN_ROUTER_KEY}
+    volumes:
+      - ./agents:/app/agents
+      - ./orchestration:/app/orchestration
+      - ./utils:/app/utils
+    command: uvicorn backend.main:app --host 0.0.0.0 --port 8000
+  
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    environment:
+      - VITE_API_URL=http://localhost:8000
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
