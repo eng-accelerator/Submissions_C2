@@ -1,6 +1,6 @@
 # Browser Automation AI Agent 🧠
 
-An intelligent browser automation system that converts natural language goals into self-healing Playwright test scripts.
+An intelligent browser automation system that converts natural language goals into self-healing Playwright test scripts, now enhanced with AI-powered chatbot assistance.
 
 ## Overview
 
@@ -27,8 +27,10 @@ Our solution addresses these by:
 
 ```
 ├── main.py              # Main Streamlit application
+├── chatbot.py          # AI-powered chatbot with web search
 ├── requirements.txt     # Project dependencies
 ├── generated_test.py    # Generated test scripts
+├── .env                # Environment configuration file
 └── agents/             # Core agent modules
     ├── flow_discovery.py     # Discovers user journey steps
     ├── script_generator.py   # Generates Playwright scripts
@@ -39,6 +41,12 @@ Our solution addresses these by:
 ```
 
 ## Core Components
+
+0. **AI Chatbot** 🤖
+   - Provides intelligent assistance
+   - Integrates with OpenAI models (GPT-4, GPT-3.5)
+   - Features web search capabilities
+   - Helps with test planning and debugging
 
 1. **Flow Discovery Agent** 🔍
    - Interprets natural language goals
@@ -75,6 +83,8 @@ Our solution addresses these by:
 - Python 3.7+
 - Streamlit >= 1.32.0
 - Playwright >= 1.42.0
+- python-dotenv
+- requests
 
 ## Getting Started
 
@@ -83,15 +93,25 @@ Our solution addresses these by:
    pip install -r requirements.txt
    ```
 
-2. Run the Streamlit application:
+2. Configure environment variables:
+   - Create a `.env` file in the project root
+   - Add the following variables:
+     ```
+     OPENROUTER_API_KEY=your_openrouter_api_key
+     GOOGLE_API_KEY=your_google_api_key
+     GOOGLE_CSE_ID=your_google_cse_id
+     ```
+
+3. Run the Streamlit application:
    ```bash
    streamlit run main.py
    ```
 
-3. Access the web interface and:
+4. Access the web interface and:
    - Enter your target URL
    - Describe your testing goal
    - Click "Generate & Run"
+   - Use the AI chatbot for assistance
 
 ## Use Cases
 
@@ -101,6 +121,9 @@ Our solution addresses these by:
 - Continuous integration testing
 - QA automation
 - Self-healing test maintenance
+- AI-assisted test planning and debugging
+- Real-time testing guidance via chatbot
+- Automated web research for test scenarios
 
 ## Future Work
 
