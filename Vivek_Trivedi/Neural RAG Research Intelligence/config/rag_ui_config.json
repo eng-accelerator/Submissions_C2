@@ -1,0 +1,19 @@
+{
+  "rag_defaults": {
+    "model": "gpt-4o-mini",
+    "temperature": 0.3,
+    "chunk_size": 512,
+    "chunk_overlap": 50,
+    "similarity_top_k": 5,
+    "similarity_threshold": 0.5,
+    "synthesizer": "Default",
+    "postprocessor_enabled": false
+  },
+  "deep_research": {
+    "external_sources": [
+      "ArXiv",
+      "Wikipedia",
+      "Tavily Search"
+    ]
+  }
+}

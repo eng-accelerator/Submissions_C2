@@ -1,0 +1,10 @@
+.env
+__pycache__/
+*.pyc
+AssignmentDb/
+AssignmentsDB/
+uploads/
+logs/
+test/
+DataSource/
+*.sqlite
